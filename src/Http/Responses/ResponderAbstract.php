@@ -35,9 +35,13 @@ abstract class ResponderAbstract implements ResponderInterface
 	 */
 	protected function determineStatusCodeMessage(): string
 	{
-		$statusCodeMessageInterpreter = new StatusCodeMessageInterpreter();
-		$statusMessage                = $statusCodeMessageInterpreter->interpret( $this->statusCode );
-		$responseStatusCodeMessage    = sprintf( '%s %s', $this->statusCode, $statusMessage );
+		$statusMessage             = ( new StatusCodeMessageInterpreter() )
+			->interpret( $this->statusCode );
+		$responseStatusCodeMessage = sprintf(
+			'%s %s',
+			$this->statusCode,
+			$statusMessage
+		);
 
 		return $responseStatusCodeMessage;
 	}
@@ -56,7 +60,11 @@ abstract class ResponderAbstract implements ResponderInterface
 	{
 		foreach ( $this->headers as $headerName => $headerValue )
 		{
-			$header = sprintf( '%s: %s', $headerName, $headerValue );
+			$header = sprintf(
+				'%s: %s',
+				$headerName,
+				$headerValue
+			);
 			header( $header, true );
 		}
 	}
