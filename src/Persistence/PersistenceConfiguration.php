@@ -1,16 +1,13 @@
 <?php declare( strict_types = 1 );
 namespace CodeKandis\Tiphy\Persistence;
 
-use function dirname;
+use CodeKandis\Tiphy\Configurations\AbstractConfiguration;
 
-class PersistenceConfiguration implements PersistenceConfigurationInterface
+class PersistenceConfiguration extends AbstractConfiguration implements PersistenceConfigurationInterface
 {
-	/** @var array */
-	private $data;
-
-	public function __construct()
+	public function __construct( string $path )
 	{
-		$this->data = require dirname( __DIR__, 2 ) . '/config/persistence.php';
+		parent::__construct( $path );
 	}
 
 	public function getDriver(): string
