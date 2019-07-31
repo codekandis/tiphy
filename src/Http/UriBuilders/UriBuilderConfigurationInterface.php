@@ -3,11 +3,11 @@ namespace CodeKandis\Tiphy\Http\UriBuilders;
 
 interface UriBuilderConfigurationInterface
 {
-	public function getSchema( string $section ): string;
+	public function getSchema(): string;
 
-	public function getHost( string $section ): string;
+	public function getHost(): string;
 
-	public function getBaseUri( string $section ): string;
+	public function getBaseUri(): string;
 
-	public function getRelativeUris( string $section ): array;
+	public function getRelativeUris(): array;
 }
