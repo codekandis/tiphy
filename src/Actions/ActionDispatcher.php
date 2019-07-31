@@ -31,7 +31,7 @@ class ActionDispatcher implements ActionDispatcherInterface
 		$actionClass      = NotFoundAction::class;
 		$requestBody      = '';
 		$actionArguments  = [];
-		$configuredRoutes = $this->config->getRoutes( $_SERVER[ 'HTTP_HOST' ] );
+		$configuredRoutes = $this->config->getRoutes();
 		foreach ( $configuredRoutes as $configuredRoute => $configuredMethods )
 		{
 			$matches    = [];
