@@ -1,17 +1,14 @@
 <?php declare( strict_types = 1 );
 namespace CodeKandis\Tiphy\Http;
 
+use CodeKandis\Tiphy\Configurations\AbstractConfiguration;
 use function array_keys;
-use function dirname;
 
-class RoutesConfiguration implements RoutesConfigurationInterface
+class RoutesConfiguration extends AbstractConfiguration implements RoutesConfigurationInterface
 {
-	/** @var array */
-	private $data;
-
-	public function __construct()
+	public function __construct( string $path )
 	{
-		$this->data = require dirname( __DIR__, 2 ) . '/config/routes.php';
+		parent::__construct( $path );
 	}
 
 	public function getHosts(): array
