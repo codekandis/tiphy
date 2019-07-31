@@ -3,7 +3,5 @@ namespace CodeKandis\Tiphy\Http;
 
 interface RoutesConfigurationInterface
 {
-	public function getHosts(): array;
-
-	public function getRoutes( string $host ): array;
+	public function getRoutes(): array;
 }
