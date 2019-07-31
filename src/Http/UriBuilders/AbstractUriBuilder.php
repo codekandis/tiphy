@@ -3,7 +3,7 @@ namespace CodeKandis\Tiphy\Http\UriBuilders;
 
 use function sprintf;
 
-abstract class UriBuilderAbstract implements UriBuilderInterface
+abstract class AbstractUriBuilder implements UriBuilderInterface
 {
 	/** @var UriBuilderConfigurationInterface */
 	private $config;
