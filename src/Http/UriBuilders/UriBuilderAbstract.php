@@ -8,21 +8,17 @@ abstract class UriBuilderAbstract implements UriBuilderInterface
 	/** @var UriBuilderConfigurationInterface */
 	private $config;
 
-	/** @var string */
-	private $section;
-
-	public function __construct( UriBuilderConfigurationInterface $config, string $section )
+	public function __construct( UriBuilderConfigurationInterface $config )
 	{
-		$this->config  = $config;
-		$this->section = $section;
+		$this->config = $config;
 	}
 
 	public function getUri( string $uriName, string ...$arguments ): string
 	{
-		$schema       = $this->config->getSchema( $this->section );
-		$host         = $this->config->getHost( $this->section );
-		$baseUri      = $this->config->getBaseUri( $this->section );
-		$relativeUris = $this->config->getRelativeUris( $this->section );
+		$schema       = $this->config->getSchema();
+		$host         = $this->config->getHost();
+		$baseUri      = $this->config->getBaseUri();
+		$relativeUris = $this->config->getRelativeUris();
 
 		$uriPrepared = sprintf(
 			'%s://%s%s%s',
