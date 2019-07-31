@@ -3,7 +3,7 @@ namespace CodeKandis\Tiphy\Actions;
 
 use CodeKandis\Tiphy\Http\Requests\JsonBodyInterface;
 
-abstract class ActionAbstract implements ActionInterface
+abstract class AbstractAction implements ActionInterface
 {
 	/** @var JsonBodyInterface */
 	protected $requestBody;
