@@ -1,0 +1,54 @@
+{
+	"name": "codekandis/tiphy",
+	"description": "This library is a tiny PHP routing framework.",
+	"keywords": [
+		"php",
+		"tiphy",
+		"routing",
+		"framework"
+	],
+	"minimum-stability": "dev",
+	"prefer-stable": true,
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Christian Ramelow",
+			"email": "info@codekandis.net",
+			"homepage": "https://codekandis.net",
+			"role": "Developer"
+		}
+	],
+	"support": {
+		"email": "info@codekandis.net",
+		"issues": "https://github.com/codekandis/tiphy/issues",
+		"docs": "https://github.com/codekandis/tiphy/blob/master/README.md",
+		"source": "https://github.com/codekandis/tiphy/tree/master"
+	},
+	"require": {
+		"php": "^7.3"
+	},
+	"require-dev": {
+		"roave/security-advisories": "dev-master",
+		"sensiolabs/security-checker": "^6",
+		"phpunit/phpunit": "^8"
+	},
+	"autoload": {
+		"psr-4": {
+			"CodeKandis\\Tiphy\\": [
+				"src/"
+			]
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"CodeKandis\\Tiphy\\Tests\\": [
+				"tests/"
+			]
+		}
+	},
+	"scripts": {
+		"post-update-cmd": [
+			"[ ${COMPOSER_DEV_MODE} -eq 0 ] || vendor/bin/security-checker security:check composer.lock"
+		]
+	}
+}
