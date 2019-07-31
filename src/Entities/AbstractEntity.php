@@ -5,7 +5,7 @@ use ReflectionClass;
 use ReflectionException;
 use ReflectionProperty;
 
-abstract class EntityAbstract implements EntityInterface
+abstract class AbstractEntity implements EntityInterface
 {
 	/**
 	 * @throws ReflectionException
