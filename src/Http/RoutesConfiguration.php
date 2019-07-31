@@ -2,7 +2,6 @@
 namespace CodeKandis\Tiphy\Http;
 
 use CodeKandis\Tiphy\Configurations\AbstractConfiguration;
-use function array_keys;
 
 class RoutesConfiguration extends AbstractConfiguration implements RoutesConfigurationInterface
 {
@@ -11,13 +10,8 @@ class RoutesConfiguration extends AbstractConfiguration implements RoutesConfigu
 		parent::__construct( $path );
 	}
 
-	public function getHosts(): array
+	public function getRoutes(): array
 	{
-		return array_keys( $this->data );
-	}
-
-	public function getRoutes( string $host ): array
-	{
-		return $this->data[ $host ];
+		return $this->data;
 	}
 }
