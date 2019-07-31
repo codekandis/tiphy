@@ -5,7 +5,7 @@ use CodeKandis\Tiphy\Http\ContentTypes;
 use CodeKandis\Tiphy\Renderers\TemplateRenderer;
 use ReflectionException;
 
-class HtmlTemplateResponder extends ResponderAbstract
+class HtmlTemplateResponder extends AbstractResponder
 {
 	/** @var string */
 	private $templatePath;

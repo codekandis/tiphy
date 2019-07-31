@@ -6,7 +6,7 @@ use function header;
 use function http_response_code;
 use function sprintf;
 
-abstract class ResponderAbstract implements ResponderInterface
+abstract class AbstractResponder implements ResponderInterface
 {
 	/** @var int */
 	private $statusCode;

@@ -5,7 +5,7 @@ use CodeKandis\Tiphy\Http\ContentTypes;
 use CodeKandis\Tiphy\Renderers\JsonRenderer;
 use ReflectionException;
 
-class JsonResponder extends ResponderAbstract
+class JsonResponder extends AbstractResponder
 {
 	/**
 	 * @throws ReflectionException
