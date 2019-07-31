@@ -1,16 +1,13 @@
 <?php declare( strict_types = 1 );
 namespace CodeKandis\Tiphy\Http\UriBuilders;
 
-use function dirname;
+use CodeKandis\Tiphy\Configurations\AbstractConfiguration;
 
-class UriBuilderConfiguration implements UriBuilderConfigurationInterface
+class UriBuilderConfiguration extends AbstractConfiguration implements UriBuilderConfigurationInterface
 {
-	/** @var array */
-	private $data;
-
-	public function __construct()
+	public function __construct( string $path )
 	{
-		$this->data = require dirname( __DIR__, 3 ) . '/config/uriBuilder.php';
+		parent::__construct( $path );
 	}
 
 	public function getSchema( string $section ): string
