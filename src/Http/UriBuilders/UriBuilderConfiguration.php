@@ -10,23 +10,23 @@ class UriBuilderConfiguration extends AbstractConfiguration implements UriBuilde
 		parent::__construct( $path );
 	}
 
-	public function getSchema( string $section ): string
+	public function getSchema(): string
 	{
-		return $this->data[ $section ][ 'schema' ];
+		return $this->data[ 'schema' ];
 	}
 
-	public function getHost( string $section ): string
+	public function getHost(): string
 	{
-		return $this->data[ $section ][ 'host' ];
+		return $this->data[ 'host' ];
 	}
 
-	public function getBaseUri( string $section ): string
+	public function getBaseUri(): string
 	{
-		return $this->data[ $section ][ 'baseUri' ];
+		return $this->data[ 'baseUri' ];
 	}
 
-	public function getRelativeUris( string $section ): array
+	public function getRelativeUris(): array
 	{
-		return $this->data[ $section ][ 'relativeUris' ];
+		return $this->data[ 'relativeUris' ];
 	}
 }
