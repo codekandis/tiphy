@@ -5,11 +5,6 @@ use CodeKandis\Tiphy\Configurations\AbstractConfiguration;
 
 class UriBuilderConfiguration extends AbstractConfiguration implements UriBuilderConfigurationInterface
 {
-	public function __construct( string $path )
-	{
-		parent::__construct( $path );
-	}
-
 	public function getSchema(): string
 	{
 		return $this->data[ 'schema' ];
