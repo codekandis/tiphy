@@ -7,6 +7,8 @@ use CodeKandis\Tiphy\Http\UriBuilders\UriBuilderConfiguration;
 use CodeKandis\Tiphy\Http\UriBuilders\UriBuilderConfigurationInterface;
 use CodeKandis\Tiphy\Persistence\PersistenceConfiguration;
 use CodeKandis\Tiphy\Persistence\PersistenceConfigurationInterface;
+use CodeKandis\Tiphy\Renderers\TemplateRendererConfiguration;
+use CodeKandis\Tiphy\Renderers\TemplateRendererConfigurationInterface;
 
 abstract class AbstractConfigurationRegistry implements ConfigurationRegistryInterface
 {
@@ -24,6 +26,12 @@ abstract class AbstractConfigurationRegistry implements ConfigurationRegistryInt
 
 	/** @var PersistenceConfigurationInterface */
 	private $persistenceConfiguration;
+
+	/** @var string */
+	private $templateRendererConfigurationPath = '';
+
+	/** @var TemplateRendererConfigurationInterface */
+	private $templateRendererConfiguration;
 
 	/** @var string */
 	private $uriBuilderConfigurationPath = '';
@@ -66,6 +74,17 @@ abstract class AbstractConfigurationRegistry implements ConfigurationRegistryInt
 	{
 		return $this->persistenceConfiguration
 		       ?? $this->persistenceConfiguration = new PersistenceConfiguration( $this->persistenceConfigurationPath );
+	}
+
+	public function setTemplateRendererConfigurationPath( string $path ): void
+	{
+		$this->templateRendererConfigurationPath = $path;
+	}
+
+	public function getTemplateRendererConfiguration(): TemplateRendererConfigurationInterface
+	{
+		return $this->templateRendererConfiguration
+		       ?? $this->templateRendererConfiguration = new TemplateRendererConfiguration( $this->templateRendererConfigurationPath );
 	}
 
 	public function setUriBuilderConfigurationPath( string $path ): void
