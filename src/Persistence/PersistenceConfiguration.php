@@ -5,11 +5,6 @@ use CodeKandis\Tiphy\Configurations\AbstractConfiguration;
 
 class PersistenceConfiguration extends AbstractConfiguration implements PersistenceConfigurationInterface
 {
-	public function __construct( string $path )
-	{
-		parent::__construct( $path );
-	}
-
 	public function getDriver(): string
 	{
 		return $this->data[ 'driver' ];
