@@ -3,22 +3,22 @@ namespace CodeKandis\Tiphy\Http\Responses;
 
 use CodeKandis\Tiphy\Http\ContentTypes;
 use CodeKandis\Tiphy\Renderers\TemplateRenderer;
+use CodeKandis\Tiphy\Renderers\TemplateRendererConfigurationInterface;
 use ReflectionException;
 
 class HtmlTemplateResponder extends AbstractResponder
 {
+	/** @var TemplateRendererConfigurationInterface */
+	private $templateRendererConfig;
+
 	/** @var string */
 	private $templatePath;
 
-	public function __construct( int $statusCode, $data, string $templatePath )
+	public function __construct( TemplateRendererConfigurationInterface $templateRendererConfig, int $statusCode, $data, string $templatePath )
 	{
 		parent::__construct( $statusCode, $data );
-		$this->templatePath = $templatePath;
-	}
-
-	private function getTemplatePath(): string
-	{
-		return $this->templatePath;
+		$this->templateRendererConfig = $templateRendererConfig;
+		$this->templatePath           = $templatePath;
 	}
 
 	/**
@@ -32,7 +32,7 @@ class HtmlTemplateResponder extends AbstractResponder
 		$this->addHeader( Headers::CONTENT_TYPE, ContentTypes::TEXT_HTML );
 
 		$data            = $this->getData();
-		$renderer        = new TemplateRenderer( $data, $this->templatePath );
+		$renderer        = new TemplateRenderer( $this->templateRendererConfig, $data, $this->templatePath );
 		$renderedContent = $renderer->render();
 		$contentLength   = $renderedContent->getContentLength();
 
