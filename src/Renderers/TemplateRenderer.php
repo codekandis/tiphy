@@ -5,22 +5,26 @@ use function ob_start;
 
 class TemplateRenderer implements RendererInterface
 {
+	/** @var TemplateRendererConfigurationInterface */
+	private $config;
+
 	/** @var mixed */
 	private $data;
 
 	/** @var string */
 	private $templatePath;
 
-	public function __construct( $data, string $templatePath )
+	public function __construct( TemplateRendererConfigurationInterface $config, $data, string $templatePath )
 	{
+		$this->config       = $config;
 		$this->data         = $data;
-		$this->templatePath = dirname( __DIR__, 2 ) . '/templates/' . $templatePath;
+		$this->templatePath = $templatePath;
 	}
 
 	public function render(): RenderedContentInterface
 	{
 		ob_start();
-		require $this->templatePath;
+		require $this->config->getTemplatesPath() . '/' . $this->templatePath;
 		$content = ob_get_clean();
 
 		return new RenderedContent( $content );
