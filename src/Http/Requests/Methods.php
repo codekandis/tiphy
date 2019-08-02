@@ -3,21 +3,37 @@ namespace CodeKandis\Tiphy\Http\Requests;
 
 abstract class Methods
 {
-	public const GET     = 'GET';
+	public const GET       = 'GET';
 
-	public const CONNECT = 'CONNECT';
+	public const CONNECT   = 'CONNECT';
 
-	public const DELETE  = 'DELETE';
+	public const COPY      = 'COPY';
 
-	public const HEAD    = 'HEAD';
+	public const DELETE    = 'DELETE';
 
-	public const OPTIONS = 'OPTIONS';
+	public const HEAD      = 'HEAD';
 
-	public const PATCH   = 'PATCH';
+	public const HTTP      = 'HTTP';
 
-	public const POST    = 'POST';
+	public const LOCK      = 'LOCK';
 
-	public const PUT     = 'PUT';
+	public const MKCOL     = 'MKCOL';
 
-	public const TRACE   = 'TRACE';
+	public const MOVE      = 'MOVE';
+
+	public const OPTIONS   = 'OPTIONS';
+
+	public const PATCH     = 'PATCH';
+
+	public const POST      = 'POST';
+
+	public const PROPFIND  = 'PROPFIND';
+
+	public const PROPPATCH = 'PROPPATCH';
+
+	public const PUT       = 'PUT';
+
+	public const TRACE     = 'TRACE';
+
+	public const UNLOCK    = 'UNLOCK';
 }
