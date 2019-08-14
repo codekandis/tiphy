@@ -1,6 +1,7 @@
 <?php declare( strict_types = 1 );
 namespace CodeKandis\Tiphy\Renderers;
 
+use CodeKandis\Tiphy\Throwables\ErrorInformationInterface;
 use function ob_start;
 
 class TemplateRenderer implements RendererInterface
@@ -11,14 +12,18 @@ class TemplateRenderer implements RendererInterface
 	/** @var mixed */
 	private $data;
 
+	/** @var ?ErrorInformationInterface */
+	private $errorInformation;
+
 	/** @var string */
 	private $templatePath;
 
-	public function __construct( TemplateRendererConfigurationInterface $config, $data, string $templatePath )
+	public function __construct( TemplateRendererConfigurationInterface $config, $data, ?ErrorInformationInterface $errorInformation, string $templatePath )
 	{
-		$this->config       = $config;
-		$this->data         = $data;
-		$this->templatePath = $templatePath;
+		$this->config           = $config;
+		$this->data             = $data;
+		$this->errorInformation = $errorInformation;
+		$this->templatePath     = $templatePath;
 	}
 
 	public function render(): RenderedContentInterface
