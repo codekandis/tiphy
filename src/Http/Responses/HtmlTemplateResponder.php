@@ -31,8 +31,7 @@ class HtmlTemplateResponder extends AbstractResponder
 		$this->addHeader( Headers::CACHE_CONTROL, 'no-store, no-cache, must-revalidate' );
 		$this->addHeader( Headers::CONTENT_TYPE, ContentTypes::TEXT_HTML );
 
-		$data            = $this->getData();
-		$renderer        = new TemplateRenderer( $this->templateRendererConfig, $data, $this->templatePath );
+		$renderer        = new TemplateRenderer( $this->templateRendererConfig, $this->data, $this->templatePath );
 		$renderedContent = $renderer->render();
 		$contentLength   = $renderedContent->getContentLength();
 
