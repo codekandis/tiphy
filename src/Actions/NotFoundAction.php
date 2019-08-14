@@ -3,16 +3,15 @@ namespace CodeKandis\Tiphy\Actions;
 
 use CodeKandis\Tiphy\Http\Responses\JsonResponder;
 use CodeKandis\Tiphy\Http\Responses\StatusCodes;
-use ReflectionException;
+use CodeKandis\Tiphy\Http\Responses\StatusMessages;
+use CodeKandis\Tiphy\Throwables\ErrorInformation;
 
 class NotFoundAction implements ActionInterface
 {
-	/**
-	 * @throws ReflectionException
-	 */
 	public function execute(): void
 	{
-		$response = new JsonResponder( StatusCodes::NOT_FOUND, null );
-		$response->respond();
+		$errorInformation = new ErrorInformation( StatusCodes::NOT_FOUND, StatusMessages::NOT_FOUND );
+		( new JsonResponder( StatusCodes::NOT_FOUND, null, $errorInformation ) )
+			->respond();
 	}
 }
