@@ -1,8 +1,9 @@
 <?php declare( strict_types = 1 );
 namespace CodeKandis\Tiphy\Http\Requests;
 
+use CodeKandis\JsonCodec\JsonDecoder;
+use JsonException;
 use function file_get_contents;
-use function json_decode;
 
 class JsonBody implements JsonBodyInterface
 {
@@ -11,11 +12,15 @@ class JsonBody implements JsonBodyInterface
 	 */
 	public function getContent()
 	{
-		$content     = file_get_contents( 'php://input' );
-		$jsonContent = json_decode( $content );
-		if ( null === $jsonContent )
+		$content = file_get_contents( 'php://input' );
+		try
 		{
-			throw new BadRequestException( 'JSON data is missing.' );
+			$jsonContent = ( new JsonDecoder() )
+				->decode( $content );
+		}
+		catch ( JsonException $exception )
+		{
+			throw new BadRequestException( $exception->getMessage(), $exception->getCode() );
 		}
 
 		return $jsonContent;
