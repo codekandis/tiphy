@@ -1,6 +1,7 @@
 <?php declare( strict_types = 1 );
 namespace CodeKandis\Tiphy\Http\Responses;
 
+use CodeKandis\Tiphy\Throwables\ErrorInformationInterface;
 use function header;
 use function http_response_code;
 use function sprintf;
@@ -10,15 +11,19 @@ abstract class AbstractResponder implements ResponderInterface
 	/** @var int */
 	private $statusCode;
 
+	/** @var ?ErrorInformationInterface */
+	protected $errorInformation;
+
 	/** @var mixed */
 	protected $data;
 
 	private $headers = [];
 
-	public function __construct( int $statusCode, $data )
+	public function __construct( int $statusCode, $data, ?ErrorInformationInterface $errorInformation = null )
 	{
-		$this->statusCode = $statusCode;
-		$this->data       = $data;
+		$this->statusCode       = $statusCode;
+		$this->errorInformation = $errorInformation;
+		$this->data             = $data;
 	}
 
 	protected function determineStatusCodeMessage(): string
