@@ -19,7 +19,7 @@ class JsonResponder extends AbstractResponder
 		$this->addHeader( Headers::CONTENT_TYPE, ContentTypes::APPLICATION_JSON );
 
 		$statusCodeMessage = $this->determineStatusCodeMessage();
-		$renderer          = new JsonRenderer( $statusCodeMessage, $this->data );
+		$renderer          = new JsonRenderer( $statusCodeMessage, $this->data, $this->errorInformation );
 		$renderedContent   = $renderer->render();
 		$contentLength     = $renderedContent->getContentLength();
 
