@@ -9,7 +9,7 @@ use function fseek;
 use function fstat;
 use function sprintf;
 
-class OctetStreamResponder extends AbstractResponder
+class OctetStreamResponder extends AbstractResponder implements OctetStreamResponderInterface
 {
 	private const CHUNK_SIZE = 8192;
 
