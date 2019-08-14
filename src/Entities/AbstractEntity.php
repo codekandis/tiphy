@@ -29,7 +29,7 @@ abstract class AbstractEntity implements EntityInterface
 	/**
 	 * @throws ReflectionException
 	 */
-	public static function fromArray( array $data ): self
+	public static function fromArray( array $data ): EntityInterface
 	{
 		$entity               = new static();
 		$reflectedEntityClass = new ReflectionClass( $entity );
@@ -56,7 +56,7 @@ abstract class AbstractEntity implements EntityInterface
 	/**
 	 * @throws ReflectionException
 	 */
-	public static function fromObject( object $data ): self
+	public static function fromObject( object $data ): EntityInterface
 	{
 		$entity                  = new static();
 		$reflectedEntityClass    = new ReflectionClass( $entity );
