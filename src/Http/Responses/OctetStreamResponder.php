@@ -36,31 +36,27 @@ class OctetStreamResponder extends AbstractResponder
 
 	private function getDataSize(): int
 	{
-		$data      = $this->getData();
-		$dataStats = fstat( $data );
+		$dataStats = fstat( $this->data );
 
 		return $dataStats[ 'size' ];
 	}
 
 	private function respondFull(): void
 	{
-		$data = $this->getData();
-
 		$size = $this->getDataSize();
 		$this->addHeader( Headers::CONTENT_LENGTH, (string) $size );
 
 		$this->sendHeaders();
 
-		while ( false === feof( $data ) )
+		while ( false === feof( $this->data ) )
 		{
-			$chunk = fread( $data, static::CHUNK_SIZE );
+			$chunk = fread( $this->data, static::CHUNK_SIZE );
 			echo $chunk;
 		}
 	}
 
 	private function respondOffsetStartoffSetEndRange(): void
 	{
-		$data        = $this->getData();
 		$offsetStart = $this->range->getOffsetStart();
 		$offsetEnd   = $this->range->getOffsetEnd();
 
@@ -78,19 +74,18 @@ class OctetStreamResponder extends AbstractResponder
 
 		$this->sendHeaders();
 
-		fseek( $data, $offsetStart );
+		fseek( $this->data, $offsetStart );
 		while ( 0 !== $length )
 		{
 			$chunkSize = static::CHUNK_SIZE > $length ? $length : static::CHUNK_SIZE;
 			$length    -= $chunkSize;
-			$chunk     = fread( $data, $chunkSize );
+			$chunk     = fread( $this->data, $chunkSize );
 			echo $chunk;
 		}
 	}
 
 	private function respondOffsetStart(): void
 	{
-		$data        = $this->getData();
 		$offsetStart = $this->range->getOffsetStart();
 
 		$size         = $this->getDataSize();
@@ -107,17 +102,16 @@ class OctetStreamResponder extends AbstractResponder
 
 		$this->sendHeaders();
 
-		fseek( $data, $offsetStart );
-		while ( false === feof( $data ) )
+		fseek( $this->data, $offsetStart );
+		while ( false === feof( $this->data ) )
 		{
-			$chunk = fread( $data, static::CHUNK_SIZE );
+			$chunk = fread( $this->data, static::CHUNK_SIZE );
 			echo $chunk;
 		}
 	}
 
 	private function respondNegativeOffsetStart(): void
 	{
-		$data        = $this->getData();
 		$size        = $this->getDataSize();
 		$offsetStart = $size + $this->range->getOffsetStart();
 
@@ -134,10 +128,10 @@ class OctetStreamResponder extends AbstractResponder
 
 		$this->sendHeaders();
 
-		fseek( $data, $offsetStart );
-		while ( false === feof( $data ) )
+		fseek( $this->data, $offsetStart );
+		while ( false === feof( $this->data ) )
 		{
-			$chunk = fread( $data, static::CHUNK_SIZE );
+			$chunk = fread( $this->data, static::CHUNK_SIZE );
 			echo $chunk;
 		}
 	}
