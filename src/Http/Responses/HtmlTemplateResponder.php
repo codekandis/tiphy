@@ -4,7 +4,6 @@ namespace CodeKandis\Tiphy\Http\Responses;
 use CodeKandis\Tiphy\Http\ContentTypes;
 use CodeKandis\Tiphy\Renderers\TemplateRenderer;
 use CodeKandis\Tiphy\Renderers\TemplateRendererConfigurationInterface;
-use ReflectionException;
 
 class HtmlTemplateResponder extends AbstractResponder
 {
@@ -21,9 +20,6 @@ class HtmlTemplateResponder extends AbstractResponder
 		$this->templatePath           = $templatePath;
 	}
 
-	/**
-	 * @throws ReflectionException
-	 */
 	public function respond(): void
 	{
 		$this->sendStatusCode();
