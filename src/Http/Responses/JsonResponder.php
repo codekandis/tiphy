@@ -3,12 +3,12 @@ namespace CodeKandis\Tiphy\Http\Responses;
 
 use CodeKandis\Tiphy\Http\ContentTypes;
 use CodeKandis\Tiphy\Renderers\JsonRenderer;
-use ReflectionException;
+use JsonException;
 
 class JsonResponder extends AbstractResponder
 {
 	/**
-	 * @throws ReflectionException
+	 * @throws JsonException
 	 */
 	public function respond(): void
 	{
