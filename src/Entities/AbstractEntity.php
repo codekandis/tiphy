@@ -8,9 +8,6 @@ use ReflectionProperty;
 
 abstract class AbstractEntity implements EntityInterface
 {
-	/**
-	 * @throws ReflectionException
-	 */
 	public function toArray(): array
 	{
 		$transformedArray    = [];
@@ -26,9 +23,6 @@ abstract class AbstractEntity implements EntityInterface
 		return $transformedArray;
 	}
 
-	/**
-	 * @throws ReflectionException
-	 */
 	public static function fromArray( array $data ): EntityInterface
 	{
 		$entity               = new static();
@@ -53,9 +47,6 @@ abstract class AbstractEntity implements EntityInterface
 		return $entity;
 	}
 
-	/**
-	 * @throws ReflectionException
-	 */
 	public static function fromObject( object $data ): EntityInterface
 	{
 		$entity                  = new static();
