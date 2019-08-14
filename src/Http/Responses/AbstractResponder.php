@@ -11,7 +11,7 @@ abstract class AbstractResponder implements ResponderInterface
 	private $statusCode;
 
 	/** @var mixed */
-	private $data;
+	protected $data;
 
 	private $headers = [];
 
@@ -19,14 +19,6 @@ abstract class AbstractResponder implements ResponderInterface
 	{
 		$this->statusCode = $statusCode;
 		$this->data       = $data;
-	}
-
-	/**
-	 * @return mixed
-	 */
-	public function getData()
-	{
-		return $this->data;
 	}
 
 	protected function determineStatusCodeMessage(): string
