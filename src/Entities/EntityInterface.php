@@ -6,6 +6,9 @@ use ReflectionException;
 
 interface EntityInterface extends JsonSerializable
 {
+	/**
+	 * @throws ReflectionException
+	 */
 	public function toArray(): array;
 
 	/**
