@@ -5,6 +5,7 @@ use CodeKandis\Tiphy\Http\Requests\JsonBody;
 use CodeKandis\Tiphy\Http\RoutesConfigurationInterface;
 use function is_string;
 use function preg_match;
+use function substr;
 use function urldecode;
 
 class ActionDispatcher implements ActionDispatcherInterface
@@ -21,8 +22,18 @@ class ActionDispatcher implements ActionDispatcherInterface
 	public function __construct( RoutesConfigurationInterface $config )
 	{
 		$this->config          = $config;
-		$this->requestedRoute  = $_SERVER[ 'REQUEST_URI' ];
+		$this->requestedRoute  = $this->getParsedRequestRoute();
 		$this->requestedMethod = $_SERVER[ 'REQUEST_METHOD' ];
+	}
+
+	private function getParsedRequestRoute(): string
+	{
+		$requestUri                      = $_SERVER[ 'REQUEST_URI' ];
+		$queryArgumentsDelimiterPosition = strpos( $requestUri, '?' );
+
+		return false === $queryArgumentsDelimiterPosition
+			? $requestUri
+			: substr( $requestUri, 0, $queryArgumentsDelimiterPosition );
 	}
 
 	public function dispatch(): void
