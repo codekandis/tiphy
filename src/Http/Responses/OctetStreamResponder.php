@@ -19,11 +19,6 @@ class OctetStreamResponder extends AbstractResponder
 	/** @var Range */
 	private $range;
 
-	public function __construct( $data, int $statusCode )
-	{
-		parent::__construct( $data, $statusCode );
-	}
-
 	public function setFileName( string $fileName ): void
 	{
 		$this->fileName = $fileName;
