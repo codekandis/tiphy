@@ -1,7 +1,6 @@
 <?php declare( strict_types = 1 );
 namespace CodeKandis\Tiphy\Http\Responses;
 
-use ReflectionException;
 use function header;
 use function http_response_code;
 use function sprintf;
@@ -30,12 +29,9 @@ abstract class AbstractResponder implements ResponderInterface
 		return $this->data;
 	}
 
-	/**
-	 * @throws ReflectionException
-	 */
 	protected function determineStatusCodeMessage(): string
 	{
-		$statusMessage             = ( new StatusCodeMessageInterpreter() )
+		$statusMessage             = ( new StatusCodesMessageInterpreter() )
 			->interpret( $this->statusCode );
 		$responseStatusCodeMessage = sprintf(
 			'%s %s',
