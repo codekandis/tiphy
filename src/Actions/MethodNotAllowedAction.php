@@ -3,16 +3,15 @@ namespace CodeKandis\Tiphy\Actions;
 
 use CodeKandis\Tiphy\Http\Responses\JsonResponder;
 use CodeKandis\Tiphy\Http\Responses\StatusCodes;
-use ReflectionException;
+use CodeKandis\Tiphy\Http\Responses\StatusMessages;
+use CodeKandis\Tiphy\Throwables\ErrorInformation;
 
 class MethodNotAllowedAction implements ActionInterface
 {
-	/**
-	 * @throws ReflectionException
-	 */
 	public function execute(): void
 	{
-		$response = new JsonResponder( StatusCodes::METHOD_NOT_ALLOWED, null );
-		$response->respond();
+		$errorInformation = new ErrorInformation( StatusCodes::METHOD_NOT_ALLOWED, StatusMessages::METHOD_NOT_ALLOWED );
+		( new JsonResponder( StatusCodes::METHOD_NOT_ALLOWED, null, $errorInformation ) )
+			->respond();
 	}
 }
