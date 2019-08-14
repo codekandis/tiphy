@@ -3,6 +3,7 @@ namespace CodeKandis\Tiphy\Entities;
 
 use ReflectionClass;
 use ReflectionException;
+use ReflectionObject;
 use ReflectionProperty;
 
 abstract class AbstractEntity implements EntityInterface
@@ -59,7 +60,7 @@ abstract class AbstractEntity implements EntityInterface
 	{
 		$entity                  = new static();
 		$reflectedEntityClass    = new ReflectionClass( $entity );
-		$reflectedDataProperties = ( new ReflectionClass( static::class ) )
+		$reflectedDataProperties = ( new ReflectionObject( $data ) )
 			->getProperties( ReflectionProperty::IS_PUBLIC );
 		foreach ( $reflectedDataProperties as $reflectedDataProperty )
 		{
