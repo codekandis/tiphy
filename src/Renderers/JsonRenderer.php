@@ -1,9 +1,9 @@
 <?php declare( strict_types = 1 );
 namespace CodeKandis\Tiphy\Renderers;
 
+use CodeKandis\JsonCodec\JsonEncoder;
 use CodeKandis\Tiphy\Throwables\ErrorInformationInterface;
-use function json_encode;
-use const JSON_PRETTY_PRINT;
+use JsonException;
 
 class JsonRenderer implements RendererInterface
 {
@@ -23,6 +23,9 @@ class JsonRenderer implements RendererInterface
 		$this->errorInformation = $errorInformation;
 	}
 
+	/**
+	 * @throws JsonException
+	 */
 	public function render(): RenderedContentInterface
 	{
 		$preparedData = [
@@ -30,7 +33,8 @@ class JsonRenderer implements RendererInterface
 			'error'  => $this->errorInformation,
 			'data'   => $this->data
 		];
-		$renderedData = json_encode( $preparedData, JSON_PRETTY_PRINT );
+		$renderedData = ( new JsonEncoder() )
+			->encode( $preparedData );
 
 		return new RenderedContent( $renderedData );
 	}
