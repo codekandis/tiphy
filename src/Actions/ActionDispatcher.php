@@ -3,6 +3,7 @@ namespace CodeKandis\Tiphy\Actions;
 
 use CodeKandis\Tiphy\Http\Requests\JsonBody;
 use CodeKandis\Tiphy\Http\RoutesConfigurationInterface;
+use Throwable;
 use function is_string;
 use function preg_match;
 use function substr;
@@ -38,34 +39,42 @@ class ActionDispatcher implements ActionDispatcherInterface
 
 	public function dispatch(): void
 	{
-		/** @var ActionInterface $action */
-		$actionClass      = NotFoundAction::class;
-		$requestBody      = '';
-		$actionArguments  = [];
-		$configuredRoutes = $this->config->getRoutes();
-		foreach ( $configuredRoutes as $configuredRoute => $configuredMethods )
+		try
 		{
-			$matches    = [];
-			$isMatching = preg_match( '~' . $configuredRoute . '~', $this->requestedRoute, $matches );
-			if ( 1 === $isMatching )
+			/** @var ActionInterface $action */
+			$actionClass      = NotFoundAction::class;
+			$requestBody      = '';
+			$actionArguments  = [];
+			$configuredRoutes = $this->config->getRoutes();
+			foreach ( $configuredRoutes as $configuredRoute => $configuredMethods )
 			{
-				$actionClass = MethodNotAllowedAction::class;
-				foreach ( $configuredMethods as $configuredMethod => $configuredAction )
+				$matches    = [];
+				$isMatching = preg_match( '~' . $configuredRoute . '~', $this->requestedRoute, $matches );
+				if ( 1 === $isMatching )
 				{
-					if ( $configuredMethod === $this->requestedMethod )
+					$actionClass = MethodNotAllowedAction::class;
+					foreach ( $configuredMethods as $configuredMethod => $configuredAction )
 					{
-						$actionClass     = $configuredAction;
-						$requestBody     = new JsonBody();
-						$actionArguments = $this->filterArguments( $matches );
-						break;
+						if ( $configuredMethod === $this->requestedMethod )
+						{
+							$actionClass     = $configuredAction;
+							$requestBody     = new JsonBody();
+							$actionArguments = $this->filterArguments( $matches );
+							break;
+						}
 					}
+					break;
 				}
-				break;
 			}
-		}
 
-		$action = new $actionClass( $requestBody, $actionArguments );
-		$action->execute();
+			$action = new $actionClass( $requestBody, $actionArguments );
+			$action->execute();
+		}
+		catch ( Throwable $exception )
+		{
+			( new InternalServerErrorAction() )
+				->execute();
+		}
 	}
 
 	private function filterArguments( array $matches ): array
