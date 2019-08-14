@@ -18,21 +18,11 @@ class JsonRenderer implements RendererInterface
 		$this->data   = $data;
 	}
 
-	private function getStatus(): string
-	{
-		return $this->status;
-	}
-
-	private function getData()
-	{
-		return $this->data;
-	}
-
 	public function render(): RenderedContentInterface
 	{
 		$preparedData = [
-			'status' => $this->getStatus(),
-			'data'   => $this->getData(),
+			'status' => $this->status,
+			'data'   => $this->data,
 		];
 		$renderedData = json_encode( $preparedData, JSON_PRETTY_PRINT );
 
