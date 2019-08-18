@@ -11,6 +11,9 @@ interface ConnectorInterface
 
 	public function commit(): bool;
 
+	/**
+	 * @throws PersistenceException
+	 */
 	public function execute( string $query ): void;
 
 	/**
