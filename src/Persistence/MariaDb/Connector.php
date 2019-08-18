@@ -51,9 +51,24 @@ class Connector implements ConnectorInterface
 	/**
 	 * {@inheritDoc}
 	 */
-	public function execute( string $query ): void
+	public function execute( string $query, ?array $arguments = null ): void
 	{
-		$this->connection->exec( $query );
+		$preparedStatement = $this->connection->prepare( $query );
+
+		try
+		{
+			$preparedStatement->execute( $arguments );
+		}
+		catch ( PDOException $exception )
+		{
+			$errorInfo        = $exception->errorInfo;
+			$exceptionMessage =
+				sprintf(
+					'[%s] Execution of prepared statement failed. %s: %s', $errorInfo[ 0 ], $errorInfo[ 1 ],
+					$errorInfo[ 2 ]
+				);
+			throw new PersistenceException( $exceptionMessage );
+		}
 	}
 
 	/**
