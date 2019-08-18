@@ -14,7 +14,7 @@ interface ConnectorInterface
 	/**
 	 * @throws PersistenceException
 	 */
-	public function execute( string $query ): void;
+	public function execute( string $query, ?array $arguments = null ): void;
 
 	/**
 	 * @return object[]
