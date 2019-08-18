@@ -21,7 +21,7 @@ class Connector implements ConnectorInterface
 		$this->connect();
 	}
 
-	public function connect(): void
+	private function connect(): void
 	{
 		$driver           = $this->config->getDriver();
 		$host             = $this->config->getHost();
