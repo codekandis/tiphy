@@ -57,7 +57,7 @@ class Connector implements ConnectorInterface
 	 * @return object[]
 	 * @throws PersistenceException
 	 */
-	public function queryPrepared( string $query, ?array $arguments = null, ?string $className = null ): array
+	public function query( string $query, ?array $arguments = null, ?string $className = null ): array
 	{
 		$preparedStatement = $this->connection->prepare( $query );
 
@@ -91,7 +91,7 @@ class Connector implements ConnectorInterface
 	/**
 	 * @throws PersistenceException
 	 */
-	public function queryFirstPrepared( string $query, ?array $arguments = null, ?string $className = null ): ?object
+	public function queryFirst( string $query, ?array $arguments = null, ?string $className = null ): ?object
 	{
 		$preparedStatement = $this->connection->prepare( $query );
 

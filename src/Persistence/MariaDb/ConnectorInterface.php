@@ -20,12 +20,12 @@ interface ConnectorInterface
 	 * @return object[]
 	 * @throws PersistenceException
 	 */
-	public function queryPrepared( string $query, ?array $arguments = null, ?string $className = null ): array;
+	public function query( string $query, ?array $arguments = null, ?string $className = null ): array;
 
 	/**
 	 * @throws PersistenceException
 	 */
-	public function queryFirstPrepared( string $query, ?array $arguments = null, ?string $className = null ): ?object;
+	public function queryFirst( string $query, ?array $arguments = null, ?string $className = null ): ?object;
 
 	public function getLastInsertId(): string;
 }
