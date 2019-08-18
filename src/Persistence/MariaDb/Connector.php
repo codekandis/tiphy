@@ -48,14 +48,16 @@ class Connector implements ConnectorInterface
 		return $this->connection->commit();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public function execute( string $query ): void
 	{
 		$this->connection->exec( $query );
 	}
 
 	/**
-	 * @return object[]
-	 * @throws PersistenceException
+	 * {@inheritDoc}
 	 */
 	public function query( string $query, ?array $arguments = null, ?string $className = null ): array
 	{
@@ -89,7 +91,7 @@ class Connector implements ConnectorInterface
 	}
 
 	/**
-	 * @throws PersistenceException
+	 * {@inheritDoc}
 	 */
 	public function queryFirst( string $query, ?array $arguments = null, ?string $className = null ): ?object
 	{
