@@ -3,9 +3,11 @@ namespace CodeKandis\Tiphy\Actions;
 
 use CodeKandis\Tiphy\Http\Requests\JsonBody;
 use CodeKandis\Tiphy\Http\RoutesConfigurationInterface;
+use CodeKandis\Tiphy\Throwables\Handlers\ThrowableHandlerInterface;
 use Throwable;
 use function is_string;
 use function preg_match;
+use function strpos;
 use function substr;
 use function urldecode;
 
@@ -14,17 +16,21 @@ class ActionDispatcher implements ActionDispatcherInterface
 	/** @var RoutesConfigurationInterface */
 	private $config;
 
+	/** @var ?ThrowableHandlerInterface */
+	private $throwableHandler;
+
 	/** @var string */
 	private $requestedRoute;
 
 	/** @var string */
 	private $requestedMethod;
 
-	public function __construct( RoutesConfigurationInterface $config )
+	public function __construct( RoutesConfigurationInterface $config, ?ThrowableHandlerInterface $throwableHandler = null )
 	{
-		$this->config          = $config;
-		$this->requestedRoute  = $this->getParsedRequestRoute();
-		$this->requestedMethod = $_SERVER[ 'REQUEST_METHOD' ];
+		$this->config           = $config;
+		$this->throwableHandler = $throwableHandler;
+		$this->requestedRoute   = $this->getParsedRequestRoute();
+		$this->requestedMethod  = $_SERVER[ 'REQUEST_METHOD' ];
 	}
 
 	private function getParsedRequestRoute(): string
@@ -37,6 +43,9 @@ class ActionDispatcher implements ActionDispatcherInterface
 			: substr( $requestUri, 0, $queryArgumentsDelimiterPosition );
 	}
 
+	/**
+	 * @throws Throwable
+	 */
 	public function dispatch(): void
 	{
 		try
@@ -70,10 +79,13 @@ class ActionDispatcher implements ActionDispatcherInterface
 			$action = new $actionClass( $requestBody, $actionArguments );
 			$action->execute();
 		}
-		catch ( Throwable $exception )
+		catch ( Throwable $throwable )
 		{
-			( new InternalServerErrorAction() )
-				->execute();
+			if ( null === $this->throwableHandler )
+			{
+				throw $throwable;
+			}
+			$this->throwableHandler->execute( $throwable );
 		}
 	}
 
