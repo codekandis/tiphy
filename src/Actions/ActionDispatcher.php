@@ -14,7 +14,7 @@ use function urldecode;
 class ActionDispatcher implements ActionDispatcherInterface
 {
 	/** @var RoutesConfigurationInterface */
-	private $config;
+	private $routesConfiguration;
 
 	/** @var ?ThrowableHandlerInterface */
 	private $throwableHandler;
@@ -25,12 +25,12 @@ class ActionDispatcher implements ActionDispatcherInterface
 	/** @var string */
 	private $requestedMethod;
 
-	public function __construct( RoutesConfigurationInterface $config, ?ThrowableHandlerInterface $throwableHandler = null )
+	public function __construct( RoutesConfigurationInterface $routesConfiguration, ?ThrowableHandlerInterface $throwableHandler = null )
 	{
-		$this->config           = $config;
-		$this->throwableHandler = $throwableHandler;
-		$this->requestedRoute   = $this->getParsedRequestRoute();
-		$this->requestedMethod  = $_SERVER[ 'REQUEST_METHOD' ];
+		$this->routesConfiguration = $routesConfiguration;
+		$this->throwableHandler    = $throwableHandler;
+		$this->requestedRoute      = $this->getParsedRequestRoute();
+		$this->requestedMethod     = $_SERVER[ 'REQUEST_METHOD' ];
 	}
 
 	private function getParsedRequestRoute(): string
@@ -54,7 +54,7 @@ class ActionDispatcher implements ActionDispatcherInterface
 			$actionClass      = NotFoundAction::class;
 			$requestBody      = '';
 			$actionArguments  = [];
-			$configuredRoutes = $this->config->getRoutes();
+			$configuredRoutes = $this->routesConfiguration->getRoutes();
 			foreach ( $configuredRoutes as $configuredRoute => $configuredMethods )
 			{
 				$matches    = [];
