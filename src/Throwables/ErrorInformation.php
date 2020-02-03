@@ -14,13 +14,13 @@ class ErrorInformation implements ErrorInformationInterface
 	public $message = '';
 
 	/** @var mixed */
-	public $data;
+	public $context;
 
-	public function __construct( int $code, string $message, $data = null )
+	public function __construct( int $code, string $message, $context = null )
 	{
 		$this->code    = $code;
 		$this->message = $message;
-		$this->data    = $data;
+		$this->context = $context;
 	}
 
 	public function toArray(): array
