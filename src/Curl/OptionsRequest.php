@@ -10,11 +10,11 @@ use function iterator_to_array;
 class OptionsRequest implements OptionsRequestInterface
 {
 	/** @var string */
-	private $url;
+	private $uri;
 
-	public function __construct( string $url )
+	public function __construct( string $uri )
 	{
-		$this->url = $url;
+		$this->uri = $uri;
 	}
 
 	/**
@@ -37,7 +37,7 @@ class OptionsRequest implements OptionsRequestInterface
 		curl_setopt_array(
 			$curlHandler,
 			[
-				CURLOPT_URL            => $this->url,
+				CURLOPT_URL            => $this->uri,
 				CURLOPT_CUSTOMREQUEST  => Methods::OPTIONS,
 				CURLOPT_HEADER         => true,
 				CURLOPT_RETURNTRANSFER => true,
