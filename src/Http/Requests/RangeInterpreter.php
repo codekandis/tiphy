@@ -3,8 +3,16 @@ namespace CodeKandis\Tiphy\Http\Requests;
 
 use function preg_match;
 
+/**
+ * Represents a range interpreter.
+ * @package codekandis/tiphy
+ * @author Christian Ramelow <info@codekandis.net>
+ */
 class RangeInterpreter implements RangeInterpreterInterface
 {
+	/**
+	 * {@inheritdoc}
+	 */
 	public function interpret( string $value ): ?Range
 	{
 		$matches = [];

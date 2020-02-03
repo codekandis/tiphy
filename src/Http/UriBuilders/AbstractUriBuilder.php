@@ -3,17 +3,32 @@ namespace CodeKandis\Tiphy\Http\UriBuilders;
 
 use function sprintf;
 
+/**
+ * Represents the base class of all URI builders.
+ * @package codekandis/tiphy
+ * @author Christian Ramelow <info@codekandis.net>
+ */
 abstract class AbstractUriBuilder implements UriBuilderInterface
 {
-	/** @var UriBuilderConfigurationInterface */
+	/**
+	 * Stores the URI builder configuration.
+	 * @var UriBuilderConfigurationInterface
+	 */
 	private $config;
 
+	/**
+	 * Constructor method.
+	 * @param UriBuilderConfigurationInterface $config The URI builder configuration.
+	 */
 	public function __construct( UriBuilderConfigurationInterface $config )
 	{
 		$this->config = $config;
 	}
 
-	public function getUri( string $uriName, string ...$arguments ): string
+	/**
+	 * {@inheritdoc}
+	 */
+	public function build( string $uriName, string ...$arguments ): string
 	{
 		$schema       = $this->config->getSchema();
 		$host         = $this->config->getHost();

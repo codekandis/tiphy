@@ -7,20 +7,38 @@ use PDO;
 use PDOException;
 use function sprintf;
 
+/**
+ * Represents a MariaDb database connector.
+ * @package codekandis/tiphy
+ * @author Christian Ramelow <info@codekandis.net>
+ */
 class Connector implements ConnectorInterface
 {
-	/** @var PersistenceConfigurationInterface */
+	/**
+	 * Stores the persistence configuration.
+	 * @var PersistenceConfigurationInterface
+	 */
 	private $config;
 
-	/** @var PDO */
+	/**
+	 * Stores the PDO connection.
+	 * @var PDO
+	 */
 	private $connection;
 
+	/**
+	 * Constructor method.
+	 * @param PersistenceConfigurationInterface $config The persistence configuration.
+	 */
 	public function __construct( PersistenceConfigurationInterface $config )
 	{
 		$this->config = $config;
 		$this->connect();
 	}
 
+	/**
+	 * Connects to the database.
+	 */
 	private function connect(): void
 	{
 		$driver           = $this->config->getDriver();
@@ -33,16 +51,25 @@ class Connector implements ConnectorInterface
 		$this->connection->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	public function beginTransaction(): bool
 	{
 		return $this->connection->beginTransaction();
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	public function rollback(): bool
 	{
 		return $this->connection->rollBack();
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	public function commit(): bool
 	{
 		return $this->connection->commit();
@@ -140,6 +167,9 @@ class Connector implements ConnectorInterface
 		return false !== $result ? $result : null;
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	public function getLastInsertId(): string
 	{
 		return $this->connection->lastInsertId();

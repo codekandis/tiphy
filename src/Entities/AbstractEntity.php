@@ -2,12 +2,19 @@
 namespace CodeKandis\Tiphy\Entities;
 
 use ReflectionClass;
-use ReflectionException;
 use ReflectionObject;
 use ReflectionProperty;
 
+/**
+ * Represents the base class of all entities.
+ * @package codekandis/tiphy
+ * @author Christian Ramelow <info@codekandis.net>
+ */
 abstract class AbstractEntity implements EntityInterface
 {
+	/**
+	 * {@inheritdoc}
+	 */
 	public function toArray(): array
 	{
 		$transformedArray    = [];
@@ -23,6 +30,9 @@ abstract class AbstractEntity implements EntityInterface
 		return $transformedArray;
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	public static function fromArray( array $data ): EntityInterface
 	{
 		$entity               = new static();
@@ -47,6 +57,9 @@ abstract class AbstractEntity implements EntityInterface
 		return $entity;
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	public static function fromObject( object $data ): EntityInterface
 	{
 		$entity                  = new static();
@@ -76,7 +89,7 @@ abstract class AbstractEntity implements EntityInterface
 	}
 
 	/**
-	 * @throws ReflectionException
+	 * {@inheritdoc}
 	 */
 	public function jsonSerialize(): array
 	{

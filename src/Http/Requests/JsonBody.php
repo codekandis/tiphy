@@ -5,10 +5,15 @@ use CodeKandis\JsonCodec\JsonDecoder;
 use JsonException;
 use function file_get_contents;
 
+/**
+ * Represents a JSON body.
+ * @package codekandis/tiphy
+ * @author Christian Ramelow <info@codekandis.net>
+ */
 class JsonBody implements JsonBodyInterface
 {
 	/**
-	 * @throws BadRequestException
+	 * {@inheritdoc}
 	 */
 	public function getContent()
 	{

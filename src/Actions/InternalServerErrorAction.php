@@ -7,10 +7,16 @@ use CodeKandis\Tiphy\Http\Responses\StatusMessages;
 use CodeKandis\Tiphy\Throwables\ErrorInformation;
 use JsonException;
 
+/**
+ * Represents the default action if an unhandled error occurred during processing the request.
+ * @package codekandis/tiphy
+ * @author Christian Ramelow <info@codekandis.net>
+ */
 class InternalServerErrorAction implements ActionInterface
 {
 	/**
-	 * @throws JsonException
+	 * {@inheritdoc}
+	 * @throws JsonException An error occurred during the creation of the JSON response.
 	 */
 	public function execute(): void
 	{

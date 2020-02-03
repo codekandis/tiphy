@@ -11,20 +11,42 @@ use function strpos;
 use function substr;
 use function urldecode;
 
+/**
+ * Represents an action dispatcher.
+ * @package codekandis/tiphy
+ * @author Christian Ramelow <info@codekandis.net>
+ */
 class ActionDispatcher implements ActionDispatcherInterface
 {
-	/** @var RoutesConfigurationInterface */
+	/**
+	 * Stores the routes configuration.
+	 * @var RoutesConfigurationInterface
+	 */
 	private $routesConfiguration;
 
-	/** @var ?ThrowableHandlerInterface */
+	/**
+	 * Stores the throwable handler of the dispatcher.
+	 * @var ?ThrowableHandlerInterface
+	 */
 	private $throwableHandler;
 
-	/** @var string */
+	/**
+	 * Stores the requested route.
+	 * @var string
+	 */
 	private $requestedRoute;
 
-	/** @var string */
+	/**
+	 * Stores the requested HTTP method.
+	 * @var string
+	 */
 	private $requestedMethod;
 
+	/**
+	 * Constructor method.
+	 * @param RoutesConfigurationInterface $routesConfiguration The routes configuration of the action dispatcher.
+	 * @param ?ThrowableHandlerInterface $throwableHandler The throwable handler of the action dispatcher.
+	 */
 	public function __construct( RoutesConfigurationInterface $routesConfiguration, ?ThrowableHandlerInterface $throwableHandler = null )
 	{
 		$this->routesConfiguration = $routesConfiguration;
@@ -33,6 +55,10 @@ class ActionDispatcher implements ActionDispatcherInterface
 		$this->requestedMethod     = $_SERVER[ 'REQUEST_METHOD' ];
 	}
 
+	/**
+	 * Gets the parsed request route.
+	 * @return string The parsed request route.
+	 */
 	private function getParsedRequestRoute(): string
 	{
 		$requestUri                      = $_SERVER[ 'REQUEST_URI' ];
@@ -43,6 +69,11 @@ class ActionDispatcher implements ActionDispatcherInterface
 			: substr( $requestUri, 0, $queryArgumentsDelimiterPosition );
 	}
 
+	/**
+	 * Filters the arguments from the requested URI.
+	 * @param array $matches The argument matches of the requested URI.
+	 * @return array The filtered arguments.
+	 */
 	private function filterArguments( array $matches ): array
 	{
 		$filteredArguments = [];
@@ -59,7 +90,7 @@ class ActionDispatcher implements ActionDispatcherInterface
 	}
 
 	/**
-	 * @throws Throwable
+	 * {@inheritdoc}
 	 */
 	public function dispatch(): void
 	{

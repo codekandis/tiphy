@@ -5,24 +5,47 @@ use ReflectionClass;
 use ReflectionException;
 use ReflectionProperty;
 
+/**
+ * Represents the default error information implementation.
+ * @package codekandis/tiphy
+ * @author Christian Ramelow <info@codekandis.net>
+ */
 class ErrorInformation implements ErrorInformationInterface
 {
-	/** @var int */
+	/**
+	 * Stores the code of the error.
+	 * @var int
+	 */
 	public $code = 0;
 
-	/** @var string */
+	/**
+	 * Stores the message of the error.
+	 * @var string
+	 */
 	public $message = '';
 
-	/** @var mixed */
-	public $context;
+	/**
+	 * Stores the context of the error.
+	 * @var mixed
+	 */
+	public $data;
 
-	public function __construct( int $code, string $message, $context = null )
+	/**
+	 * Constructor method.
+	 * @param int $code The code of the error.
+	 * @param string $message The message of the error.
+	 * @param null $data The context of the error.
+	 */
+	public function __construct( int $code, string $message, $data = null )
 	{
 		$this->code    = $code;
 		$this->message = $message;
-		$this->context = $context;
+		$this->data    = $data;
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	public function toArray(): array
 	{
 		$transformedArray    = [];
@@ -39,7 +62,9 @@ class ErrorInformation implements ErrorInformationInterface
 	}
 
 	/**
-	 * @throws ReflectionException
+	 * Prepeares the data to serialize.
+	 * @return array The data to serialize.
+	 * @throws ReflectionException An error occurred during the conversion.
 	 */
 	public function jsonSerialize(): array
 	{

@@ -1,49 +1,96 @@
 <?php declare( strict_types = 1 );
 namespace CodeKandis\Tiphy\Http\Requests;
 
+/**
+ * Represents a range.
+ * @package codekandis/tiphy
+ * @author Christian Ramelow <info@codekandis.net>
+ */
 class Range implements RangeInterface
 {
-	public const RANGE_TYPE_NONE                    = 0;
+	/**
+	 * Defines the unknown range.
+	 * @var string
+	 */
+	public const RANGE_TYPE_NONE = 0;
 
+	/**
+	 * Defines the range with a start and end offset.
+	 * @var string
+	 */
 	public const RANGE_TYPE_OFFSET_START_OFFSET_END = 1;
 
-	public const RANGE_TYPE_OFFSET_START            = 2;
+	/**
+	 * Defines the range with a start offset.
+	 * @var string
+	 */
+	public const RANGE_TYPE_OFFSET_START = 2;
 
-	public const RANGE_TYPE_NEGATIVE_OFFSET_START   = 3;
+	/**
+	 * Defines the range with a negative start offset.
+	 * @var string
+	 */
+	public const RANGE_TYPE_NEGATIVE_OFFSET_START = 3;
 
-	/** @var ?int */
+	/**
+	 * Stores the start offset of the range
+	 * @var ?int
+	 */
 	private $offsetStart;
 
-	/** @var ?int */
+	/**
+	 * Stores the end offset of the range
+	 * @var ?int
+	 */
 	private $offsetEnd;
 
-	/** @var int */
+	/**
+	 * Stores the type of the range
+	 * @var int
+	 */
 	private $type;
 
+	/**
+	 * Constructor method.
+	 * @param ?int $offsetStart The start offset of the range.
+	 * @param ?int $offsetEnd The end offset of the range.
+	 */
 	public function __construct( ?int $offsetStart, ?int $offsetEnd )
 	{
 		$this->offsetStart = $offsetStart;
 		$this->offsetEnd   = $offsetEnd;
 
-		$this->determineRangeTypes();
+		$this->determineRangeType();
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	public function getOffsetStart(): ?int
 	{
 		return $this->offsetStart;
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	public function getOffsetEnd(): ?int
 	{
 		return $this->offsetEnd;
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	public function getType(): int
 	{
 		return $this->type;
 	}
 
-	private function determineRangeTypes(): void
+	/**
+	 * Determines the type of the range.
+	 */
+	private function determineRangeType(): void
 	{
 		if ( null !== $this->offsetStart && null !== $this->offsetEnd )
 		{
@@ -66,6 +113,9 @@ class Range implements RangeInterface
 		$this->type = static::RANGE_TYPE_NONE;
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	public function isValid( int $size ): bool
 	{
 		if ( static::RANGE_TYPE_NONE )

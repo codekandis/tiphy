@@ -7,18 +7,31 @@ use function curl_exec;
 use function explode;
 use function iterator_to_array;
 
+/**
+ * Represents an HTTP `OPTIONS` request.
+ * @package codekandis/tiphy
+ * @author Christian Ramelow <info@codekandis.net>
+ */
 class OptionsRequest implements OptionsRequestInterface
 {
-	/** @var string */
+	/**
+	 * Stores the URL of the request.
+	 * @var string
+	 */
 	private $uri;
 
+	/**
+	 * Constructor method.
+	 * @param string $uri The URI of the request.
+	 */
 	public function __construct( string $uri )
 	{
 		$this->uri = $uri;
 	}
 
 	/**
-	 * @return string[]
+	 * Fetches the response headers of the request.
+	 * @return string[] The response headers of the request.
 	 */
 	private function fetchFormattedResponse( string $response ): Traversable
 	{
@@ -31,6 +44,9 @@ class OptionsRequest implements OptionsRequestInterface
 		}
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	public function execute(): array
 	{
 		$curlHandler = curl_init();

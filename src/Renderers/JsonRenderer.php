@@ -5,17 +5,37 @@ use CodeKandis\JsonCodec\JsonEncoder;
 use CodeKandis\Tiphy\Throwables\ErrorInformationInterface;
 use JsonException;
 
+/**
+ * Represents a JSON content renderer.
+ * @package codekandis/tiphy
+ * @author Christian Ramelow <info@codekandis.net>
+ */
 class JsonRenderer implements RendererInterface
 {
-	/** @var string */
+	/**
+	 * Stores the response status.
+	 * @var string
+	 */
 	private $status;
 
-	/** @var mixed */
+	/**
+	 * Stores the data to render.
+	 * @var mixed
+	 */
 	private $data;
 
-	/** @var ?ErrorInformationInterface */
+	/**
+	 * Stores the error information of the response.
+	 * @var ?ErrorInformationInterface
+	 */
 	private $errorInformation;
 
+	/**
+	 * Constructor method.
+	 * @param string $status The response status.
+	 * @param mixed $data The data to render.
+	 * @param ?ErrorInformationInterface $errorInformation The error information of the response.
+	 */
 	public function __construct( string $status, $data, ?ErrorInformationInterface $errorInformation )
 	{
 		$this->status           = $status;
@@ -24,7 +44,8 @@ class JsonRenderer implements RendererInterface
 	}
 
 	/**
-	 * @throws JsonException
+	 * {@inheritdoc}
+	 * @throws JsonException An error occurred during the rendering of the JSON response.
 	 */
 	public function render(): RenderedContentInterface
 	{

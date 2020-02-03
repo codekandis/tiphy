@@ -1,22 +1,38 @@
 <?php declare( strict_types = 1 );
 namespace CodeKandis\Tiphy\Curl;
 
+/**
+ * Represents response headers.
+ * @package codekandis/tiphy
+ * @author Christian Ramelow <info@codekandis.net>
+ */
 class ResponseHeaders implements ResponseHeadersInterface
 {
-	/** @var string */
+	/**
+	 * Stores the status of the response.
+	 * @var string
+	 */
 	private $statusLine;
 
-	/** @var string[] */
+	/**
+	 * Stores the headers of the response.
+	 * @var string[]
+	 */
 	private $responseHeaders;
 
 	/**
-	 * @param string[] $formattedResponse
+	 * Constructor methos.
+	 * @param string[] $formattedResponse The formatted response to parse.
 	 */
 	public function __construct( array $formattedResponse )
 	{
 		$this->parseResponse( $formattedResponse );
 	}
 
+	/**
+	 * Parses the formatted response.
+	 * @param string[] $formattedResponse The formatted response to parse.
+	 */
 	private function parseResponse( array $formattedResponse ): void
 	{
 		foreach ( $formattedResponse as $responseLineIndex => $responseLineFetched )
@@ -34,6 +50,9 @@ class ResponseHeaders implements ResponseHeadersInterface
 		}
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	public function getHeader( string $headerName ): string
 	{
 		return $this->responseHeaders[ $headerName ] ?? '';
