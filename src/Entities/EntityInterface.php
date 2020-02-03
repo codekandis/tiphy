@@ -20,4 +20,9 @@ interface EntityInterface extends JsonSerializable
 	 * @throws ReflectionException
 	 */
 	public static function fromObject( object $data ): EntityInterface;
+
+	/**
+	 * @throws ReflectionException
+	 */
+	public function jsonSerialize(): array;
 }
