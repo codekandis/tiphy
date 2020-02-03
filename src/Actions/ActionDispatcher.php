@@ -43,6 +43,21 @@ class ActionDispatcher implements ActionDispatcherInterface
 			: substr( $requestUri, 0, $queryArgumentsDelimiterPosition );
 	}
 
+	private function filterArguments( array $matches ): array
+	{
+		$filteredArguments = [];
+		foreach ( $matches as $matchIndex => $matchValue )
+		{
+			$isString = is_string( $matchIndex );
+			if ( true === $isString )
+			{
+				$filteredArguments[ $matchIndex ] = urldecode( $matchValue );
+			}
+		}
+
+		return $filteredArguments;
+	}
+
 	/**
 	 * @throws Throwable
 	 */
@@ -87,20 +102,5 @@ class ActionDispatcher implements ActionDispatcherInterface
 			}
 			$this->throwableHandler->execute( $throwable );
 		}
-	}
-
-	private function filterArguments( array $matches ): array
-	{
-		$filteredArguments = [];
-		foreach ( $matches as $matchIndex => $matchValue )
-		{
-			$isString = is_string( $matchIndex );
-			if ( true === $isString )
-			{
-				$filteredArguments[ $matchIndex ] = urldecode( $matchValue );
-			}
-		}
-
-		return $filteredArguments;
 	}
 }
