@@ -25,7 +25,9 @@
 		"source": "https://github.com/codekandis/tiphy/tree/master"
 	},
 	"require": {
-		"php": "^7.3"
+		"php": "^7.3",
+		"codekandis/code-message-interpreter": "^1.0",
+		"codekandis/json-codec": "^1.0"
 	},
 	"require-dev": {
 		"roave/security-advisories": "dev-master",

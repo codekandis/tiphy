@@ -1,0 +1,64 @@
+<?php declare( strict_types = 1 );
+namespace CodeKandis\Tiphy\Http\Responses;
+
+use CodeKandis\Tiphy\Throwables\ErrorInformationInterface;
+use function header;
+use function http_response_code;
+use function sprintf;
+
+abstract class AbstractResponder implements ResponderInterface
+{
+	/** @var int */
+	private $statusCode;
+
+	/** @var ?ErrorInformationInterface */
+	protected $errorInformation;
+
+	/** @var mixed */
+	protected $data;
+
+	private $headers = [];
+
+	public function __construct( int $statusCode, $data, ?ErrorInformationInterface $errorInformation = null )
+	{
+		$this->statusCode       = $statusCode;
+		$this->errorInformation = $errorInformation;
+		$this->data             = $data;
+	}
+
+	protected function determineStatusCodeMessage(): string
+	{
+		$statusMessage             = ( new StatusCodesMessageInterpreter() )
+			->interpret( $this->statusCode );
+		$responseStatusCodeMessage = sprintf(
+			'%s %s',
+			$this->statusCode,
+			$statusMessage
+		);
+
+		return $responseStatusCodeMessage;
+	}
+
+	public function addHeader( string $name, string $value ): void
+	{
+		$this->headers[ $name ] = $value;
+	}
+
+	protected function sendStatusCode(): void
+	{
+		http_response_code( $this->statusCode );
+	}
+
+	protected function sendHeaders(): void
+	{
+		foreach ( $this->headers as $headerName => $headerValue )
+		{
+			$header = sprintf(
+				'%s: %s',
+				$headerName,
+				$headerValue
+			);
+			header( $header, true );
+		}
+	}
+}
