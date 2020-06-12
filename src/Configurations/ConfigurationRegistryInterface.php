@@ -15,7 +15,7 @@ interface ConfigurationRegistryInterface
 {
 	/**
 	 * Gets the path of the routes configuration.
-	 * @return string The path of the routes configuration.
+	 * @return RoutesConfigurationInterface The path of the routes configuration.
 	 */
 	public function getRoutesConfiguration(): RoutesConfigurationInterface;
 
@@ -27,7 +27,7 @@ interface ConfigurationRegistryInterface
 
 	/**
 	 * Gets the path of the persistence configuration.
-	 * @return string The path of the persistence configuration.
+	 * @return PersistenceConfigurationInterface The path of the persistence configuration.
 	 */
 	public function getPersistenceConfiguration(): PersistenceConfigurationInterface;
 
@@ -39,7 +39,7 @@ interface ConfigurationRegistryInterface
 
 	/**
 	 * Gets the path of the template renderer configuration.
-	 * @return string The path of the template renderer configuration.
+	 * @return TemplateRendererConfigurationInterface The path of the template renderer configuration.
 	 */
 	public function getTemplateRendererConfiguration(): TemplateRendererConfigurationInterface;
 
@@ -51,7 +51,7 @@ interface ConfigurationRegistryInterface
 
 	/**
 	 * Gets the path of the URI builder configuration.
-	 * @return string The path of the URI builder configuration.
+	 * @return UriBuilderConfigurationInterface The path of the URI builder configuration.
 	 */
 	public function getUriBuilderConfiguration(): UriBuilderConfigurationInterface;
 

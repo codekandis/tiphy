@@ -31,7 +31,7 @@ interface ConnectorInterface
 	/**
 	 * Executes a query.
 	 * @param string $query The query to execute.
-	 * @param ?array $arguments The arguments of the query.
+	 * @param null|array $arguments The arguments of the query.
 	 * @throws PersistenceException An error occurred during the query execution.
 	 */
 	public function execute( string $query, ?array $arguments = null ): void;
@@ -39,8 +39,8 @@ interface ConnectorInterface
 	/**
 	 * Executes a query and returns the query result as a list of objects.
 	 * @param string $query The query to execute.
-	 * @param ?array $arguments The arguments of the query.
-	 * @param ?string The name of the class to convert the result rows into.
+	 * @param null|array $arguments The arguments of the query.
+	 * @param null|string The name of the class to convert the result rows into.
 	 * @return object[] The list of query result row objects.
 	 * @throws PersistenceException An error occurred during the query execution.
 	 */
@@ -49,9 +49,9 @@ interface ConnectorInterface
 	/**
 	 * Executes a query and returns the first row of the query result as an object.
 	 * @param string $query The query to execute.
-	 * @param ?array $arguments The arguments of the query.
-	 * @param ?string The name of the class to convert the result row into.
-	 * @return ?object The first row of the query result row as an object.
+	 * @param null|array $arguments The arguments of the query.
+	 * @param null|string The name of the class to convert the result row into.
+	 * @return null|object The first row of the query result row as an object.
 	 * @throws PersistenceException An error occurred during the query execution.
 	 */
 	public function queryFirst( string $query, ?array $arguments = null, ?string $className = null ): ?object;

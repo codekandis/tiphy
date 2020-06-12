@@ -31,6 +31,7 @@ class OptionsRequest implements OptionsRequestInterface
 
 	/**
 	 * Fetches the response headers of the request.
+	 * @param string $response The response of the request.
 	 * @return string[] The response headers of the request.
 	 */
 	private function fetchFormattedResponse( string $response ): Traversable
@@ -65,6 +66,6 @@ class OptionsRequest implements OptionsRequestInterface
 
 		$formattedResponse = $this->fetchFormattedResponse( $response );
 
-		return iterator_to_array( $formattedResponse );
+		return iterator_to_array( $formattedResponse, false );
 	}
 }

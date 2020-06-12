@@ -14,6 +14,7 @@ class InternalServerErrorThrowableHandler implements ThrowableHandlerInterface
 {
 	/**
 	 * Executes the throwable handler and executes the default action to handle unhandled errors.
+	 * @param Throwable $throwable The catched throwable.
 	 * @throws JsonException An error occurred during the creation of the JSON response.
 	 */
 	public function execute( Throwable $throwable ): void

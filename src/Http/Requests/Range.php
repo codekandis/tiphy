@@ -34,13 +34,13 @@ class Range implements RangeInterface
 
 	/**
 	 * Stores the start offset of the range
-	 * @var ?int
+	 * @var null|int
 	 */
 	private $offsetStart;
 
 	/**
 	 * Stores the end offset of the range
-	 * @var ?int
+	 * @var null|int
 	 */
 	private $offsetEnd;
 
@@ -52,8 +52,8 @@ class Range implements RangeInterface
 
 	/**
 	 * Constructor method.
-	 * @param ?int $offsetStart The start offset of the range.
-	 * @param ?int $offsetEnd The end offset of the range.
+	 * @param null|int $offsetStart The start offset of the range.
+	 * @param null|int $offsetEnd The end offset of the range.
 	 */
 	public function __construct( ?int $offsetStart, ?int $offsetEnd )
 	{
@@ -109,7 +109,7 @@ class Range implements RangeInterface
 			$this->type = static::RANGE_TYPE_NEGATIVE_OFFSET_START;
 
 			return;
-		};
+		}
 		$this->type = static::RANGE_TYPE_NONE;
 	}
 

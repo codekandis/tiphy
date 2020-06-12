@@ -26,7 +26,7 @@ class ActionDispatcher implements ActionDispatcherInterface
 
 	/**
 	 * Stores the throwable handler of the dispatcher.
-	 * @var ?ThrowableHandlerInterface
+	 * @var null|ThrowableHandlerInterface
 	 */
 	private $throwableHandler;
 
@@ -45,7 +45,7 @@ class ActionDispatcher implements ActionDispatcherInterface
 	/**
 	 * Constructor method.
 	 * @param RoutesConfigurationInterface $routesConfiguration The routes configuration of the action dispatcher.
-	 * @param ?ThrowableHandlerInterface $throwableHandler The throwable handler of the action dispatcher.
+	 * @param null|ThrowableHandlerInterface $throwableHandler The throwable handler of the action dispatcher.
 	 */
 	public function __construct( RoutesConfigurationInterface $routesConfiguration, ?ThrowableHandlerInterface $throwableHandler = null )
 	{
@@ -97,11 +97,10 @@ class ActionDispatcher implements ActionDispatcherInterface
 		try
 		{
 			/** @var ActionInterface $action */
-			$actionClass      = NotFoundAction::class;
-			$requestBody      = '';
-			$actionArguments  = [];
-			$configuredRoutes = $this->routesConfiguration->getRoutes();
-			foreach ( $configuredRoutes as $configuredRoute => $configuredMethods )
+			$actionClass     = NotFoundAction::class;
+			$requestBody     = '';
+			$actionArguments = [];
+			foreach ( $this->routesConfiguration->getRoutes() as $configuredRoute => $configuredMethods )
 			{
 				$matches    = [];
 				$isMatching = preg_match( '~' . $configuredRoute . '~', $this->requestedRoute, $matches );

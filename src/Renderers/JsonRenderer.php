@@ -26,7 +26,7 @@ class JsonRenderer implements RendererInterface
 
 	/**
 	 * Stores the error information of the response.
-	 * @var ?ErrorInformationInterface
+	 * @var null|ErrorInformationInterface
 	 */
 	private $errorInformation;
 
@@ -34,7 +34,7 @@ class JsonRenderer implements RendererInterface
 	 * Constructor method.
 	 * @param string $status The response status.
 	 * @param mixed $data The data to render.
-	 * @param ?ErrorInformationInterface $errorInformation The error information of the response.
+	 * @param null|ErrorInformationInterface $errorInformation The error information of the response.
 	 */
 	public function __construct( string $status, $data, ?ErrorInformationInterface $errorInformation )
 	{
