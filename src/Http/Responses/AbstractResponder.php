@@ -11,7 +11,7 @@ abstract class AbstractResponder implements ResponderInterface
 	/** @var int */
 	private $statusCode;
 
-	/** @var ?ErrorInformationInterface */
+	/** @var null|ErrorInformationInterface */
 	protected $errorInformation;
 
 	/** @var mixed */
@@ -30,13 +30,11 @@ abstract class AbstractResponder implements ResponderInterface
 	{
 		$statusMessage             = ( new StatusCodesMessageInterpreter() )
 			->interpret( $this->statusCode );
-		$responseStatusCodeMessage = sprintf(
+		return sprintf(
 			'%s %s',
 			$this->statusCode,
 			$statusMessage
 		);
-
-		return $responseStatusCodeMessage;
 	}
 
 	public function addHeader( string $name, string $value ): void

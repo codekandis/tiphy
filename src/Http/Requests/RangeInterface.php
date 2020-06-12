@@ -10,13 +10,13 @@ interface RangeInterface
 {
 	/**
 	 * Gets the start offset of the range.
-	 * @return ?int The start offset of the range.
+	 * @return null|int The start offset of the range.
 	 */
 	public function getOffsetStart(): ?int;
 
 	/**
 	 * Gets the end offset of the range.
-	 * @return ?int The end offset of the range.
+	 * @return null|int The end offset of the range.
 	 */
 	public function getOffsetEnd(): ?int;
 
@@ -28,6 +28,7 @@ interface RangeInterface
 
 	/**
 	 * Determines if the range is valid.
+	 * @param int $size The size of the range.
 	 * @return bool True if the range is valid, false otherwise.
 	 */
 	public function isValid( int $size ): bool;

@@ -25,7 +25,7 @@ class TemplateRenderer implements RendererInterface
 
 	/**
 	 * Stores the error information of the response.
-	 * @var ?ErrorInformationInterface
+	 * @var null|ErrorInformationInterface
 	 */
 	private $errorInformation;
 
@@ -39,7 +39,7 @@ class TemplateRenderer implements RendererInterface
 	 * Constructor method.
 	 * @param TemplateRendererConfigurationInterface $config The template renderer configuration.
 	 * @param mixed $data The data to render.
-	 * @param ?ErrorInformationInterface $errorInformation The error information of the response.
+	 * @param null|ErrorInformationInterface $errorInformation The error information of the response.
 	 * @param string $templatePath The path of the template.
 	 */
 	public function __construct( TemplateRendererConfigurationInterface $config, $data, ?ErrorInformationInterface $errorInformation, string $templatePath )

@@ -19,14 +19,16 @@ interface EntityInterface extends JsonSerializable
 	public function toArray(): array;
 
 	/**
-	 * Creates an entity from an array.
+	 * Creates an entity from a data array.
+	 * @param array $data The data array to create the entity from.
 	 * @return EntityInterface The entity created from the array.
 	 * @throws ReflectionException An error occurred during the creation.
 	 */
 	public static function fromArray( array $data ): EntityInterface;
 
 	/**
-	 * Creates an entity from an object.
+	 * Creates an entity from a data object.
+	 * @param object $data The data object to create the entity from.
 	 * @return EntityInterface The entity created from the object.
 	 * @throws ReflectionException An error occurred during the creation.
 	 */

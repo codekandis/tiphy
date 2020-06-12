@@ -45,8 +45,7 @@ class OctetStreamResponder extends AbstractResponder implements OctetStreamRespo
 
 		while ( false === feof( $this->data ) )
 		{
-			$chunk = fread( $this->data, static::CHUNK_SIZE );
-			echo $chunk;
+			echo fread( $this->data, static::CHUNK_SIZE );
 		}
 	}
 
@@ -74,8 +73,7 @@ class OctetStreamResponder extends AbstractResponder implements OctetStreamRespo
 		{
 			$chunkSize = static::CHUNK_SIZE > $length ? $length : static::CHUNK_SIZE;
 			$length    -= $chunkSize;
-			$chunk     = fread( $this->data, $chunkSize );
-			echo $chunk;
+			echo fread( $this->data, $chunkSize );
 		}
 	}
 
@@ -100,8 +98,7 @@ class OctetStreamResponder extends AbstractResponder implements OctetStreamRespo
 		fseek( $this->data, $offsetStart );
 		while ( false === feof( $this->data ) )
 		{
-			$chunk = fread( $this->data, static::CHUNK_SIZE );
-			echo $chunk;
+			echo fread( $this->data, static::CHUNK_SIZE );
 		}
 	}
 
@@ -126,8 +123,7 @@ class OctetStreamResponder extends AbstractResponder implements OctetStreamRespo
 		fseek( $this->data, $offsetStart );
 		while ( false === feof( $this->data ) )
 		{
-			$chunk = fread( $this->data, static::CHUNK_SIZE );
-			echo $chunk;
+			echo fread( $this->data, static::CHUNK_SIZE );
 		}
 	}
 
