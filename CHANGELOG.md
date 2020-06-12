@@ -6,6 +6,17 @@ The format is based on [keep a changelog][xtlink-keep-a-changelog]
 and this project adheres to [Semantic Versioning 2.0.0][xtlink-semantic-versioning].
 
 
+## [0.2.0] - 2020-06-12
+
+### Fixed
+
+* a wrong method name in the `UriBuilderInterface`
+* several inspection issues
+
+
+[0.2.0]: https://github.com/codekandis/tiphy/compare/0.1.0...0.2.0
+
+---
 ## 0.1.0 - 2020-06-12
 
 ### Added
