@@ -14,5 +14,5 @@ interface UriBuilderInterface
 	 * @param string ...$arguments The arguments needed to build the URI.
 	 * @return string The build URI.
 	 */
-	public function buildUri( string $uriName, string...$arguments ): string;
+	public function build( string $uriName, string...$arguments ): string;
 }
