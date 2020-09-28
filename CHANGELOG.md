@@ -6,6 +6,16 @@ The format is based on [keep a changelog][xtlink-keep-a-changelog]
 and this project adheres to [Semantic Versioning 2.0.0][xtlink-semantic-versioning].
 
 
+## [0.3.0] - 2020-09-28
+
+### Added
+
+* pre-dispatchment to prevent action dispatchment on demand
+
+
+[0.3.0]: https://github.com/codekandis/tiphy/compare/0.2.0...0.3.0
+
+---
 ## [0.2.0] - 2020-06-12
 
 ### Fixed
