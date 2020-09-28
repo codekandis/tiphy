@@ -25,6 +25,12 @@ class ActionDispatcher implements ActionDispatcherInterface
 	private $routesConfiguration;
 
 	/**
+	 * Stores the pre-dispatcher of the dispatcher;
+	 * @var null|PreDispatcherInterface
+	 */
+	private $preDispatcher;
+
+	/**
 	 * Stores the throwable handler of the dispatcher.
 	 * @var null|ThrowableHandlerInterface
 	 */
@@ -45,11 +51,13 @@ class ActionDispatcher implements ActionDispatcherInterface
 	/**
 	 * Constructor method.
 	 * @param RoutesConfigurationInterface $routesConfiguration The routes configuration of the action dispatcher.
+	 * @param null|PreDispatcherInterface $preDispatcher The pre-dispatcher of the action dispatcher.
 	 * @param null|ThrowableHandlerInterface $throwableHandler The throwable handler of the action dispatcher.
 	 */
-	public function __construct( RoutesConfigurationInterface $routesConfiguration, ?ThrowableHandlerInterface $throwableHandler = null )
+	public function __construct( RoutesConfigurationInterface $routesConfiguration, ?PreDispatcherInterface $preDispatcher = null, ?ThrowableHandlerInterface $throwableHandler = null )
 	{
 		$this->routesConfiguration = $routesConfiguration;
+		$this->preDispatcher       = $preDispatcher;
 		$this->throwableHandler    = $throwableHandler;
 		$this->requestedRoute      = $this->getParsedRequestRoute();
 		$this->requestedMethod     = $_SERVER[ 'REQUEST_METHOD' ];
@@ -96,8 +104,17 @@ class ActionDispatcher implements ActionDispatcherInterface
 	{
 		try
 		{
-			/** @var ActionInterface $action */
-			$actionClass     = NotFoundAction::class;
+			if ( null !== $this->preDispatcher )
+			{
+				$preDispatchmentState = new PreDispatchmentState();
+				$this->preDispatcher->preDispatch( $preDispatchmentState );
+				if ( false === $preDispatchmentState->getPreventDispatchment() )
+				{
+					return;
+				}
+			}
+
+			$actionClass     = null;
 			$requestBody     = '';
 			$actionArguments = [];
 			foreach ( $this->routesConfiguration->getRoutes() as $configuredRoute => $configuredMethods )
@@ -121,7 +138,15 @@ class ActionDispatcher implements ActionDispatcherInterface
 				}
 			}
 
-			$action = new $actionClass( $requestBody, $actionArguments );
+			/** @var ActionInterface $action */
+			if ( null === $actionClass )
+			{
+				$action = new NotFoundAction();
+			}
+			else
+			{
+				$action = new $actionClass( $requestBody, $actionArguments );
+			}
 			$action->execute();
 		}
 		catch ( Throwable $throwable )
