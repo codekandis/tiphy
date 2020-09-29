@@ -110,7 +110,7 @@ class ActionDispatcher implements ActionDispatcherInterface
 			{
 				$preDispatchmentState = new PreDispatchmentState();
 				$this->preDispatcher->preDispatch( $preDispatchmentState );
-				if ( false === $preDispatchmentState->getPreventDispatchment() )
+				if ( true === $preDispatchmentState->getPreventDispatchment() )
 				{
 					return;
 				}
