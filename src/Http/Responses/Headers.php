@@ -1,6 +1,11 @@
 <?php declare( strict_types = 1 );
 namespace CodeKandis\Tiphy\Http\Responses;
 
+/**
+ * Represents an enumeration of HTTP response headers.
+ * @package codekandis/tiphy
+ * @author Christian Ramelow <info@codekandis.net>
+ */
 abstract class Headers
 {
 	public const ACCEPT_RANGES               = 'Accept-Ranges';

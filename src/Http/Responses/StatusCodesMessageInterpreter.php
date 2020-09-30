@@ -3,6 +3,11 @@ namespace CodeKandis\Tiphy\Http\Responses;
 
 use CodeKandis\CodeMessageInterpreter\CodeMessageInterpreter;
 
+/**
+ * Represents a HTTP response status code interpreter.
+ * @package codekandis/tiphy
+ * @author Christian Ramelow <info@codekandis.net>
+ */
 class StatusCodesMessageInterpreter extends CodeMessageInterpreter
 {
 	/**

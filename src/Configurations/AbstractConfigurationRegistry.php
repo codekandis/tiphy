@@ -21,55 +21,55 @@ abstract class AbstractConfigurationRegistry implements ConfigurationRegistryInt
 	 * Stores the singleton instance of the configuration registry.
 	 * @var ConfigurationRegistryInterface
 	 */
-	protected static $instance;
+	protected static ConfigurationRegistryInterface $instance;
 
 	/**
 	 * Stores the path of the routes configuration.
 	 * @var string
 	 */
-	private $routesConfigurationPath = '';
+	private string $routesConfigurationPath = '';
 
 	/**
 	 * Stores the routes configuration.
 	 * @var RoutesConfigurationInterface
 	 */
-	private $routesConfiguration;
+	private RoutesConfigurationInterface $routesConfiguration;
 
 	/**
 	 * Stores the path of the persistence configuration.
 	 * @var string
 	 */
-	private $persistenceConfigurationPath = '';
+	private string $persistenceConfigurationPath = '';
 
 	/**
 	 * Stores the persistence configuration.
 	 * @var PersistenceConfigurationInterface
 	 */
-	private $persistenceConfiguration;
+	private PersistenceConfigurationInterface $persistenceConfiguration;
 
 	/**
 	 * Stores the path of the template renderer configuration.
 	 * @var string
 	 */
-	private $templateRendererConfigurationPath = '';
+	private string $templateRendererConfigurationPath = '';
 
 	/**
 	 * Stores the template renderer configuration.
 	 * @var TemplateRendererConfigurationInterface
 	 */
-	private $templateRendererConfiguration;
+	private TemplateRendererConfigurationInterface $templateRendererConfiguration;
 
 	/**
 	 * Stores the path of the URI builder configuration.
 	 * @var string
 	 */
-	private $uriBuilderConfigurationPath = '';
+	private string $uriBuilderConfigurationPath = '';
 
 	/**
 	 * Stores the URI builder configuration.
 	 * @var UriBuilderConfigurationInterface
 	 */
-	private $uriBuilderConfiguration;
+	private UriBuilderConfigurationInterface $uriBuilderConfiguration;
 
 	/**
 	 * Constructor method.
@@ -93,20 +93,20 @@ abstract class AbstractConfigurationRegistry implements ConfigurationRegistryInt
 	public static function _(): ConfigurationRegistryInterface
 	{
 		return static::$instance
-		       ?? static::$instance = new static();
+			   ?? static::$instance = new static();
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	public function getRoutesConfiguration(): RoutesConfigurationInterface
 	{
 		return $this->routesConfiguration
-		       ?? $this->routesConfiguration = new RoutesConfiguration( $this->routesConfigurationPath );
+			   ?? $this->routesConfiguration = new RoutesConfiguration( $this->routesConfigurationPath );
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	public function setRoutesConfigurationPath( string $path ): void
 	{
@@ -114,16 +114,16 @@ abstract class AbstractConfigurationRegistry implements ConfigurationRegistryInt
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	public function getPersistenceConfiguration(): PersistenceConfigurationInterface
 	{
 		return $this->persistenceConfiguration
-		       ?? $this->persistenceConfiguration = new PersistenceConfiguration( $this->persistenceConfigurationPath );
+			   ?? $this->persistenceConfiguration = new PersistenceConfiguration( $this->persistenceConfigurationPath );
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	public function setPersistenceConfigurationPath( string $path ): void
 	{
@@ -131,16 +131,16 @@ abstract class AbstractConfigurationRegistry implements ConfigurationRegistryInt
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	public function getTemplateRendererConfiguration(): TemplateRendererConfigurationInterface
 	{
 		return $this->templateRendererConfiguration
-		       ?? $this->templateRendererConfiguration = new TemplateRendererConfiguration( $this->templateRendererConfigurationPath );
+			   ?? $this->templateRendererConfiguration = new TemplateRendererConfiguration( $this->templateRendererConfigurationPath );
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	public function setTemplateRendererConfigurationPath( string $path ): void
 	{
@@ -148,16 +148,16 @@ abstract class AbstractConfigurationRegistry implements ConfigurationRegistryInt
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	public function getUriBuilderConfiguration(): UriBuilderConfigurationInterface
 	{
 		return $this->uriBuilderConfiguration
-		       ?? $this->uriBuilderConfiguration = new UriBuilderConfiguration( $this->uriBuilderConfigurationPath );
+			   ?? $this->uriBuilderConfiguration = new UriBuilderConfiguration( $this->uriBuilderConfigurationPath );
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	public function setUriBuilderConfigurationPath( string $path ): void
 	{

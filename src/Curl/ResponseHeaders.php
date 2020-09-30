@@ -1,6 +1,8 @@
 <?php declare( strict_types = 1 );
 namespace CodeKandis\Tiphy\Curl;
 
+use function explode;
+
 /**
  * Represents response headers.
  * @package codekandis/tiphy
@@ -12,13 +14,13 @@ class ResponseHeaders implements ResponseHeadersInterface
 	 * Stores the status of the response.
 	 * @var string
 	 */
-	private $statusLine;
+	private string $statusLine;
 
 	/**
 	 * Stores the headers of the response.
 	 * @var string[]
 	 */
-	private $responseHeaders;
+	private array $responseHeaders;
 
 	/**
 	 * Constructor methos.
@@ -51,7 +53,7 @@ class ResponseHeaders implements ResponseHeadersInterface
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	public function getHeader( string $headerName ): string
 	{

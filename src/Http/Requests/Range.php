@@ -10,25 +10,25 @@ class Range implements RangeInterface
 {
 	/**
 	 * Defines the unknown range.
-	 * @var string
+	 * @var int
 	 */
 	public const RANGE_TYPE_NONE = 0;
 
 	/**
 	 * Defines the range with a start and end offset.
-	 * @var string
+	 * @var int
 	 */
 	public const RANGE_TYPE_OFFSET_START_OFFSET_END = 1;
 
 	/**
 	 * Defines the range with a start offset.
-	 * @var string
+	 * @var int
 	 */
 	public const RANGE_TYPE_OFFSET_START = 2;
 
 	/**
 	 * Defines the range with a negative start offset.
-	 * @var string
+	 * @var int
 	 */
 	public const RANGE_TYPE_NEGATIVE_OFFSET_START = 3;
 
@@ -36,19 +36,19 @@ class Range implements RangeInterface
 	 * Stores the start offset of the range
 	 * @var null|int
 	 */
-	private $offsetStart;
+	private ?int $offsetStart;
 
 	/**
 	 * Stores the end offset of the range
 	 * @var null|int
 	 */
-	private $offsetEnd;
+	private ?int $offsetEnd;
 
 	/**
 	 * Stores the type of the range
 	 * @var int
 	 */
-	private $type;
+	private ?int $type;
 
 	/**
 	 * Constructor method.
@@ -64,7 +64,7 @@ class Range implements RangeInterface
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	public function getOffsetStart(): ?int
 	{
@@ -72,7 +72,7 @@ class Range implements RangeInterface
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	public function getOffsetEnd(): ?int
 	{
@@ -80,7 +80,7 @@ class Range implements RangeInterface
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	public function getType(): int
 	{
@@ -114,7 +114,7 @@ class Range implements RangeInterface
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	public function isValid( int $size ): bool
 	{

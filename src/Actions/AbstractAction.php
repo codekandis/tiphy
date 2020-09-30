@@ -14,13 +14,13 @@ abstract class AbstractAction implements ActionInterface
 	 * Stores the request body.
 	 * @var JsonBodyInterface
 	 */
-	protected $requestBody;
+	protected JsonBodyInterface $requestBody;
 
 	/**
 	 * Stores the arguments of the request.
 	 * @var array
 	 */
-	protected $arguments;
+	protected array $arguments;
 
 	/**
 	 * Constructor method.

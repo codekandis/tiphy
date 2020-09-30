@@ -16,7 +16,7 @@ class JsonRenderer implements RendererInterface
 	 * Stores the response status.
 	 * @var string
 	 */
-	private $status;
+	private string $status;
 
 	/**
 	 * Stores the data to render.
@@ -28,7 +28,7 @@ class JsonRenderer implements RendererInterface
 	 * Stores the error information of the response.
 	 * @var null|ErrorInformationInterface
 	 */
-	private $errorInformation;
+	private ?ErrorInformationInterface $errorInformation;
 
 	/**
 	 * Constructor method.
@@ -44,7 +44,7 @@ class JsonRenderer implements RendererInterface
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 * @throws JsonException An error occurred during the rendering of the JSON response.
 	 */
 	public function render(): RenderedContentInterface

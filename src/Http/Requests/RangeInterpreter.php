@@ -11,7 +11,7 @@ use function preg_match;
 class RangeInterpreter implements RangeInterpreterInterface
 {
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	public function interpret( string $value ): ?Range
 	{

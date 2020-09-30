@@ -14,13 +14,13 @@ class RenderedContent implements RenderedContentInterface
 	 * Stores the length of the rendered content.
 	 * @var int
 	 */
-	private $contentLength;
+	private int $contentLength;
 
 	/**
 	 * Stores the rendered content.
 	 * @var string
 	 */
-	private $content;
+	private string $content;
 
 	/**
 	 * Constructor method.
@@ -33,7 +33,7 @@ class RenderedContent implements RenderedContentInterface
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	public function getContentLength(): int
 	{
@@ -41,7 +41,7 @@ class RenderedContent implements RenderedContentInterface
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	public function getContent(): string
 	{

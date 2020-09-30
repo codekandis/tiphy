@@ -1,6 +1,11 @@
 <?php declare( strict_types = 1 );
 namespace CodeKandis\Tiphy\Http\Responses;
 
+/**
+ * Represents an enumeration of HTTP response status codes.
+ * @package codekandis/tiphy
+ * @author Christian Ramelow <info@codekandis.net>
+ */
 abstract class StatusCodes
 {
 	public const CONTINUE                                                         = 100;
