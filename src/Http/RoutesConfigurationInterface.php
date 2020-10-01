@@ -9,7 +9,7 @@ namespace CodeKandis\Tiphy\Http;
 interface RoutesConfigurationInterface
 {
 	/**
-	 * Gets the routes of the applications.
+	 * Gets the routes of the application.
 	 * @return array The routes of the application.
 	 */
 	public function getRoutes(): array;

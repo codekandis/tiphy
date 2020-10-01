@@ -24,31 +24,31 @@ class ActionDispatcher implements ActionDispatcherInterface
 	 * Stores the routes configuration.
 	 * @var RoutesConfigurationInterface
 	 */
-	private $routesConfiguration;
+	private RoutesConfigurationInterface $routesConfiguration;
 
 	/**
 	 * Stores the pre-dispatcher of the dispatcher;
 	 * @var null|PreDispatcherInterface
 	 */
-	private $preDispatcher;
+	private ?PreDispatcherInterface $preDispatcher;
 
 	/**
 	 * Stores the throwable handler of the dispatcher.
 	 * @var null|ThrowableHandlerInterface
 	 */
-	private $throwableHandler;
+	private ?ThrowableHandlerInterface $throwableHandler;
 
 	/**
 	 * Stores the requested route.
 	 * @var string
 	 */
-	private $requestedRoute;
+	private string $requestedRoute;
 
 	/**
 	 * Stores the requested HTTP method.
 	 * @var string
 	 */
-	private $requestedMethod;
+	private string $requestedMethod;
 
 	/**
 	 * Constructor method.
@@ -100,7 +100,7 @@ class ActionDispatcher implements ActionDispatcherInterface
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	public function dispatch(): void
 	{

@@ -2,6 +2,7 @@
 namespace CodeKandis\Tiphy\Renderers;
 
 use CodeKandis\Tiphy\Throwables\ErrorInformationInterface;
+use function ob_get_clean;
 use function ob_start;
 
 /**
@@ -15,7 +16,7 @@ class TemplateRenderer implements RendererInterface
 	 * Stores the template renderer configuration.
 	 * @var TemplateRendererConfigurationInterface
 	 */
-	private $config;
+	private TemplateRendererConfigurationInterface $config;
 
 	/**
 	 * Stores the data to render.
@@ -27,13 +28,13 @@ class TemplateRenderer implements RendererInterface
 	 * Stores the error information of the response.
 	 * @var null|ErrorInformationInterface
 	 */
-	private $errorInformation;
+	private ?ErrorInformationInterface $errorInformation;
 
 	/**
 	 * Stores the path of the template.
 	 * @var string
 	 */
-	private $templatePath;
+	private string $templatePath;
 
 	/**
 	 * Constructor method.
@@ -51,7 +52,7 @@ class TemplateRenderer implements RendererInterface
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	public function render(): RenderedContentInterface
 	{

@@ -14,7 +14,7 @@ abstract class AbstractRepository
 	 * Stores the MariaDb database connector.
 	 * @var ConnectorInterface
 	 */
-	protected $databaseConnector;
+	protected ConnectorInterface $databaseConnector;
 
 	/**
 	 * Constructor method.

@@ -18,13 +18,13 @@ class Connector implements ConnectorInterface
 	 * Stores the persistence configuration.
 	 * @var PersistenceConfigurationInterface
 	 */
-	private $config;
+	private PersistenceConfigurationInterface $config;
 
 	/**
 	 * Stores the PDO connection.
 	 * @var PDO
 	 */
-	private $connection;
+	private PDO $connection;
 
 	/**
 	 * Constructor method.
@@ -52,7 +52,7 @@ class Connector implements ConnectorInterface
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	public function beginTransaction(): bool
 	{
@@ -60,7 +60,7 @@ class Connector implements ConnectorInterface
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	public function rollback(): bool
 	{
@@ -68,7 +68,7 @@ class Connector implements ConnectorInterface
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	public function commit(): bool
 	{
@@ -76,7 +76,7 @@ class Connector implements ConnectorInterface
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function execute( string $query, ?array $arguments = null ): void
 	{
@@ -99,7 +99,7 @@ class Connector implements ConnectorInterface
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function query( string $query, ?array $arguments = null, ?string $className = null ): array
 	{
@@ -133,7 +133,7 @@ class Connector implements ConnectorInterface
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function queryFirst( string $query, ?array $arguments = null, ?string $className = null ): ?object
 	{
@@ -168,7 +168,7 @@ class Connector implements ConnectorInterface
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	public function getLastInsertId(): string
 	{

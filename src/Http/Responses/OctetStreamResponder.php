@@ -9,26 +9,53 @@ use function fseek;
 use function fstat;
 use function sprintf;
 
+/**
+ * Represents an octet stream HTTP responder.
+ * @package codekandis/tiphy
+ * @author Christian Ramelow <info@codekandis.net>
+ */
 class OctetStreamResponder extends AbstractResponder implements OctetStreamResponderInterface
 {
+	/**
+	 * Stores the chunk size of the octet stream.
+	 * @var string
+	 */
 	private const CHUNK_SIZE = 8192;
 
-	/** @var string */
-	private $fileName;
+	/**
+	 * Stores the file name of the octet stream.
+	 * @var string
+	 */
+	private string $fileName;
 
-	/** @var Range */
-	private $range;
+	/**
+	 * Stores the range of the octet stream.
+	 * @var Range
+	 */
+	private Range $range;
 
+	/**
+	 * Sets the file name of the octet stream.
+	 * @param string $fileName The file name of the octet stream.
+	 */
 	public function setFileName( string $fileName ): void
 	{
 		$this->fileName = $fileName;
 	}
 
+	/**
+	 * Sets the range of the octet stream.
+	 * @param Range $range The range of the octet stream.
+	 */
 	public function setRange( Range $range ): void
 	{
 		$this->range = $range;
 	}
 
+	/**
+	 * Gets the data size of the octet stream.
+	 * @return int The data size of the octet stream.
+	 */
 	private function getDataSize(): int
 	{
 		$dataStats = fstat( $this->data );
@@ -36,6 +63,9 @@ class OctetStreamResponder extends AbstractResponder implements OctetStreamRespo
 		return $dataStats[ 'size' ];
 	}
 
+	/**
+	 * Responds the full octet stream.
+	 */
 	private function respondFull(): void
 	{
 		$size = $this->getDataSize();
@@ -49,7 +79,10 @@ class OctetStreamResponder extends AbstractResponder implements OctetStreamRespo
 		}
 	}
 
-	private function respondOffsetStartoffSetEndRange(): void
+	/**
+	 * Responds the octet stream froom a start offset to an end offset.
+	 */
+	private function respondOffsetStartOffSetEndRange(): void
 	{
 		$offsetStart = $this->range->getOffsetStart();
 		$offsetEnd   = $this->range->getOffsetEnd();
@@ -77,6 +110,9 @@ class OctetStreamResponder extends AbstractResponder implements OctetStreamRespo
 		}
 	}
 
+	/**
+	 * Responds the octet stream from a start offset.
+	 */
 	private function respondOffsetStart(): void
 	{
 		$offsetStart = $this->range->getOffsetStart();
@@ -102,6 +138,9 @@ class OctetStreamResponder extends AbstractResponder implements OctetStreamRespo
 		}
 	}
 
+	/**
+	 * Responds the octet stream from an negative start offset.
+	 */
 	private function respondNegativeOffsetStart(): void
 	{
 		$size        = $this->getDataSize();
@@ -127,6 +166,9 @@ class OctetStreamResponder extends AbstractResponder implements OctetStreamRespo
 		}
 	}
 
+	/**
+	 * Responds a specific range of the octet stream.
+	 */
 	private function respondRange(): void
 	{
 		$rangeType = $this->range->getType();
@@ -134,7 +176,7 @@ class OctetStreamResponder extends AbstractResponder implements OctetStreamRespo
 		{
 			case Range::RANGE_TYPE_OFFSET_START_OFFSET_END:
 			{
-				$this->respondOffsetStartoffSetEndRange();
+				$this->respondOffsetStartOffSetEndRange();
 
 				break;
 			}
@@ -151,6 +193,10 @@ class OctetStreamResponder extends AbstractResponder implements OctetStreamRespo
 		}
 	}
 
+	/**
+	 * @inheritDoc
+	 * Responds the octet stream.
+	 */
 	public function respond(): void
 	{
 		$this->sendStatusCode();

@@ -15,7 +15,7 @@ use JsonException;
 class NotFoundAction implements ActionInterface
 {
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 * @throws JsonException An error occurred during the creation of the JSON response.
 	 */
 	public function execute(): void
