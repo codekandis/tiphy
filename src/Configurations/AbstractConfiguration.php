@@ -12,7 +12,7 @@ class AbstractConfiguration
 	 * Stores the data of the configuration.
 	 * @var array
 	 */
-	protected $data;
+	protected array $data;
 
 	/**
 	 * Constructor method.

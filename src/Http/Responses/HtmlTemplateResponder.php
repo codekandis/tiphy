@@ -6,14 +6,33 @@ use CodeKandis\Tiphy\Renderers\TemplateRenderer;
 use CodeKandis\Tiphy\Renderers\TemplateRendererConfigurationInterface;
 use CodeKandis\Tiphy\Throwables\ErrorInformationInterface;
 
+/**
+ * Represents a HTML template HTTP responder.
+ * @package codekandis/tiphy
+ * @author Christian Ramelow <info@codekandis.net>
+ */
 class HtmlTemplateResponder extends AbstractResponder
 {
-	/** @var TemplateRendererConfigurationInterface */
-	private $templateRendererConfig;
+	/**
+	 * Stores the template renderer configuration of the HTML template HTTP responder.
+	 * @var TemplateRendererConfigurationInterface
+	 */
+	private TemplateRendererConfigurationInterface $templateRendererConfig;
 
-	/** @var string */
-	private $templatePath;
+	/**
+	 * Stores the template path of the HTML template HTTP responder.
+	 * @var string
+	 */
+	private string $templatePath;
 
+	/**
+	 * Constructor method.
+	 * @param TemplateRendererConfigurationInterface $templateRendererConfig The template renderer configuration of the HTML template HTTP responder.
+	 * @param int $statusCode The response status code.
+	 * @param mixed $data The data of the response.
+	 * @param null|ErrorInformationInterface $errorInformation The error information of the response.
+	 * @param string $templatePath The template path of the HTML template HTTP responder.
+	 */
 	public function __construct( TemplateRendererConfigurationInterface $templateRendererConfig, int $statusCode, $data, ?ErrorInformationInterface $errorInformation, string $templatePath )
 	{
 		parent::__construct( $statusCode, $data, $errorInformation );
@@ -21,6 +40,9 @@ class HtmlTemplateResponder extends AbstractResponder
 		$this->templatePath           = $templatePath;
 	}
 
+	/**
+	 * @inheritDoc
+	 */
 	public function respond(): void
 	{
 		$this->sendStatusCode();

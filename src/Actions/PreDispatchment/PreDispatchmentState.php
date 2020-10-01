@@ -12,7 +12,7 @@ class PreDispatchmentState implements PreDispatchmentStateInterface
 	 * Stores if the dispatchment must be prevented.
 	 * @var bool
 	 */
-	private $preventDispatchment = false;
+	private bool $preventDispatchment = false;
 
 	/**
 	 * @inheritDoc

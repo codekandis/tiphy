@@ -6,19 +6,43 @@ use function header;
 use function http_response_code;
 use function sprintf;
 
+/**
+ * Represents the base class of all HTTP responders.
+ * @package codekandis/tiphy
+ * @author Christian Ramelow <info@codekandis.net>
+ */
 abstract class AbstractResponder implements ResponderInterface
 {
-	/** @var int */
-	private $statusCode;
+	/**
+	 * Stores the status code of the response.
+	 * @var int
+	 */
+	private int $statusCode;
 
-	/** @var null|ErrorInformationInterface */
-	protected $errorInformation;
+	/**
+	 * Stores the error information of the response.
+	 * @var null|ErrorInformationInterface
+	 */
+	protected ?ErrorInformationInterface $errorInformation;
 
-	/** @var mixed */
+	/**
+	 * Stores the data of the response.
+	 * @var mixed
+	 */
 	protected $data;
 
+	/**
+	 * Stores the headers of the response.
+	 * @var string[]
+	 */
 	private $headers = [];
 
+	/**
+	 * Constructor method.
+	 * @param int $statusCode The status code of the response.
+	 * @param mixed $data The data of the response.
+	 * @param null|ErrorInformationInterface $errorInformation The error information of the response.
+	 */
 	public function __construct( int $statusCode, $data, ?ErrorInformationInterface $errorInformation = null )
 	{
 		$this->statusCode       = $statusCode;
@@ -26,10 +50,15 @@ abstract class AbstractResponder implements ResponderInterface
 		$this->data             = $data;
 	}
 
+	/**
+	 * Determines the status message of the response.
+	 * @return string The status message of the response.
+	 */
 	protected function determineStatusCodeMessage(): string
 	{
-		$statusMessage             = ( new StatusCodesMessageInterpreter() )
+		$statusMessage = ( new StatusCodesMessageInterpreter() )
 			->interpret( $this->statusCode );
+
 		return sprintf(
 			'%s %s',
 			$this->statusCode,
@@ -37,16 +66,27 @@ abstract class AbstractResponder implements ResponderInterface
 		);
 	}
 
+	/**
+	 * Adds a response header.
+	 * @param string $name The name of the response header.
+	 * @param string $value The value of the response header.
+	 */
 	public function addHeader( string $name, string $value ): void
 	{
 		$this->headers[ $name ] = $value;
 	}
 
+	/**
+	 * Sends the status code of the response.
+	 */
 	protected function sendStatusCode(): void
 	{
 		http_response_code( $this->statusCode );
 	}
 
+	/**
+	 * Sends the headers of the response.
+	 */
 	protected function sendHeaders(): void
 	{
 		foreach ( $this->headers as $headerName => $headerValue )

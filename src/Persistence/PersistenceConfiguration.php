@@ -11,7 +11,7 @@ use CodeKandis\Tiphy\Configurations\AbstractConfiguration;
 class PersistenceConfiguration extends AbstractConfiguration implements PersistenceConfigurationInterface
 {
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	public function getDriver(): string
 	{
@@ -19,7 +19,7 @@ class PersistenceConfiguration extends AbstractConfiguration implements Persiste
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	public function getHost(): string
 	{
@@ -27,7 +27,7 @@ class PersistenceConfiguration extends AbstractConfiguration implements Persiste
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	public function getDatabase(): string
 	{
@@ -35,7 +35,7 @@ class PersistenceConfiguration extends AbstractConfiguration implements Persiste
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	public function getUser(): string
 	{
@@ -43,7 +43,7 @@ class PersistenceConfiguration extends AbstractConfiguration implements Persiste
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	public function getPassphrase(): string
 	{

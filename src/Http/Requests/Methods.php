@@ -1,6 +1,11 @@
 <?php declare( strict_types = 1 );
 namespace CodeKandis\Tiphy\Http\Requests;
 
+/**
+ * Represents an enumeration of request methods.
+ * @package codekandis/tiphy
+ * @author Christian Ramelow <info@codekandis.net>
+ */
 abstract class Methods
 {
 	public const GET       = 'GET';

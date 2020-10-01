@@ -13,7 +13,7 @@ use ReflectionProperty;
 abstract class AbstractEntity implements EntityInterface
 {
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	public function toArray(): array
 	{
@@ -31,7 +31,7 @@ abstract class AbstractEntity implements EntityInterface
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	public static function fromArray( array $data ): EntityInterface
 	{
@@ -58,7 +58,7 @@ abstract class AbstractEntity implements EntityInterface
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	public static function fromObject( object $data ): EntityInterface
 	{
@@ -89,7 +89,7 @@ abstract class AbstractEntity implements EntityInterface
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	public function jsonSerialize(): array
 	{

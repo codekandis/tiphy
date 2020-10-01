@@ -1,13 +1,13 @@
 <?php declare( strict_types = 1 );
 namespace CodeKandis\Tiphy\Persistence;
 
-use Exception;
+use RuntimeException;
 
 /**
  * Represents an exception thrown on persistence operations.
  * @package codekandis/tiphy
  * @author Christian Ramelow <info@codekandis.net>
  */
-class PersistenceException extends Exception
+class PersistenceException extends RuntimeException
 {
 }

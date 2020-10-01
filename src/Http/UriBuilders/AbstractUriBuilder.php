@@ -11,14 +11,14 @@ use function sprintf;
 abstract class AbstractUriBuilder implements UriBuilderInterface
 {
 	/**
-	 * Stores the URI builder configuration.
+	 * Stores the configuration of the URI builder.
 	 * @var UriBuilderConfigurationInterface
 	 */
-	private $config;
+	private UriBuilderConfigurationInterface $config;
 
 	/**
 	 * Constructor method.
-	 * @param UriBuilderConfigurationInterface $config The URI builder configuration.
+	 * @param UriBuilderConfigurationInterface $config The configuration of the URI builder.
 	 */
 	public function __construct( UriBuilderConfigurationInterface $config )
 	{
@@ -26,7 +26,7 @@ abstract class AbstractUriBuilder implements UriBuilderInterface
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	public function build( string $uriName, string ...$arguments ): string
 	{

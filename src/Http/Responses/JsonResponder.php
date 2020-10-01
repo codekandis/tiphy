@@ -5,9 +5,15 @@ use CodeKandis\Tiphy\Http\ContentTypes;
 use CodeKandis\Tiphy\Renderers\JsonRenderer;
 use JsonException;
 
+/**
+ * Represents a JSON HTTP responder.
+ * @package codekandis/tiphy
+ * @author Christian Ramelow <info@codekandis.net>
+ */
 class JsonResponder extends AbstractResponder
 {
 	/**
+	 * @inheritDoc
 	 * @throws JsonException
 	 */
 	public function respond(): void

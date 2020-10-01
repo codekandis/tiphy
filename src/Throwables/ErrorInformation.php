@@ -16,13 +16,13 @@ class ErrorInformation implements ErrorInformationInterface
 	 * Stores the code of the error.
 	 * @var int
 	 */
-	public $code = 0;
+	public int $code;
 
 	/**
 	 * Stores the message of the error.
 	 * @var string
 	 */
-	public $message = '';
+	public string $message;
 
 	/**
 	 * Stores the context of the error.
@@ -44,7 +44,7 @@ class ErrorInformation implements ErrorInformationInterface
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	public function toArray(): array
 	{

@@ -3,9 +3,17 @@ namespace CodeKandis\Tiphy\Curl;
 
 use CodeKandis\Tiphy\Http\Requests\Methods;
 use Traversable;
+use function curl_close;
 use function curl_exec;
+use function curl_init;
+use function curl_setopt_array;
 use function explode;
 use function iterator_to_array;
+use const CURLOPT_CUSTOMREQUEST;
+use const CURLOPT_HEADER;
+use const CURLOPT_NOBODY;
+use const CURLOPT_RETURNTRANSFER;
+use const CURLOPT_URL;
 
 /**
  * Represents an HTTP `OPTIONS` request.
@@ -18,7 +26,7 @@ class OptionsRequest implements OptionsRequestInterface
 	 * Stores the URL of the request.
 	 * @var string
 	 */
-	private $uri;
+	private string $uri;
 
 	/**
 	 * Constructor method.
@@ -46,7 +54,7 @@ class OptionsRequest implements OptionsRequestInterface
 	}
 
 	/**
-	 * {@inheritdoc}
+	 * @inheritDoc
 	 */
 	public function execute(): array
 	{
