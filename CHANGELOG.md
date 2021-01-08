@@ -6,6 +6,20 @@ The format is based on [keep a changelog][xtlink-keep-a-changelog]
 and this project adheres to [Semantic Versioning 2.0.0][xtlink-semantic-versioning].
 
 
+## [0.5.0] - 2021-01-09
+
+### Added
+
+* PDO array helper for prepared statements
+
+### Fixes
+
+* project name in the `README.md`
+
+
+[0.5.0]: https://github.com/codekandis/tiphy/compare/0.4.0...0.5.0
+
+---
 ## [0.4.0] - 2020-10-01
 
 ### Updated
