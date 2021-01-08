@@ -1,4 +1,4 @@
-# CodeKandis / GrabDaTapes
+# codekandis/tiphy
 
 [![Version][xtlink-version-badge]][srclink-changelog]
 [![License][xtlink-license-badge]][srclink-license]
