@@ -21,7 +21,7 @@ abstract class AbstractResponder implements ResponderInterface
 
 	/**
 	 * Stores the error information of the response.
-	 * @var null|ErrorInformationInterface
+	 * @var ?ErrorInformationInterface
 	 */
 	protected ?ErrorInformationInterface $errorInformation;
 
@@ -41,7 +41,7 @@ abstract class AbstractResponder implements ResponderInterface
 	 * Constructor method.
 	 * @param int $statusCode The status code of the response.
 	 * @param mixed $data The data of the response.
-	 * @param null|ErrorInformationInterface $errorInformation The error information of the response.
+	 * @param ?ErrorInformationInterface $errorInformation The error information of the response.
 	 */
 	public function __construct( int $statusCode, $data, ?ErrorInformationInterface $errorInformation = null )
 	{
@@ -56,8 +56,8 @@ abstract class AbstractResponder implements ResponderInterface
 	 */
 	protected function determineStatusCodeMessage(): string
 	{
-		$statusMessage = ( new StatusCodesMessageInterpreter() )
-			->interpret( $this->statusCode );
+		$statusMessage = ( new StatusCodesMessageTranslator() )
+			->translate( $this->statusCode );
 
 		return sprintf(
 			'%s %s',
