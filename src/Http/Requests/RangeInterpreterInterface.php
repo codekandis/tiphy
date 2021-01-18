@@ -11,7 +11,7 @@ interface RangeInterpreterInterface
 	/**
 	 * Interprets a range.
 	 * @param string $value The range to interpret.
-	 * @return null|Range The interpreted range.
+	 * @return ?Range The interpreted range.
 	 */
 	public function interpret( string $value ): ?Range;
 }

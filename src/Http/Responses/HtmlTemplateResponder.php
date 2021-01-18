@@ -30,7 +30,7 @@ class HtmlTemplateResponder extends AbstractResponder
 	 * @param TemplateRendererConfigurationInterface $templateRendererConfig The template renderer configuration of the HTML template HTTP responder.
 	 * @param int $statusCode The response status code.
 	 * @param mixed $data The data of the response.
-	 * @param null|ErrorInformationInterface $errorInformation The error information of the response.
+	 * @param ?ErrorInformationInterface $errorInformation The error information of the response.
 	 * @param string $templatePath The template path of the HTML template HTTP responder.
 	 */
 	public function __construct( TemplateRendererConfigurationInterface $templateRendererConfig, int $statusCode, $data, ?ErrorInformationInterface $errorInformation, string $templatePath )

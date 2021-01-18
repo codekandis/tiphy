@@ -28,13 +28,13 @@ class ActionDispatcher implements ActionDispatcherInterface
 
 	/**
 	 * Stores the pre-dispatcher of the dispatcher;
-	 * @var null|PreDispatcherInterface
+	 * @var ?PreDispatcherInterface
 	 */
 	private ?PreDispatcherInterface $preDispatcher;
 
 	/**
 	 * Stores the throwable handler of the dispatcher.
-	 * @var null|ThrowableHandlerInterface
+	 * @var ?ThrowableHandlerInterface
 	 */
 	private ?ThrowableHandlerInterface $throwableHandler;
 
@@ -53,8 +53,8 @@ class ActionDispatcher implements ActionDispatcherInterface
 	/**
 	 * Constructor method.
 	 * @param RoutesConfigurationInterface $routesConfiguration The routes configuration of the action dispatcher.
-	 * @param null|PreDispatcherInterface $preDispatcher The pre-dispatcher of the action dispatcher.
-	 * @param null|ThrowableHandlerInterface $throwableHandler The throwable handler of the action dispatcher.
+	 * @param ?PreDispatcherInterface $preDispatcher The pre-dispatcher of the action dispatcher.
+	 * @param ?ThrowableHandlerInterface $throwableHandler The throwable handler of the action dispatcher.
 	 */
 	public function __construct( RoutesConfigurationInterface $routesConfiguration, ?PreDispatcherInterface $preDispatcher = null, ?ThrowableHandlerInterface $throwableHandler = null )
 	{
