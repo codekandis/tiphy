@@ -5,7 +5,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [keep a changelog][xtlink-keep-a-changelog]
 and this project adheres to [Semantic Versioning 2.0.0][xtlink-semantic-versioning].
 
+## [0.6.0] - 2021-01-18
 
+### Changed
+
+* composer package dependencies
+  * removed
+    * `sensiolabs/security-checker`
+    * `phpunit/phpunit`
+    * `codekandis/code-message-interpreter`
+  * changed
+    * `codekandis/json-codec` [^2]
+  * added
+    * `codekandis/phpunit` [^3]
+    * `codekandis/constants-classes-interpreter` [^1]
+* swapped the code message interpreter with the constants classes translator
+* PHPDoc comments
+
+[0.6.0]: https://github.com/codekandis/tiphy/compare/0.5.0..0.6.0
+
+---
 ## [0.5.0] - 2021-01-09
 
 ### Added
@@ -16,8 +35,7 @@ and this project adheres to [Semantic Versioning 2.0.0][xtlink-semantic-versioni
 
 * project name in the `README.md`
 
-
-[0.5.0]: https://github.com/codekandis/tiphy/compare/0.4.0...0.5.0
+[0.5.0]: https://github.com/codekandis/tiphy/compare/0.4.0..0.5.0
 
 ---
 ## [0.4.0] - 2020-10-01
@@ -26,8 +44,7 @@ and this project adheres to [Semantic Versioning 2.0.0][xtlink-semantic-versioni
 
 * all source code to `PHP 7.4`
 
-
-[0.4.0]: https://github.com/codekandis/tiphy/compare/0.3.1...0.4.0
+[0.4.0]: https://github.com/codekandis/tiphy/compare/0.3.1..0.4.0
 
 ---
 ## [0.3.1] - 2020-09-29
@@ -36,8 +53,7 @@ and this project adheres to [Semantic Versioning 2.0.0][xtlink-semantic-versioni
 
 * wrong prevent dispatchment condition in the class `ActionDispatcher`
 
-
-[0.3.1]: https://github.com/codekandis/tiphy/compare/0.3.0...0.3.1
+[0.3.1]: https://github.com/codekandis/tiphy/compare/0.3.0..0.3.1
 
 ---
 ## [0.3.0] - 2020-09-28
@@ -46,8 +62,7 @@ and this project adheres to [Semantic Versioning 2.0.0][xtlink-semantic-versioni
 
 * pre-dispatchment to prevent action dispatchment on demand
 
-
-[0.3.0]: https://github.com/codekandis/tiphy/compare/0.2.0...0.3.0
+[0.3.0]: https://github.com/codekandis/tiphy/compare/0.2.0..0.3.0
 
 ---
 ## [0.2.0] - 2020-06-12
@@ -57,11 +72,10 @@ and this project adheres to [Semantic Versioning 2.0.0][xtlink-semantic-versioni
 * a wrong method name in the `UriBuilderInterface`
 * several inspection issues
 
-
-[0.2.0]: https://github.com/codekandis/tiphy/compare/0.1.0...0.2.0
+[0.2.0]: https://github.com/codekandis/tiphy/compare/0.1.0..0.2.0
 
 ---
-## 0.1.0 - 2020-06-12
+## [0.1.0] - 2020-06-12
 
 ### Added
 
@@ -115,6 +129,7 @@ and this project adheres to [Semantic Versioning 2.0.0][xtlink-semantic-versioni
 * `LICENSE`
 * `README.md`
 
+[0.1.0]: https://github.com/codekandis/tiphy/tree/0.1.0
 
 
 [xtlink-keep-a-changelog]: http://keepachangelog.com/en/1.0.0/
