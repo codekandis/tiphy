@@ -56,8 +56,8 @@ abstract class AbstractResponder implements ResponderInterface
 	 */
 	protected function determineStatusCodeMessage(): string
 	{
-		$statusMessage = ( new StatusCodesMessageInterpreter() )
-			->interpret( $this->statusCode );
+		$statusMessage = ( new StatusCodesMessageTranslator() )
+			->translate( $this->statusCode );
 
 		return sprintf(
 			'%s %s',

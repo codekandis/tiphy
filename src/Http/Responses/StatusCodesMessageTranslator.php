@@ -1,14 +1,14 @@
 <?php declare( strict_types = 1 );
 namespace CodeKandis\Tiphy\Http\Responses;
 
-use CodeKandis\CodeMessageInterpreter\CodeMessageInterpreter;
+use CodeKandis\ConstantsClassesTranslator\ConstantsClassesTranslator;
 
 /**
- * Represents a HTTP response status code interpreter.
+ * Represents a HTTP response status code translator.
  * @package codekandis/tiphy
  * @author Christian Ramelow <info@codekandis.net>
  */
-class StatusCodesMessageInterpreter extends CodeMessageInterpreter
+class StatusCodesMessageTranslator extends ConstantsClassesTranslator
 {
 	/**
 	 * Constructor method.
