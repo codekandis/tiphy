@@ -123,7 +123,7 @@ class ActionDispatcher implements ActionDispatcherInterface
 			foreach ( $this->routesConfiguration->getRoutes() as $configuredRoute => $configuredMethods )
 			{
 				$matches    = [];
-				$isMatching = preg_match( '~' . $baseRoute . $configuredRoute . '~', $this->requestedRoute, $matches );
+				$isMatching = preg_match( '~^' . $baseRoute . $configuredRoute . '$~', $this->requestedRoute, $matches );
 				if ( 1 === $isMatching )
 				{
 					$actionClass = MethodNotAllowedAction::class;
