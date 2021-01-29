@@ -13,8 +13,16 @@ class RoutesConfiguration extends AbstractConfiguration implements RoutesConfigu
 	/**
 	 * @inheritDoc
 	 */
+	public function getBaseRoute(): string
+	{
+		return $this->data[ 'baseRoute' ];
+	}
+
+	/**
+	 * @inheritDoc
+	 */
 	public function getRoutes(): array
 	{
-		return $this->data;
+		return $this->data[ 'routes' ];
 	}
 }
