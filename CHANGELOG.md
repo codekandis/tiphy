@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [keep a changelog][xtlink-keep-a-changelog]
 and this project adheres to [Semantic Versioning 2.0.0][xtlink-semantic-versioning].
 
+## [0.9.0] - 2021-01-29
+
+### Changed
+
+* action dispatcher
+
+[0.9.0]: https://github.com/codekandis/tiphy/compare/0.8.0..0.9.0
+
+---
 ## [0.8.0] - 2021-01-29
 
 ### Changed
