@@ -24,52 +24,28 @@ abstract class AbstractConfigurationRegistry implements ConfigurationRegistryInt
 	protected static ConfigurationRegistryInterface $instance;
 
 	/**
-	 * Stores the path of the routes configuration.
-	 * @var string
-	 */
-	private string $routesConfigurationPath = '';
-
-	/**
 	 * Stores the routes configuration.
-	 * @var RoutesConfigurationInterface
+	 * @var ?RoutesConfigurationInterface
 	 */
-	private RoutesConfigurationInterface $routesConfiguration;
-
-	/**
-	 * Stores the path of the persistence configuration.
-	 * @var string
-	 */
-	private string $persistenceConfigurationPath = '';
+	private ?RoutesConfigurationInterface $routesConfiguration = null;
 
 	/**
 	 * Stores the persistence configuration.
-	 * @var PersistenceConfigurationInterface
+	 * @var ?PersistenceConfigurationInterface
 	 */
-	private PersistenceConfigurationInterface $persistenceConfiguration;
-
-	/**
-	 * Stores the path of the template renderer configuration.
-	 * @var string
-	 */
-	private string $templateRendererConfigurationPath = '';
+	private ?PersistenceConfigurationInterface $persistenceConfiguration = null;
 
 	/**
 	 * Stores the template renderer configuration.
-	 * @var TemplateRendererConfigurationInterface
+	 * @var ?TemplateRendererConfigurationInterface
 	 */
-	private TemplateRendererConfigurationInterface $templateRendererConfiguration;
-
-	/**
-	 * Stores the path of the URI builder configuration.
-	 * @var string
-	 */
-	private string $uriBuilderConfigurationPath = '';
+	private ?TemplateRendererConfigurationInterface $templateRendererConfiguration = null;
 
 	/**
 	 * Stores the URI builder configuration.
-	 * @var UriBuilderConfigurationInterface
+	 * @var ?UriBuilderConfigurationInterface
 	 */
-	private UriBuilderConfigurationInterface $uriBuilderConfiguration;
+	private ?UriBuilderConfigurationInterface $uriBuilderConfiguration = null;
 
 	/**
 	 * Constructor method.
@@ -99,69 +75,65 @@ abstract class AbstractConfigurationRegistry implements ConfigurationRegistryInt
 	/**
 	 * @inheritDoc
 	 */
-	public function getRoutesConfiguration(): RoutesConfigurationInterface
+	public function getRoutesConfiguration(): ?RoutesConfigurationInterface
 	{
-		return $this->routesConfiguration
-			   ?? $this->routesConfiguration = new RoutesConfiguration( $this->routesConfigurationPath );
+		return $this->routesConfiguration;
 	}
 
 	/**
 	 * @inheritDoc
 	 */
-	public function setRoutesConfigurationPath( string $path ): void
+	public function setPlainRoutesConfiguration( array $plainRoutesConfiguration ): void
 	{
-		$this->routesConfigurationPath = $path;
+		$this->routesConfiguration = new RoutesConfiguration( $plainRoutesConfiguration );
 	}
 
 	/**
 	 * @inheritDoc
 	 */
-	public function getPersistenceConfiguration(): PersistenceConfigurationInterface
+	public function getPersistenceConfiguration(): ?PersistenceConfigurationInterface
 	{
-		return $this->persistenceConfiguration
-			   ?? $this->persistenceConfiguration = new PersistenceConfiguration( $this->persistenceConfigurationPath );
+		return $this->persistenceConfiguration;
 	}
 
 	/**
 	 * @inheritDoc
 	 */
-	public function setPersistenceConfigurationPath( string $path ): void
+	public function setPlainPersistenceConfiguration( array $plainPersistenceConfiguration ): void
 	{
-		$this->persistenceConfigurationPath = $path;
+		$this->persistenceConfiguration = new PersistenceConfiguration( $plainPersistenceConfiguration );
 	}
 
 	/**
 	 * @inheritDoc
 	 */
-	public function getTemplateRendererConfiguration(): TemplateRendererConfigurationInterface
+	public function getTemplateRendererConfiguration(): ?TemplateRendererConfigurationInterface
 	{
-		return $this->templateRendererConfiguration
-			   ?? $this->templateRendererConfiguration = new TemplateRendererConfiguration( $this->templateRendererConfigurationPath );
+		return $this->templateRendererConfiguration;
 	}
 
 	/**
 	 * @inheritDoc
 	 */
-	public function setTemplateRendererConfigurationPath( string $path ): void
+	public function setPlainTemplateRendererConfiguration( array $plainTemplateRendererConfiguration ): void
 	{
-		$this->templateRendererConfigurationPath = $path;
+		$this->templateRendererConfiguration = new TemplateRendererConfiguration( $plainTemplateRendererConfiguration );
 	}
 
 	/**
 	 * @inheritDoc
 	 */
-	public function getUriBuilderConfiguration(): UriBuilderConfigurationInterface
+	public function getUriBuilderConfiguration(): ?UriBuilderConfigurationInterface
 	{
-		return $this->uriBuilderConfiguration
-			   ?? $this->uriBuilderConfiguration = new UriBuilderConfiguration( $this->uriBuilderConfigurationPath );
+		return $this->uriBuilderConfiguration;
 	}
 
 	/**
 	 * @inheritDoc
 	 */
-	public function setUriBuilderConfigurationPath( string $path ): void
+	public function setPlainUriBuilderConfiguration( array $plainUriBuilderConfiguration ): void
 	{
-		$this->uriBuilderConfigurationPath = $path;
+		$this->uriBuilderConfiguration = new UriBuilderConfiguration( $plainUriBuilderConfiguration );
 	}
 
 	/**
