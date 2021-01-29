@@ -14,50 +14,50 @@ use CodeKandis\Tiphy\Renderers\TemplateRendererConfigurationInterface;
 interface ConfigurationRegistryInterface
 {
 	/**
-	 * Gets the path of the routes configuration.
-	 * @return RoutesConfigurationInterface The path of the routes configuration.
+	 * Gets the routes configuration.
+	 * @return ?RoutesConfigurationInterface The path of the routes configuration.
 	 */
-	public function getRoutesConfiguration(): RoutesConfigurationInterface;
+	public function getRoutesConfiguration(): ?RoutesConfigurationInterface;
 
 	/**
-	 * Sets the path of the routes configuration.
-	 * @param string $path The path of the routes configuration.
+	 * Sets the plain routes configuration.
+	 * @param array $plainRoutesConfiguration The plain routes configuration.
 	 */
-	public function setRoutesConfigurationPath( string $path ): void;
+	public function setPlainRoutesConfiguration( array $plainRoutesConfiguration ): void;
 
 	/**
-	 * Gets the path of the persistence configuration.
-	 * @return PersistenceConfigurationInterface The path of the persistence configuration.
+	 * Gets the persistence configuration.
+	 * @return ?PersistenceConfigurationInterface The path of the persistence configuration.
 	 */
-	public function getPersistenceConfiguration(): PersistenceConfigurationInterface;
+	public function getPersistenceConfiguration(): ?PersistenceConfigurationInterface;
 
 	/**
-	 * Sets the path of the persistence configuration.
-	 * @param string $path The path of the persistence configuration.
+	 * Sets the plain persistence configuration.
+	 * @param array $plainPersistenceConfiguration The plain persistence configuration.
 	 */
-	public function setPersistenceConfigurationPath( string $path ): void;
+	public function setPlainPersistenceConfiguration( array $plainPersistenceConfiguration ): void;
 
 	/**
-	 * Gets the path of the template renderer configuration.
-	 * @return TemplateRendererConfigurationInterface The path of the template renderer configuration.
+	 * Gets the template renderer configuration.
+	 * @return ?TemplateRendererConfigurationInterface The path of the template renderer configuration.
 	 */
-	public function getTemplateRendererConfiguration(): TemplateRendererConfigurationInterface;
+	public function getTemplateRendererConfiguration(): ?TemplateRendererConfigurationInterface;
 
 	/**
-	 * Sets the path of the template renderer configuration.
-	 * @param string $path The path of the template renderer configuration.
+	 * Sets the plain template renderer configuration.
+	 * @param array $plainTemplateRendererConfiguration The plain template renderer configuration.
 	 */
-	public function setTemplateRendererConfigurationPath( string $path ): void;
+	public function setPlainTemplateRendererConfiguration( array $plainTemplateRendererConfiguration ): void;
 
 	/**
 	 * Gets the path of the URI builder configuration.
-	 * @return UriBuilderConfigurationInterface The path of the URI builder configuration.
+	 * @return ?UriBuilderConfigurationInterface The path of the URI builder configuration.
 	 */
-	public function getUriBuilderConfiguration(): UriBuilderConfigurationInterface;
+	public function getUriBuilderConfiguration(): ?UriBuilderConfigurationInterface;
 
 	/**
-	 * Sets the path of the URI builder configuration.
-	 * @param string $path The path of the URI builder configuration.
+	 * Sets the plain URI builder configuration.
+	 * @param array $plainUriBuilderConfiguration The plain URI builder configuration.
 	 */
-	public function setUriBuilderConfigurationPath( string $path ): void;
+	public function setPlainUriBuilderConfiguration( array $plainUriBuilderConfiguration ): void;
 }
