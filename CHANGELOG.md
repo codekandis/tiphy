@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [keep a changelog][xtlink-keep-a-changelog]
 and this project adheres to [Semantic Versioning 2.0.0][xtlink-semantic-versioning].
 
+## [0.7.0] - 2021-01-29
+
+### Changed
+
+* `PHPUnit` configuration
+* configuration instantiation
+
+[0.7.0]: https://github.com/codekandis/tiphy/compare/0.6.0..0.7.0
+
+---
 ## [0.6.0] - 2021-01-18
 
 ### Changed
@@ -31,7 +41,7 @@ and this project adheres to [Semantic Versioning 2.0.0][xtlink-semantic-versioni
 
 * PDO array helper for prepared statements
 
-### Fixes
+### Fixed
 
 * project name in the `README.md`
 
