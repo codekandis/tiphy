@@ -9,6 +9,12 @@ namespace CodeKandis\Tiphy\Http;
 interface RoutesConfigurationInterface
 {
 	/**
+	 * Gets the base route of the application.
+	 * @return string The base route of the application.
+	 */
+	public function getBaseRoute(): string;
+
+	/**
 	 * Gets the routes of the application.
 	 * @return array The routes of the application.
 	 */

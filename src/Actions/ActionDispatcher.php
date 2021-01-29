@@ -116,13 +116,14 @@ class ActionDispatcher implements ActionDispatcherInterface
 				}
 			}
 
+			$baseRoute       = $this->routesConfiguration->getBaseRoute();
 			$actionClass     = null;
 			$requestBody     = '';
 			$actionArguments = [];
 			foreach ( $this->routesConfiguration->getRoutes() as $configuredRoute => $configuredMethods )
 			{
 				$matches    = [];
-				$isMatching = preg_match( '~' . $configuredRoute . '~', $this->requestedRoute, $matches );
+				$isMatching = preg_match( '~' . $baseRoute . $configuredRoute . '~', $this->requestedRoute, $matches );
 				if ( 1 === $isMatching )
 				{
 					$actionClass = MethodNotAllowedAction::class;

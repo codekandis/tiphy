@@ -9,7 +9,7 @@ namespace CodeKandis\Tiphy\Entities\UriExtenders;
 interface UriExtenderInterface
 {
 	/**
-	 * Extends an uri.
+	 * Extends an URI.
 	 */
 	public function extend(): void;
 }
