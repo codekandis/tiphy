@@ -16,10 +16,10 @@ class AbstractConfiguration
 
 	/**
 	 * Constructor method.
-	 * @param string $path The path to the configuration file.
+	 * @param array $data The plain configuration data.
 	 */
-	public function __construct( string $path )
+	public function __construct( array $data )
 	{
-		$this->data = require $path;
+		$this->data = $data;
 	}
 }
