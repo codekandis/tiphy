@@ -3,6 +3,7 @@ namespace CodeKandis\Tiphy\Actions;
 
 use CodeKandis\Tiphy\Actions\PreDispatchment\PreDispatcherInterface;
 use CodeKandis\Tiphy\Actions\PreDispatchment\PreDispatchmentState;
+use CodeKandis\Tiphy\Entities\NotFoundEntity;
 use CodeKandis\Tiphy\Http\Requests\JsonBody;
 use CodeKandis\Tiphy\Http\RoutesConfigurationInterface;
 use CodeKandis\Tiphy\Throwables\Handlers\ThrowableHandlerInterface;
@@ -39,16 +40,16 @@ class ActionDispatcher implements ActionDispatcherInterface
 	private ?ThrowableHandlerInterface $throwableHandler;
 
 	/**
-	 * Stores the requested route.
-	 * @var string
-	 */
-	private string $requestedRoute;
-
-	/**
 	 * Stores the requested HTTP method.
 	 * @var string
 	 */
 	private string $requestedMethod;
+
+	/**
+	 * Stores the requested route.
+	 * @var string
+	 */
+	private string $requestedRoute;
 
 	/**
 	 * Constructor method.
@@ -61,8 +62,8 @@ class ActionDispatcher implements ActionDispatcherInterface
 		$this->routesConfiguration = $routesConfiguration;
 		$this->preDispatcher       = $preDispatcher;
 		$this->throwableHandler    = $throwableHandler;
-		$this->requestedRoute      = $this->getParsedRequestRoute();
 		$this->requestedMethod     = $_SERVER[ 'REQUEST_METHOD' ];
+		$this->requestedRoute      = $this->getParsedRequestRoute();
 	}
 
 	/**
@@ -144,7 +145,14 @@ class ActionDispatcher implements ActionDispatcherInterface
 			/** @var ActionInterface $action */
 			if ( null === $actionClass )
 			{
-				$action = new NotFoundAction();
+				$action = new NotFoundAction(
+					NotFoundEntity::fromArray(
+						[
+							'method' => $this->requestedMethod,
+							'uri'    => $this->requestedRoute
+						]
+					)
+				);
 			}
 			else
 			{
