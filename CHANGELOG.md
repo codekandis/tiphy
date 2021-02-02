@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [keep a changelog][xtlink-keep-a-changelog]
 and this project adheres to [Semantic Versioning 2.0.0][xtlink-semantic-versioning].
 
+## [0.11.0] - 2021-02-02
+
+### Added
+
+* displaying request information on `404 Not Found`
+
+[0.11.0]: https://github.com/codekandis/tiphy/compare/0.10.0..0.11.0
+
+---
 ## [0.10.0] - 2021-01-31
 
 ### Added
