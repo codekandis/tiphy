@@ -46,7 +46,12 @@ class Connector implements ConnectorInterface
 		$database         = $this->config->getDatabase();
 		$user             = $this->config->getUser();
 		$passphrase       = $this->config->getPassphrase();
-		$dsn              = sprintf( '%s:dbname=%s;host=%s;charset=utf8', $driver, $database, $host );
+		$dsn              = sprintf(
+			'%s:dbname=%s;host=%s;charset=utf8',
+			$driver,
+			$database,
+			$host
+		);
 		$this->connection = new PDO( $dsn, $user, $passphrase );
 		$this->connection->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 	}
@@ -88,13 +93,15 @@ class Connector implements ConnectorInterface
 		}
 		catch ( PDOException $exception )
 		{
-			$errorInfo        = $exception->errorInfo;
-			$exceptionMessage =
+			throw new PersistenceException(
 				sprintf(
-					'[%s] Execution of prepared statement failed. %s: %s', $errorInfo[ 0 ], $errorInfo[ 1 ],
-					$errorInfo[ 2 ]
-				);
-			throw new PersistenceException( $exceptionMessage );
+					'[%s] Execution of prepared statement failed. %s: %s',
+					$exception->errorInfo[ 0 ],
+					$exception->errorInfo[ 1 ],
+					$exception->errorInfo[ 2 ]
+				),
+				$exception->errorInfo[ 1 ]
+			);
 		}
 	}
 
@@ -111,13 +118,15 @@ class Connector implements ConnectorInterface
 		}
 		catch ( PDOException $exception )
 		{
-			$errorInfo        = $exception->errorInfo;
-			$exceptionMessage =
+			throw new PersistenceException(
 				sprintf(
-					'[%s] Execution of prepared statement failed. %s: %s', $errorInfo[ 0 ], $errorInfo[ 1 ],
-					$errorInfo[ 2 ]
-				);
-			throw new PersistenceException( $exceptionMessage );
+					'[%s] Execution of prepared statement failed. %s: %s',
+					$exception->errorInfo[ 0 ],
+					$exception->errorInfo[ 1 ],
+					$exception->errorInfo[ 2 ]
+				),
+				$exception->errorInfo[ 1 ]
+			);
 		}
 
 		if ( null === $className )
@@ -145,13 +154,15 @@ class Connector implements ConnectorInterface
 		}
 		catch ( PDOException $exception )
 		{
-			$errorInfo        = $exception->errorInfo;
-			$exceptionMessage =
+			throw new PersistenceException(
 				sprintf(
-					'[%s] Execution of prepared statement failed. %s: %s', $errorInfo[ 0 ], $errorInfo[ 1 ],
-					$errorInfo[ 2 ]
-				);
-			throw new PersistenceException( $exceptionMessage );
+					'[%s] Execution of prepared statement failed. %s: %s',
+					$exception->errorInfo[ 0 ],
+					$exception->errorInfo[ 1 ],
+					$exception->errorInfo[ 2 ]
+				),
+				$exception->errorInfo[ 1 ]
+			);
 		}
 
 		if ( null === $className )
