@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [keep a changelog][xtlink-keep-a-changelog]
 and this project adheres to [Semantic Versioning 2.0.0][xtlink-semantic-versioning].
 
+## [0.13.0] - 2021-02-23
+
+### Added
+
+* commands
+* command handlers
+* command handler results
+* queries
+* query handlers
+* query handler results
+
+[0.13.0]: https://github.com/codekandis/tiphy/compare/0.12.0..0.13.0
+
+---
 ## [0.12.0] - 2021-02-23
 
 ### Added
