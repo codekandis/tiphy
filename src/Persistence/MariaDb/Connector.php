@@ -26,13 +26,23 @@ class Connector implements ConnectorInterface
 	 */
 	private PDO $connection;
 
+	private array $attributes = [
+		PDO::ATTR_ERRMODE    => PDO::ERRMODE_EXCEPTION,
+		PDO::ATTR_AUTOCOMMIT => 0
+	];
+
 	/**
 	 * Constructor method.
 	 * @param PersistenceConfigurationInterface $config The persistence configuration.
+	 * @param array $attributes The attributes of the underlying PDO connection.
 	 */
-	public function __construct( PersistenceConfigurationInterface $config )
+	public function __construct( PersistenceConfigurationInterface $config, array $attributes = [] )
 	{
-		$this->config = $config;
+		$this->config     = $config;
+		$this->attributes = [] === $attributes
+			? $this->attributes
+			: $attributes;
+
 		$this->connect();
 	}
 
@@ -53,7 +63,11 @@ class Connector implements ConnectorInterface
 			$host
 		);
 		$this->connection = new PDO( $dsn, $user, $passphrase );
-		$this->connection->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+
+		foreach ( $this->attributes as $attributeKey => $attributeValue )
+		{
+			$this->connection->setAttribute( $attributeKey, $attributeValue );
+		}
 	}
 
 	/**
