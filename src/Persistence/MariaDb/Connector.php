@@ -2,9 +2,9 @@
 namespace CodeKandis\Tiphy\Persistence\MariaDb;
 
 use CodeKandis\Tiphy\Persistence\PersistenceConfigurationInterface;
-use CodeKandis\Tiphy\Persistence\PersistenceException;
 use PDO;
 use PDOException;
+use function count;
 use function sprintf;
 
 /**
@@ -14,6 +14,30 @@ use function sprintf;
  */
 class Connector implements ConnectorInterface
 {
+	/**
+	 * Represents the error message if the connection failed.
+	 * @var string
+	 */
+	public const ERROR_CONNECTION_FAILED = 'The connection failed.';
+
+	/**
+	 * Represents the error message if the number of argument lists does not match the number of statements.
+	 * @var string
+	 */
+	public const ERROR_INVALID_ARGUMENTS_STATEMENTS_COUNT = 'The number of argument lists `%d` does not match the number of statements `%d`.';
+
+	/**
+	 * Represents the error message if the execution of a statement failed.
+	 * @var string
+	 */
+	public const ERROR_EXECUTION_OF_STATEMENT_FAILED = '[%d] The execution of the statement failed. %s: %s';
+
+	/**
+	 * Represents the error message if the retrieval of the last inserted ID has been failed.
+	 * @var string
+	 */
+	public const ERROR_RETRIEVING_LAST_INSERTED_ID_FAILED = 'The retrieval of the last inserted ID has been failed.';
+
 	/**
 	 * Stores the persistence configuration.
 	 * @var PersistenceConfigurationInterface
@@ -35,6 +59,7 @@ class Connector implements ConnectorInterface
 	 * Constructor method.
 	 * @param PersistenceConfigurationInterface $config The persistence configuration.
 	 * @param array $attributes The attributes of the underlying PDO connection.
+	 * @throws ConnectionFailedException The connection has been failed.
 	 */
 	public function __construct( PersistenceConfigurationInterface $config, array $attributes = [] )
 	{
@@ -51,22 +76,29 @@ class Connector implements ConnectorInterface
 	 */
 	private function connect(): void
 	{
-		$driver           = $this->config->getDriver();
-		$host             = $this->config->getHost();
-		$database         = $this->config->getDatabase();
-		$user             = $this->config->getUser();
-		$passphrase       = $this->config->getPassphrase();
-		$dsn              = sprintf(
+		$driver     = $this->config->getDriver();
+		$host       = $this->config->getHost();
+		$database   = $this->config->getDatabase();
+		$user       = $this->config->getUser();
+		$passphrase = $this->config->getPassphrase();
+		$dsn        = sprintf(
 			'%s:dbname=%s;host=%s;charset=utf8',
 			$driver,
 			$database,
 			$host
 		);
-		$this->connection = new PDO( $dsn, $user, $passphrase );
-
-		foreach ( $this->attributes as $attributeKey => $attributeValue )
+		try
 		{
-			$this->connection->setAttribute( $attributeKey, $attributeValue );
+			$this->connection = new PDO( $dsn, $user, $passphrase );
+
+			foreach ( $this->attributes as $attributeKey => $attributeValue )
+			{
+				$this->connection->setAttribute( $attributeKey, $attributeValue );
+			}
+		}
+		catch ( PDOException $exception )
+		{
+			throw new ConnectionFailedException( static::ERROR_CONNECTION_FAILED );
 		}
 	}
 
@@ -107,9 +139,46 @@ class Connector implements ConnectorInterface
 		}
 		catch ( PDOException $exception )
 		{
-			throw new PersistenceException(
+			throw new ExecutionOfStatementFailedException(
 				sprintf(
-					'[%s] Execution of prepared statement failed. %s: %s',
+					static::ERROR_EXECUTION_OF_STATEMENT_FAILED,
+					$exception->errorInfo[ 0 ],
+					$exception->errorInfo[ 1 ],
+					$exception->errorInfo[ 2 ]
+				),
+				$exception->errorInfo[ 1 ]
+			);
+		}
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function executeMultiple( array $statements, ?array $arguments = null ): void
+	{
+		if ( count( $arguments ) !== count( $statements ) )
+		{
+			throw new InvalidArgumentsStatementsCountException(
+				sprintf(
+					static::ERROR_INVALID_ARGUMENTS_STATEMENTS_COUNT,
+					count( $arguments ),
+					count( $statements )
+				)
+			);
+		}
+		try
+		{
+			foreach ( $statements as $statementKey => $statement )
+			{
+				$preparedStatement = $this->connection->prepare( $statement );
+				$preparedStatement->execute( $arguments[ $statementKey ] );
+			}
+		}
+		catch ( PDOException $exception )
+		{
+			throw new ExecutionOfStatementFailedException(
+				sprintf(
+					static::ERROR_EXECUTION_OF_STATEMENT_FAILED,
 					$exception->errorInfo[ 0 ],
 					$exception->errorInfo[ 1 ],
 					$exception->errorInfo[ 2 ]
@@ -132,9 +201,9 @@ class Connector implements ConnectorInterface
 		}
 		catch ( PDOException $exception )
 		{
-			throw new PersistenceException(
+			throw new ExecutionOfStatementFailedException(
 				sprintf(
-					'[%s] Execution of prepared statement failed. %s: %s',
+					static::ERROR_EXECUTION_OF_STATEMENT_FAILED,
 					$exception->errorInfo[ 0 ],
 					$exception->errorInfo[ 1 ],
 					$exception->errorInfo[ 2 ]
@@ -168,9 +237,9 @@ class Connector implements ConnectorInterface
 		}
 		catch ( PDOException $exception )
 		{
-			throw new PersistenceException(
+			throw new ExecutionOfStatementFailedException(
 				sprintf(
-					'[%s] Execution of prepared statement failed. %s: %s',
+					static::ERROR_EXECUTION_OF_STATEMENT_FAILED,
 					$exception->errorInfo[ 0 ],
 					$exception->errorInfo[ 1 ],
 					$exception->errorInfo[ 2 ]
@@ -197,6 +266,13 @@ class Connector implements ConnectorInterface
 	 */
 	public function getLastInsertId(): string
 	{
-		return $this->connection->lastInsertId();
+		try
+		{
+			return $this->connection->lastInsertId();
+		}
+		catch ( PDOException $exception )
+		{
+			throw new RetrievingLastInsertedIdFailedException( static::ERROR_RETRIEVING_LAST_INSERTED_ID_FAILED );
+		}
 	}
 }
