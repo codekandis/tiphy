@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [keep a changelog][xtlink-keep-a-changelog]
 and this project adheres to [Semantic Versioning 2.0.0][xtlink-semantic-versioning].
 
+## [0.14.0] - 2021-02-24
+
+### Added
+
+* persistence connector attributes
+
+[0.14.0]: https://github.com/codekandis/tiphy/compare/0.13.0..0.14.0
+
+---
 ## [0.13.0] - 2021-02-23
 
 ### Added
