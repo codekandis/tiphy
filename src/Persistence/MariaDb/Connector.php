@@ -123,7 +123,7 @@ class Connector implements ConnectorInterface
 		}
 		catch ( PDOException $exception )
 		{
-			throw new ConnectionFailedException( static::ERROR_CONNECTION_FAILED );
+			throw new ConnectionFailedException( static::ERROR_CONNECTION_FAILED, $exception->errorInfo[ 1 ], $exception );
 		}
 	}
 
@@ -141,7 +141,7 @@ class Connector implements ConnectorInterface
 		}
 		catch ( PDOException $exception )
 		{
-			throw new StatementPreparationFailedException( static::ERROR_STATEMENT_PREPARATION_FAILED );
+			throw new StatementPreparationFailedException( static::ERROR_STATEMENT_PREPARATION_FAILED, $exception->errorInfo[ 1 ], $exception );
 		}
 	}
 
@@ -166,7 +166,8 @@ class Connector implements ConnectorInterface
 					$exception->errorInfo[ 1 ],
 					$exception->errorInfo[ 2 ]
 				),
-				$exception->errorInfo[ 1 ]
+				$exception->errorInfo[ 1 ],
+				$exception
 			);
 		}
 	}
@@ -182,7 +183,7 @@ class Connector implements ConnectorInterface
 		}
 		catch ( PDOException $exception )
 		{
-			throw new TransactionStartFailedException( static::ERROR_TRANSACTION_START_FAILED );
+			throw new TransactionStartFailedException( static::ERROR_TRANSACTION_START_FAILED, $exception->errorInfo[ 1 ], $exception );
 		}
 	}
 
@@ -197,7 +198,7 @@ class Connector implements ConnectorInterface
 		}
 		catch ( PDOException $exception )
 		{
-			throw new TransactionRollbackFailedException( static::ERROR_TRANSACTION_ROLLBACK_FAILED );
+			throw new TransactionRollbackFailedException( static::ERROR_TRANSACTION_ROLLBACK_FAILED, $exception->errorInfo[ 1 ], $exception );
 		}
 	}
 
@@ -212,7 +213,7 @@ class Connector implements ConnectorInterface
 		}
 		catch ( PDOException $exception )
 		{
-			throw new TransactionCommitFailedException( static::ERROR_TRANSACTION_COMMIT_FAILED );
+			throw new TransactionCommitFailedException( static::ERROR_TRANSACTION_COMMIT_FAILED, $exception->errorInfo[ 1 ], $exception );
 		}
 	}
 
@@ -304,7 +305,7 @@ class Connector implements ConnectorInterface
 		}
 		catch ( PDOException $exception )
 		{
-			throw new RetrievingLastInsertedIdFailedException( static::ERROR_RETRIEVING_LAST_INSERTED_ID_FAILED );
+			throw new RetrievingLastInsertedIdFailedException( static::ERROR_RETRIEVING_LAST_INSERTED_ID_FAILED, $exception->errorInfo[ 1 ], $exception );
 		}
 	}
 }
