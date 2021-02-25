@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [keep a changelog][xtlink-keep-a-changelog]
 and this project adheres to [Semantic Versioning 2.0.0][xtlink-semantic-versioning].
 
+## [0.17.0] - 2021-02-25
+
+### Added
+
+* MariaDB repository interface
+* transactions by closure
+
+[0.17.0]: https://github.com/codekandis/tiphy/compare/0.16.0..0.17.0
+
+---
 ## [0.16.0] - 2021-02-25
 
 ### Added
