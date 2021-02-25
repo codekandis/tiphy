@@ -4,7 +4,7 @@ namespace CodeKandis\Tiphy\Persistence\MariaDb;
 use CodeKandis\Tiphy\Persistence\PersistenceException;
 
 /**
- * Represents an exception if the retrieval of the last inserted ID has been failed.
+ * Represents an exception if the retrieval of the last inserted ID failed.
  * @package codekandis/tiphy
  * @author Christian Ramelow <info@codekandis.net>
  */
