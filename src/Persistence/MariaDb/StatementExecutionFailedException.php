@@ -8,6 +8,6 @@ use CodeKandis\Tiphy\Persistence\PersistenceException;
  * @package codekandis/tiphy
  * @author Christian Ramelow <info@codekandis.net>
  */
-class ExecutionOfStatementFailedException extends PersistenceException
+class StatementExecutionFailedException extends PersistenceException
 {
 }
