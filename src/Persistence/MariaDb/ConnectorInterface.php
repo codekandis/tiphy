@@ -11,18 +11,21 @@ interface ConnectorInterface
 	/**
 	 * Starts a transaction.
 	 * @return bool True if the transaction has been started, false otherwise.
+	 * @throws TransactionStartFailedException The transaction failed to start.
 	 */
 	public function beginTransaction(): bool;
 
 	/**
 	 * Rolls back a transaction.
 	 * @return bool True if the transaction has been rolled back, false otherwise.
+	 * @throws TransactionRollbackFailedException The transaction failed to roll back.
 	 */
 	public function rollback(): bool;
 
 	/**
 	 * Commits a transaction.
 	 * @return bool True if the transaction has been commited, false otherwise.
+	 * @throws TransactionCommitFailedException The transaction failed to commit.
 	 */
 	public function commit(): bool;
 
@@ -30,7 +33,8 @@ interface ConnectorInterface
 	 * Executes a statement.
 	 * @param string $statement The statement to execute.
 	 * @param ?array $arguments The arguments of the statement.
-	 * @throws ExecutionOfStatementFailedException The execution of the statement failed.
+	 * @throws StatementPreparationFailedException The preparation of the statement failed.
+	 * @throws StatementExecutionFailedException The execution of the statement failed.
 	 */
 	public function execute( string $statement, ?array $arguments = null ): void;
 
@@ -39,7 +43,8 @@ interface ConnectorInterface
 	 * @param string[] $statements The statements to execute.
 	 * @param ?array[] $arguments The arguments of the statements.
 	 * @throws InvalidArgumentsStatementsCountException The number of argument lists does not match the number of statements.
-	 * @throws ExecutionOfStatementFailedException The execution of the statement failed.
+	 * @throws StatementPreparationFailedException The preparation of the statement failed.
+	 * @throws StatementExecutionFailedException The execution of the statement failed.
 	 */
 	public function executeMultiple( array $statements, ?array $arguments = null ): void;
 
@@ -49,7 +54,8 @@ interface ConnectorInterface
 	 * @param ?array $arguments The arguments of the statement.
 	 * @param ?string $className The name of the class to convert the result rows into.
 	 * @return object[] The list of statement result row objects.
-	 * @throws ExecutionOfStatementFailedException The execution of the statement failed.
+	 * @throws StatementPreparationFailedException The preparation of the statement failed.
+	 * @throws StatementExecutionFailedException The execution of the statement failed.
 	 */
 	public function query( string $statement, ?array $arguments = null, ?string $className = null ): array;
 
@@ -59,14 +65,15 @@ interface ConnectorInterface
 	 * @param ?array $arguments The arguments of the statement.
 	 * @param ?string $className The name of the class to convert the result row into.
 	 * @return ?object The first row of the statement result row as an object.
-	 * @throws ExecutionOfStatementFailedException The execution of the statement failed.
+	 * @throws StatementPreparationFailedException The preparation of the statement failed.
+	 * @throws StatementExecutionFailedException The execution of the statement failed.
 	 */
 	public function queryFirst( string $statement, ?array $arguments = null, ?string $className = null ): ?object;
 
 	/**
 	 * Gets the ID of the last inserted record.
 	 * @return string The ID of the last inserted record.
-	 * @throws RetrievingLastInsertedIdFailedException The retrieval of the last inserted ID has been failed.
+	 * @throws RetrievingLastInsertedIdFailedException The retrieval of the last inserted ID failed.
 	 */
 	public function getLastInsertId(): string;
 }
