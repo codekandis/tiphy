@@ -4,6 +4,7 @@ namespace CodeKandis\Tiphy\Persistence\MariaDb;
 use CodeKandis\Tiphy\Persistence\PersistenceConfigurationInterface;
 use PDO;
 use PDOException;
+use PDOStatement;
 use function count;
 use function sprintf;
 
@@ -15,13 +16,37 @@ use function sprintf;
 class Connector implements ConnectorInterface
 {
 	/**
-	 * Represents the error message if the connection failed.
+	 * Represents the error message if a connection failed.
 	 * @var string
 	 */
 	public const ERROR_CONNECTION_FAILED = 'The connection failed.';
 
 	/**
-	 * Represents the error message if the number of argument lists does not match the number of statements.
+	 * Represents the error message if a transaction failed to start.
+	 * @var string
+	 */
+	public const ERROR_TRANSACTION_START_FAILED = 'The transaction start failed.';
+
+	/**
+	 * Represents the error message if a transaction failed to rollback.
+	 * @var string
+	 */
+	public const ERROR_TRANSACTION_ROLLBACK_FAILED = 'The transaction rollback failed.';
+
+	/**
+	 * Represents the error message if a transaction failed to commit.
+	 * @var string
+	 */
+	public const ERROR_TRANSACTION_COMMIT_FAILED = 'The transaction commit failed.';
+
+	/**
+	 * Represents the error message if the preparation of a statement failed.
+	 * @var string
+	 */
+	public const ERROR_STATEMENT_PREPARATION_FAILED = 'The preparation of the statement failed.';
+
+	/**
+	 * Represents the error message if a number of argument lists does not match a number of statements.
 	 * @var string
 	 */
 	public const ERROR_INVALID_ARGUMENTS_STATEMENTS_COUNT = 'The number of argument lists `%d` does not match the number of statements `%d`.';
@@ -33,10 +58,10 @@ class Connector implements ConnectorInterface
 	public const ERROR_EXECUTION_OF_STATEMENT_FAILED = '[%s] The execution of the statement failed. %s: %s';
 
 	/**
-	 * Represents the error message if the retrieval of the last inserted ID has been failed.
+	 * Represents the error message if the retrieval of the last inserted ID failed.
 	 * @var string
 	 */
-	public const ERROR_RETRIEVING_LAST_INSERTED_ID_FAILED = 'The retrieval of the last inserted ID has been failed.';
+	public const ERROR_RETRIEVING_LAST_INSERTED_ID_FAILED = 'The retrieval of the last inserted ID failed.';
 
 	/**
 	 * Stores the persistence configuration.
@@ -59,7 +84,7 @@ class Connector implements ConnectorInterface
 	 * Constructor method.
 	 * @param PersistenceConfigurationInterface $config The persistence configuration.
 	 * @param array $attributes The attributes of the underlying PDO connection.
-	 * @throws ConnectionFailedException The connection has been failed.
+	 * @throws ConnectionFailedException The connection failed.
 	 */
 	public function __construct( PersistenceConfigurationInterface $config, array $attributes = [] )
 	{
@@ -103,43 +128,38 @@ class Connector implements ConnectorInterface
 	}
 
 	/**
-	 * @inheritDoc
+	 * Prepares a statement.
+	 * @param string $statement The statement to prepare
+	 * @return PDOStatement
+	 * @throws StatementPreparationFailedException The preparation of the statement failed.
 	 */
-	public function beginTransaction(): bool
+	private function prepareStatement( string $statement ): PDOStatement
 	{
-		return $this->connection->beginTransaction();
-	}
-
-	/**
-	 * @inheritDoc
-	 */
-	public function rollback(): bool
-	{
-		return $this->connection->rollBack();
-	}
-
-	/**
-	 * @inheritDoc
-	 */
-	public function commit(): bool
-	{
-		return $this->connection->commit();
-	}
-
-	/**
-	 * @inheritDoc
-	 */
-	public function execute( string $query, ?array $arguments = null ): void
-	{
-		$preparedStatement = $this->connection->prepare( $query );
-
 		try
 		{
-			$preparedStatement->execute( $arguments );
+			return $this->connection->prepare( $statement );
 		}
 		catch ( PDOException $exception )
 		{
-			throw new ExecutionOfStatementFailedException(
+			throw new StatementPreparationFailedException( static::ERROR_STATEMENT_PREPARATION_FAILED );
+		}
+	}
+
+	/**
+	 * Executes a statement.
+	 * @param PDOStatement $statement The statement to execute.
+	 * @param ?array $arguments The arguments of the statement.
+	 * @throws StatementExecutionFailedException The execution of the statement failed.
+	 */
+	private function executeStatement( PDOStatement $statement, ?array $arguments )
+	{
+		try
+		{
+			$statement->execute( $arguments );
+		}
+		catch ( PDOException $exception )
+		{
+			throw new StatementExecutionFailedException(
 				sprintf(
 					static::ERROR_EXECUTION_OF_STATEMENT_FAILED,
 					$exception->errorInfo[ 0 ],
@@ -149,6 +169,62 @@ class Connector implements ConnectorInterface
 				$exception->errorInfo[ 1 ]
 			);
 		}
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function beginTransaction(): bool
+	{
+		try
+		{
+			return $this->connection->beginTransaction();
+		}
+		catch ( PDOException $exception )
+		{
+			throw new TransactionStartFailedException( static::ERROR_TRANSACTION_START_FAILED );
+		}
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function rollback(): bool
+	{
+		try
+		{
+			return $this->connection->rollBack();
+		}
+		catch ( PDOException $exception )
+		{
+			throw new TransactionRollbackFailedException( static::ERROR_TRANSACTION_ROLLBACK_FAILED );
+		}
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function commit(): bool
+	{
+		try
+		{
+			return $this->connection->commit();
+		}
+		catch ( PDOException $exception )
+		{
+			throw new TransactionCommitFailedException( static::ERROR_TRANSACTION_COMMIT_FAILED );
+		}
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function execute( string $statement, ?array $arguments = null ): void
+	{
+		$this->executeStatement(
+			$this->prepareStatement( $statement ),
+			$arguments
+		);
 	}
 
 	/**
@@ -166,24 +242,12 @@ class Connector implements ConnectorInterface
 				)
 			);
 		}
-		try
+
+		foreach ( $statements as $statementKey => $statement )
 		{
-			foreach ( $statements as $statementKey => $statement )
-			{
-				$preparedStatement = $this->connection->prepare( $statement );
-				$preparedStatement->execute( $arguments[ $statementKey ] );
-			}
-		}
-		catch ( PDOException $exception )
-		{
-			throw new ExecutionOfStatementFailedException(
-				sprintf(
-					static::ERROR_EXECUTION_OF_STATEMENT_FAILED,
-					$exception->errorInfo[ 0 ],
-					$exception->errorInfo[ 1 ],
-					$exception->errorInfo[ 2 ]
-				),
-				$exception->errorInfo[ 1 ]
+			$this->executeStatement(
+				$this->prepareStatement( $statement ),
+				$arguments[ $statementKey ]
 			);
 		}
 	}
@@ -191,26 +255,10 @@ class Connector implements ConnectorInterface
 	/**
 	 * @inheritDoc
 	 */
-	public function query( string $query, ?array $arguments = null, ?string $className = null ): array
+	public function query( string $statement, ?array $arguments = null, ?string $className = null ): array
 	{
-		$preparedStatement = $this->connection->prepare( $query );
-
-		try
-		{
-			$preparedStatement->execute( $arguments );
-		}
-		catch ( PDOException $exception )
-		{
-			throw new ExecutionOfStatementFailedException(
-				sprintf(
-					static::ERROR_EXECUTION_OF_STATEMENT_FAILED,
-					$exception->errorInfo[ 0 ],
-					$exception->errorInfo[ 1 ],
-					$exception->errorInfo[ 2 ]
-				),
-				$exception->errorInfo[ 1 ]
-			);
-		}
+		$preparedStatement = $this->prepareStatement( $statement );
+		$this->executeStatement( $preparedStatement, $arguments );
 
 		if ( null === $className )
 		{
@@ -227,26 +275,10 @@ class Connector implements ConnectorInterface
 	/**
 	 * @inheritDoc
 	 */
-	public function queryFirst( string $query, ?array $arguments = null, ?string $className = null ): ?object
+	public function queryFirst( string $statement, ?array $arguments = null, ?string $className = null ): ?object
 	{
-		$preparedStatement = $this->connection->prepare( $query );
-
-		try
-		{
-			$preparedStatement->execute( $arguments );
-		}
-		catch ( PDOException $exception )
-		{
-			throw new ExecutionOfStatementFailedException(
-				sprintf(
-					static::ERROR_EXECUTION_OF_STATEMENT_FAILED,
-					$exception->errorInfo[ 0 ],
-					$exception->errorInfo[ 1 ],
-					$exception->errorInfo[ 2 ]
-				),
-				$exception->errorInfo[ 1 ]
-			);
-		}
+		$preparedStatement = $this->prepareStatement( $statement );
+		$this->executeStatement( $preparedStatement, $arguments );
 
 		if ( null === $className )
 		{
