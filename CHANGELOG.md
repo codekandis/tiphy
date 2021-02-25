@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [keep a changelog][xtlink-keep-a-changelog]
 and this project adheres to [Semantic Versioning 2.0.0][xtlink-semantic-versioning].
 
+## [0.18.0] - 2021-02-25
+
+### Added
+
+* inner exceptions to all persistence exceptions.
+
+[0.18.0]: https://github.com/codekandis/tiphy/compare/0.17.0..0.18.0
+
+---
 ## [0.17.0] - 2021-02-25
 
 ### Added
