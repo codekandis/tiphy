@@ -19,43 +19,55 @@ class Connector implements ConnectorInterface
 	 * Represents the error message if a connection failed.
 	 * @var string
 	 */
-	public const ERROR_CONNECTION_FAILED = 'The connection failed.';
+	protected const ERROR_CONNECTION_FAILED = 'The connection failed.';
 
 	/**
 	 * Represents the error message if a transaction failed to start.
 	 * @var string
 	 */
-	public const ERROR_TRANSACTION_START_FAILED = 'The transaction start failed.';
+	protected const ERROR_TRANSACTION_START_FAILED = 'The transaction start failed.';
 
 	/**
 	 * Represents the error message if a transaction failed to rollback.
 	 * @var string
 	 */
-	public const ERROR_TRANSACTION_ROLLBACK_FAILED = 'The transaction rollback failed.';
+	protected const ERROR_TRANSACTION_ROLLBACK_FAILED = 'The transaction rollback failed.';
 
 	/**
 	 * Represents the error message if a transaction failed to commit.
 	 * @var string
 	 */
-	public const ERROR_TRANSACTION_COMMIT_FAILED = 'The transaction commit failed.';
+	protected const ERROR_TRANSACTION_COMMIT_FAILED = 'The transaction commit failed.';
 
 	/**
 	 * Represents the error message if the preparation of a statement failed.
 	 * @var string
 	 */
-	public const ERROR_STATEMENT_PREPARATION_FAILED = 'The preparation of the statement failed.';
+	protected const ERROR_STATEMENT_PREPARATION_FAILED = 'The preparation of the statement failed.';
 
 	/**
 	 * Represents the error message if a number of argument lists does not match a number of statements.
 	 * @var string
 	 */
-	public const ERROR_INVALID_ARGUMENTS_STATEMENTS_COUNT = 'The number of argument lists `%d` does not match the number of statements `%d`.';
+	protected const ERROR_INVALID_ARGUMENTS_STATEMENTS_COUNT = 'The number of argument lists `%d` does not match the number of statements `%d`.';
 
 	/**
 	 * Represents the error message if the execution of a statement failed.
 	 * @var string
 	 */
-	public const ERROR_EXECUTION_OF_STATEMENT_FAILED = '[%d] The execution of the statement failed. %s: %s';
+	protected const ERROR_EXECUTION_OF_STATEMENT_FAILED = '[%s] The execution of the statement failed. %s: %s';
+
+	/**
+	 * Represents the error message if the setting of the fetch mode of a statement failed.
+	 * @var string
+	 */
+	protected const ERROR_SETTING_FETCHMODE_FAILED = 'The setting of the fetch mode of the statement failed.';
+
+	/**
+	 * Represents the error message if the fetching of a statement result failed.
+	 * @var string
+	 */
+	protected const ERROR_FETCHING_RESULT_FAILED = 'The fetching of the statment result failed.';
 
 	/**
 	 * Represents the error message if the retrieval of the last inserted ID failed.
@@ -173,6 +185,24 @@ class Connector implements ConnectorInterface
 	}
 
 	/**
+	 * Sets the fetch mode of a statement.
+	 * @param PDOStatement $statement The statement to set its fetch mode.
+	 * @param ?string $className The name of the class to convert the result rows into.
+	 * @throws SettingFetchModeFailedException The setting of the fetch mode failed.
+	 */
+	private function setFetchMode( PDOStatement $statement, ?string $className ): void
+	{
+		$successful = null === $className
+			? $statement->setFetchMode( PDO::FETCH_OBJ )
+			: $statement->setFetchMode( PDO::FETCH_CLASS, $className );
+
+		if ( false === $successful )
+		{
+			throw new FetchingResultFailedException( static::ERROR_SETTING_FETCHMODE_FAILED );
+		}
+	}
+
+	/**
 	 * @inheritDoc
 	 */
 	public function beginTransaction(): bool
@@ -260,17 +290,15 @@ class Connector implements ConnectorInterface
 	{
 		$preparedStatement = $this->prepareStatement( $statement );
 		$this->executeStatement( $preparedStatement, $arguments );
+		$this->setFetchMode( $preparedStatement, $className );
 
-		if ( null === $className )
+		$results = $preparedStatement->fetchAll();
+		if ( false === $results )
 		{
-			$preparedStatement->setFetchMode( PDO::FETCH_OBJ );
-		}
-		else
-		{
-			$preparedStatement->setFetchMode( PDO::FETCH_CLASS, $className );
+			throw new FetchingResultFailedException( static::ERROR_FETCHING_RESULT_FAILED );
 		}
 
-		return $preparedStatement->fetchAll();
+		return $results;
 	}
 
 	/**
@@ -280,16 +308,13 @@ class Connector implements ConnectorInterface
 	{
 		$preparedStatement = $this->prepareStatement( $statement );
 		$this->executeStatement( $preparedStatement, $arguments );
+		$this->setFetchMode( $preparedStatement, $className );
 
-		if ( null === $className )
-		{
-			$preparedStatement->setFetchMode( PDO::FETCH_OBJ );
-		}
-		else
-		{
-			$preparedStatement->setFetchMode( PDO::FETCH_CLASS, $className );
-		}
 		$result = $preparedStatement->fetch();
+		if ( false === $result )
+		{
+			throw new FetchingResultFailedException( static::ERROR_FETCHING_RESULT_FAILED );
+		}
 
 		return false !== $result ? $result : null;
 	}

@@ -34,7 +34,7 @@ class CommandHandlerResult implements CommandHandlerResultInterface
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function getState(): bool
 	{
@@ -42,7 +42,7 @@ class CommandHandlerResult implements CommandHandlerResultInterface
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function getErrors(): array
 	{

@@ -56,6 +56,8 @@ interface ConnectorInterface
 	 * @return object[] The list of statement result row objects.
 	 * @throws StatementPreparationFailedException The preparation of the statement failed.
 	 * @throws StatementExecutionFailedException The execution of the statement failed.
+	 * @throws SettingFetchModeFailedException The setting of the fetch mode of the statement failed.
+	 * @throws FetchingResultFailedException The fetching of the statment result failed.
 	 */
 	public function query( string $statement, ?array $arguments = null, ?string $className = null ): array;
 
@@ -67,6 +69,8 @@ interface ConnectorInterface
 	 * @return ?object The first row of the statement result row as an object.
 	 * @throws StatementPreparationFailedException The preparation of the statement failed.
 	 * @throws StatementExecutionFailedException The execution of the statement failed.
+	 * @throws SettingFetchModeFailedException The setting of the fetch mode of the statement failed.
+	 * @throws FetchingResultFailedException The fetching of the statment result failed.
 	 */
 	public function queryFirst( string $statement, ?array $arguments = null, ?string $className = null ): ?object;
 
