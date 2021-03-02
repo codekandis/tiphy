@@ -28,7 +28,7 @@ abstract class AbstractRepository implements RepositoryInterface
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * @inheritDoc
 	 */
 	public function asTransaction( Closure $closure, array...$arguments )
 	{
