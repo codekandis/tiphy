@@ -6,7 +6,7 @@ use CodeKandis\Tiphy\Persistence\MariaDb\ConnectorInterface;
 use CodeKandis\Tiphy\Persistence\MariaDb\StatementExecutionFailedException;
 
 /**
- * Represents the base class of all MariaDb repositories.
+ * Represents the base class of all MariaDB repositories.
  * @package codekandis/tiphy
  * @author Christian Ramelow <info@codekandis.net>
  */
@@ -20,7 +20,7 @@ abstract class AbstractRepository implements RepositoryInterface
 
 	/**
 	 * Constructor method.
-	 * @param ConnectorInterface $connector The MariaDb database connector.
+	 * @param ConnectorInterface $connector The MariaDB database connector.
 	 */
 	public function __construct( ConnectorInterface $connector )
 	{
