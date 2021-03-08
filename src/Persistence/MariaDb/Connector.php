@@ -141,8 +141,8 @@ class Connector implements ConnectorInterface
 
 	/**
 	 * Prepares a statement.
-	 * @param string $statement The statement to prepare
-	 * @return PDOStatement
+	 * @param string $statement The statement to prepare.
+	 * @return PDOStatement The prepared statement.
 	 * @throws StatementPreparationFailedException The preparation of the statement failed.
 	 */
 	private function prepareStatement( string $statement ): PDOStatement
@@ -292,6 +292,11 @@ class Connector implements ConnectorInterface
 		$this->executeStatement( $preparedStatement, $arguments );
 		$this->setFetchMode( $preparedStatement, $className );
 
+		if ( 0 === $preparedStatement->rowCount() )
+		{
+			return [];
+		}
+
 		$results = $preparedStatement->fetchAll();
 		if ( false === $results )
 		{
@@ -310,13 +315,18 @@ class Connector implements ConnectorInterface
 		$this->executeStatement( $preparedStatement, $arguments );
 		$this->setFetchMode( $preparedStatement, $className );
 
+		if ( 0 === $preparedStatement->rowCount() )
+		{
+			return null;
+		}
+
 		$result = $preparedStatement->fetch();
 		if ( false === $result )
 		{
 			throw new FetchingResultFailedException( static::ERROR_FETCHING_RESULT_FAILED );
 		}
 
-		return false !== $result ? $result : null;
+		return $result;
 	}
 
 	/**
