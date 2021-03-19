@@ -53,7 +53,7 @@ class ResponseHeaders implements ResponseHeadersInterface
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	public function getHeader( string $headerName ): string
 	{

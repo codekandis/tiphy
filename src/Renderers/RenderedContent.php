@@ -33,7 +33,7 @@ class RenderedContent implements RenderedContentInterface
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	public function getContentLength(): int
 	{
@@ -41,7 +41,7 @@ class RenderedContent implements RenderedContentInterface
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	public function getContent(): string
 	{

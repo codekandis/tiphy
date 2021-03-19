@@ -41,7 +41,7 @@ class HtmlTemplateResponder extends AbstractResponder
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	public function respond(): void
 	{

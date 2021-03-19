@@ -48,7 +48,7 @@ class PreparedStatementInArrayHelper implements PreparedStatementInArrayHelperIn
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	public function getNamedPlaceholders(): string
 	{
@@ -62,7 +62,7 @@ class PreparedStatementInArrayHelper implements PreparedStatementInArrayHelperIn
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	public function getArguments(): array
 	{

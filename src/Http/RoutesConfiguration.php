@@ -11,7 +11,7 @@ use CodeKandis\Tiphy\Configurations\AbstractConfiguration;
 class RoutesConfiguration extends AbstractConfiguration implements RoutesConfigurationInterface
 {
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	public function getBaseRoute(): string
 	{
@@ -19,7 +19,7 @@ class RoutesConfiguration extends AbstractConfiguration implements RoutesConfigu
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	public function getRoutes(): array
 	{
