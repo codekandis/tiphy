@@ -26,7 +26,7 @@ abstract class AbstractUriBuilder implements UriBuilderInterface
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	public function build( string $uriName, string ...$arguments ): string
 	{

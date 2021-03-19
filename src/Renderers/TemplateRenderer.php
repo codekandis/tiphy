@@ -52,7 +52,7 @@ class TemplateRenderer implements RendererInterface
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	public function render(): RenderedContentInterface
 	{

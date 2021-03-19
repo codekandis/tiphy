@@ -203,7 +203,7 @@ class Connector implements ConnectorInterface
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	public function beginTransaction(): bool
 	{
@@ -218,7 +218,7 @@ class Connector implements ConnectorInterface
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	public function rollback(): bool
 	{
@@ -233,7 +233,7 @@ class Connector implements ConnectorInterface
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	public function commit(): bool
 	{
@@ -248,7 +248,7 @@ class Connector implements ConnectorInterface
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	public function execute( string $statement, ?array $arguments = null ): void
 	{
@@ -259,7 +259,7 @@ class Connector implements ConnectorInterface
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	public function executeMultiple( array $statements, ?array $arguments = null ): void
 	{
@@ -284,7 +284,7 @@ class Connector implements ConnectorInterface
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	public function query( string $statement, ?array $arguments = null, ?string $className = null ): array
 	{
@@ -307,7 +307,7 @@ class Connector implements ConnectorInterface
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	public function queryFirst( string $statement, ?array $arguments = null, ?string $className = null ): ?object
 	{
@@ -330,7 +330,7 @@ class Connector implements ConnectorInterface
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	public function getLastInsertId(): string
 	{

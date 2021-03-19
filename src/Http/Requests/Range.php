@@ -64,7 +64,7 @@ class Range implements RangeInterface
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	public function getOffsetStart(): ?int
 	{
@@ -72,7 +72,7 @@ class Range implements RangeInterface
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	public function getOffsetEnd(): ?int
 	{
@@ -80,7 +80,7 @@ class Range implements RangeInterface
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	public function getType(): int
 	{
@@ -114,7 +114,7 @@ class Range implements RangeInterface
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	public function isValid( int $size ): bool
 	{

@@ -73,7 +73,7 @@ abstract class AbstractConfigurationRegistry implements ConfigurationRegistryInt
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	public function getRoutesConfiguration(): ?RoutesConfigurationInterface
 	{
@@ -81,7 +81,7 @@ abstract class AbstractConfigurationRegistry implements ConfigurationRegistryInt
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	public function setPlainRoutesConfiguration( array $plainRoutesConfiguration ): void
 	{
@@ -89,7 +89,7 @@ abstract class AbstractConfigurationRegistry implements ConfigurationRegistryInt
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	public function getPersistenceConfiguration(): ?PersistenceConfigurationInterface
 	{
@@ -97,7 +97,7 @@ abstract class AbstractConfigurationRegistry implements ConfigurationRegistryInt
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	public function setPlainPersistenceConfiguration( array $plainPersistenceConfiguration ): void
 	{
@@ -105,7 +105,7 @@ abstract class AbstractConfigurationRegistry implements ConfigurationRegistryInt
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	public function getTemplateRendererConfiguration(): ?TemplateRendererConfigurationInterface
 	{
@@ -113,7 +113,7 @@ abstract class AbstractConfigurationRegistry implements ConfigurationRegistryInt
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	public function setPlainTemplateRendererConfiguration( array $plainTemplateRendererConfiguration ): void
 	{
@@ -121,7 +121,7 @@ abstract class AbstractConfigurationRegistry implements ConfigurationRegistryInt
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	public function getUriBuilderConfiguration(): ?UriBuilderConfigurationInterface
 	{
@@ -129,7 +129,7 @@ abstract class AbstractConfigurationRegistry implements ConfigurationRegistryInt
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	public function setPlainUriBuilderConfiguration( array $plainUriBuilderConfiguration ): void
 	{

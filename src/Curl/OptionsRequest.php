@@ -54,7 +54,7 @@ class OptionsRequest implements OptionsRequestInterface
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	public function execute(): array
 	{

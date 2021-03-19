@@ -11,7 +11,7 @@ use CodeKandis\Tiphy\Configurations\AbstractConfiguration;
 class UriBuilderConfiguration extends AbstractConfiguration implements UriBuilderConfigurationInterface
 {
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	public function getSchema(): string
 	{
@@ -19,7 +19,7 @@ class UriBuilderConfiguration extends AbstractConfiguration implements UriBuilde
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	public function getHost(): string
 	{
@@ -27,7 +27,7 @@ class UriBuilderConfiguration extends AbstractConfiguration implements UriBuilde
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	public function getBaseUri(): string
 	{
@@ -35,7 +35,7 @@ class UriBuilderConfiguration extends AbstractConfiguration implements UriBuilde
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	public function getRelativeUris(): array
 	{

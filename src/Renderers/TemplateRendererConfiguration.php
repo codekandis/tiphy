@@ -11,7 +11,7 @@ use CodeKandis\Tiphy\Configurations\AbstractConfiguration;
 class TemplateRendererConfiguration extends AbstractConfiguration implements TemplateRendererConfigurationInterface
 {
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	public function getTemplatesPath(): string
 	{

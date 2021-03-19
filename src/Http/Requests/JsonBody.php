@@ -13,7 +13,7 @@ use function file_get_contents;
 class JsonBody implements JsonBodyInterface
 {
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	public function getContent()
 	{

@@ -101,7 +101,7 @@ class ActionDispatcher implements ActionDispatcherInterface
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	public function dispatch(): void
 	{

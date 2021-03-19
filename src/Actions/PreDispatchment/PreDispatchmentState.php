@@ -15,7 +15,7 @@ class PreDispatchmentState implements PreDispatchmentStateInterface
 	private bool $preventDispatchment = false;
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	public function getPreventDispatchment(): bool
 	{
@@ -23,7 +23,7 @@ class PreDispatchmentState implements PreDispatchmentStateInterface
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	public function setPreventDispatchment( bool $preventDispatchment ): void
 	{

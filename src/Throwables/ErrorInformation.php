@@ -44,7 +44,7 @@ class ErrorInformation implements ErrorInformationInterface
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 */
 	public function toArray(): array
 	{

@@ -13,7 +13,7 @@ use JsonException;
 class JsonResponder extends AbstractResponder
 {
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 * @throws JsonException
 	 */
 	public function respond(): void

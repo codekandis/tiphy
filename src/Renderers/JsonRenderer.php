@@ -44,7 +44,7 @@ class JsonRenderer implements RendererInterface
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 * @throws JsonException An error occurred during the rendering of the JSON response.
 	 */
 	public function render(): RenderedContentInterface

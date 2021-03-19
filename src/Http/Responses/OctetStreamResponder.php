@@ -194,7 +194,7 @@ class OctetStreamResponder extends AbstractResponder implements OctetStreamRespo
 	}
 
 	/**
-	 * @inheritDoc
+	 * {@inheritDoc}
 	 * Responds the octet stream.
 	 */
 	public function respond(): void
