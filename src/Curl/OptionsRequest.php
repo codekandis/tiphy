@@ -2,7 +2,7 @@
 namespace CodeKandis\Tiphy\Curl;
 
 use CodeKandis\Tiphy\Http\Requests\Methods;
-use Traversable;
+use Iterator;
 use function curl_close;
 use function curl_exec;
 use function curl_init;
@@ -42,7 +42,7 @@ class OptionsRequest implements OptionsRequestInterface
 	 * @param string $response The response of the request.
 	 * @return string[] The response headers of the request.
 	 */
-	private function fetchFormattedResponse( string $response ): Traversable
+	private function fetchFormattedResponse( string $response ): Iterator
 	{
 		foreach ( explode( "\r\n", $response ) as $lineIndex => $lineFetched )
 		{
