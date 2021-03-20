@@ -48,7 +48,7 @@ class Range implements RangeInterface
 	 * Stores the type of the range
 	 * @var int
 	 */
-	private ?int $type;
+	private int $type;
 
 	/**
 	 * Constructor method.

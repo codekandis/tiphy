@@ -1,7 +1,7 @@
 <?php declare( strict_types = 1 );
 namespace CodeKandis\Tiphy\Actions;
 
-use CodeKandis\Tiphy\Entities\NotFoundEntity;
+use CodeKandis\Tiphy\Entities\NotFoundEntityInterface;
 use CodeKandis\Tiphy\Http\Responses\JsonResponder;
 use CodeKandis\Tiphy\Http\Responses\StatusCodes;
 use CodeKandis\Tiphy\Http\Responses\StatusMessages;
@@ -17,15 +17,15 @@ class NotFoundAction implements ActionInterface
 {
 	/**
 	 * Stores the not found entity describing the request.
-	 * @var NotFoundEntity
+	 * @var NotFoundEntityInterface
 	 */
-	private NotFoundEntity $notFoundEntity;
+	private NotFoundEntityInterface $notFoundEntity;
 
 	/**
 	 * Constructor method.
-	 * @param NotFoundEntity $notFoundEntity The not found entity representing the request.
+	 * @param NotFoundEntityInterface $notFoundEntity The not found entity representing the request.
 	 */
-	public function __construct( NotFoundEntity $notFoundEntity )
+	public function __construct( NotFoundEntityInterface $notFoundEntity )
 	{
 		$this->notFoundEntity = $notFoundEntity;
 	}

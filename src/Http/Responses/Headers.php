@@ -8,17 +8,45 @@ namespace CodeKandis\Tiphy\Http\Responses;
  */
 abstract class Headers
 {
-	public const ACCEPT_RANGES               = 'Accept-Ranges';
+	/**
+	 * Represents the HTTP `Accept-Ranges` header.
+	 * @var string
+	 */
+	public const ACCEPT_RANGES = 'Accept-Ranges';
 
+	/**
+	 * Represents the HTTP `Access-Control-Allow-Origin` header.
+	 * @var string
+	 */
 	public const ACCESS_CONTROL_ALLOW_ORIGIN = 'Access-Control-Allow-Origin';
 
-	public const CACHE_CONTROL               = 'Cache-Control';
+	/**
+	 * Represents the HTTP `Cache-Control` header.
+	 * @var string
+	 */
+	public const CACHE_CONTROL = 'Cache-Control';
 
-	public const CONTENT_DISPOSITION         = 'Content-Disposition';
+	/**
+	 * Represents the HTTP `Content-Dispositon` header.
+	 * @var string
+	 */
+	public const CONTENT_DISPOSITION = 'Content-Disposition';
 
-	public const CONTENT_LENGTH              = 'Content-Length';
+	/**
+	 * Represents the HTTP `Content-Length` header.
+	 * @var string
+	 */
+	public const CONTENT_LENGTH = 'Content-Length';
 
-	public const CONTENT_RANGE               = 'Content-Range';
+	/**
+	 * Represents the HTTP `Content-Range` header.
+	 * @var string
+	 */
+	public const CONTENT_RANGE = 'Content-Range';
 
-	public const CONTENT_TYPE                = 'Content-Type';
+	/**
+	 * Represents the HTTP `Content-Type` header.
+	 * @var string
+	 */
+	public const CONTENT_TYPE = 'Content-Type';
 }

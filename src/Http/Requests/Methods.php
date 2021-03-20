@@ -8,37 +8,105 @@ namespace CodeKandis\Tiphy\Http\Requests;
  */
 abstract class Methods
 {
-	public const GET       = 'GET';
+	/**
+	 * Represents the HTTP request method `GET`.
+	 * @var string
+	 */
+	public const GET = 'GET';
 
-	public const CONNECT   = 'CONNECT';
+	/**
+	 * Represents the HTTP request method `CONNECT`.
+	 * @var string
+	 */
+	public const CONNECT = 'CONNECT';
 
-	public const COPY      = 'COPY';
+	/**
+	 * Represents the HTTP request method `COPY`.
+	 * @var string
+	 */
+	public const COPY = 'COPY';
 
-	public const DELETE    = 'DELETE';
+	/**
+	 * Represents the HTTP request method `DELETE`.
+	 * @var string
+	 */
+	public const DELETE = 'DELETE';
 
-	public const HEAD      = 'HEAD';
+	/**
+	 * Represents the HTTP request method `HEAD`.
+	 * @var string
+	 */
+	public const HEAD = 'HEAD';
 
-	public const HTTP      = 'HTTP';
+	/**
+	 * Represents the HTTP request method `HTTP`.
+	 * @var string
+	 */
+	public const HTTP = 'HTTP';
 
-	public const LOCK      = 'LOCK';
+	/**
+	 * Represents the HTTP request method `LOCK`.
+	 * @var string
+	 */
+	public const LOCK = 'LOCK';
 
-	public const MKCOL     = 'MKCOL';
+	/**
+	 * Represents the HTTP request method `MKCOL`.
+	 * @var string
+	 */
+	public const MKCOL = 'MKCOL';
 
-	public const MOVE      = 'MOVE';
+	/**
+	 * Represents the HTTP request method `MOVE`.
+	 * @var string
+	 */
+	public const MOVE = 'MOVE';
 
-	public const OPTIONS   = 'OPTIONS';
+	/**
+	 * Represents the HTTP request method `OPTIONS`.
+	 * @var string
+	 */
+	public const OPTIONS = 'OPTIONS';
 
-	public const PATCH     = 'PATCH';
+	/**
+	 * Represents the HTTP request method `PATCH`.
+	 * @var string
+	 */
+	public const PATCH = 'PATCH';
 
-	public const POST      = 'POST';
+	/**
+	 * Represents the HTTP request method `POST`.
+	 * @var string
+	 */
+	public const POST = 'POST';
 
-	public const PROPFIND  = 'PROPFIND';
+	/**
+	 * Represents the HTTP request method `PROPFIND`.
+	 * @var string
+	 */
+	public const PROPFIND = 'PROPFIND';
 
+	/**
+	 * Represents the HTTP request method `PROPPATCH`.
+	 * @var string
+	 */
 	public const PROPPATCH = 'PROPPATCH';
 
-	public const PUT       = 'PUT';
+	/**
+	 * Represents the HTTP request method `PUT`.
+	 * @var string
+	 */
+	public const PUT = 'PUT';
 
-	public const TRACE     = 'TRACE';
+	/**
+	 * Represents the HTTP request method `TRACE`.
+	 * @var string
+	 */
+	public const TRACE = 'TRACE';
 
-	public const UNLOCK    = 'UNLOCK';
+	/**
+	 * Represents the HTTP request method `UNLOCK`.
+	 * @var string
+	 */
+	public const UNLOCK = 'UNLOCK';
 }

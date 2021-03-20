@@ -14,7 +14,7 @@ class JsonResponder extends AbstractResponder
 {
 	/**
 	 * {@inheritDoc}
-	 * @throws JsonException
+	 * @throws JsonException An error occurred during the creation of the JSON response.
 	 */
 	public function respond(): void
 	{
