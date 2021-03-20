@@ -14,15 +14,15 @@ abstract class AbstractUriBuilder implements UriBuilderInterface
 	 * Stores the configuration of the URI builder.
 	 * @var UriBuilderConfigurationInterface
 	 */
-	private UriBuilderConfigurationInterface $config;
+	private UriBuilderConfigurationInterface $configuration;
 
 	/**
 	 * Constructor method.
-	 * @param UriBuilderConfigurationInterface $config The configuration of the URI builder.
+	 * @param UriBuilderConfigurationInterface $configuration The configuration of the URI builder.
 	 */
-	public function __construct( UriBuilderConfigurationInterface $config )
+	public function __construct( UriBuilderConfigurationInterface $configuration )
 	{
-		$this->config = $config;
+		$this->configuration = $configuration;
 	}
 
 	/**
@@ -30,10 +30,10 @@ abstract class AbstractUriBuilder implements UriBuilderInterface
 	 */
 	public function build( string $uriName, string ...$arguments ): string
 	{
-		$schema       = $this->config->getSchema();
-		$host         = $this->config->getHost();
-		$baseUri      = $this->config->getBaseUri();
-		$relativeUris = $this->config->getRelativeUris();
+		$schema       = $this->configuration->getSchema();
+		$host         = $this->configuration->getHost();
+		$baseUri      = $this->configuration->getBaseUri();
+		$relativeUris = $this->configuration->getRelativeUris();
 
 		$uriPrepared = sprintf(
 			'%s://%s%s%s',
