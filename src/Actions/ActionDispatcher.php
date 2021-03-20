@@ -4,6 +4,7 @@ namespace CodeKandis\Tiphy\Actions;
 use CodeKandis\Tiphy\Actions\PreDispatchment\PreDispatcherInterface;
 use CodeKandis\Tiphy\Actions\PreDispatchment\PreDispatchmentState;
 use CodeKandis\Tiphy\Entities\NotFoundEntity;
+use CodeKandis\Tiphy\Entities\NotFoundEntityInterface;
 use CodeKandis\Tiphy\Http\Requests\JsonBody;
 use CodeKandis\Tiphy\Http\RoutesConfigurationInterface;
 use CodeKandis\Tiphy\Throwables\Handlers\ThrowableHandlerInterface;
@@ -142,10 +143,15 @@ class ActionDispatcher implements ActionDispatcherInterface
 				}
 			}
 
-			/** @var ActionInterface $action */
+			/**
+			 * @var ActionInterface $action
+			 */
 			if ( null === $actionClass )
 			{
 				$action = new NotFoundAction(
+				/**
+				 * @var NotFoundEntityInterface
+				 */
 					NotFoundEntity::fromArray(
 						[
 							'method' => $this->requestedMethod,
