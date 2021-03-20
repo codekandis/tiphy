@@ -16,7 +16,7 @@ class TemplateRenderer implements RendererInterface
 	 * Stores the template renderer configuration.
 	 * @var TemplateRendererConfigurationInterface
 	 */
-	private TemplateRendererConfigurationInterface $config;
+	private TemplateRendererConfigurationInterface $configuration;
 
 	/**
 	 * Stores the data to render.
@@ -38,14 +38,14 @@ class TemplateRenderer implements RendererInterface
 
 	/**
 	 * Constructor method.
-	 * @param TemplateRendererConfigurationInterface $config The template renderer configuration.
+	 * @param TemplateRendererConfigurationInterface $configuration The template renderer configuration.
 	 * @param mixed $data The data to render.
 	 * @param ?ErrorInformationInterface $errorInformation The error information of the response.
 	 * @param string $templatePath The path of the template.
 	 */
-	public function __construct( TemplateRendererConfigurationInterface $config, $data, ?ErrorInformationInterface $errorInformation, string $templatePath )
+	public function __construct( TemplateRendererConfigurationInterface $configuration, $data, ?ErrorInformationInterface $errorInformation, string $templatePath )
 	{
-		$this->config           = $config;
+		$this->configuration    = $configuration;
 		$this->data             = $data;
 		$this->errorInformation = $errorInformation;
 		$this->templatePath     = $templatePath;
@@ -57,7 +57,7 @@ class TemplateRenderer implements RendererInterface
 	public function render(): RenderedContentInterface
 	{
 		ob_start();
-		require $this->config->getTemplatesPath() . '/' . $this->templatePath;
+		require $this->configuration->getTemplatesPath() . '/' . $this->templatePath;
 		$content = ob_get_clean();
 
 		return new RenderedContent( $content );
