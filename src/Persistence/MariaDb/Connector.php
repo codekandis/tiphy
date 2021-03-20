@@ -79,7 +79,7 @@ class Connector implements ConnectorInterface
 	 * Stores the persistence configuration.
 	 * @var PersistenceConfigurationInterface
 	 */
-	private PersistenceConfigurationInterface $config;
+	private PersistenceConfigurationInterface $configuration;
 
 	/**
 	 * Stores the PDO connection.
@@ -94,14 +94,14 @@ class Connector implements ConnectorInterface
 
 	/**
 	 * Constructor method.
-	 * @param PersistenceConfigurationInterface $config The persistence configuration.
+	 * @param PersistenceConfigurationInterface $configuration The persistence configuration.
 	 * @param array $attributes The attributes of the underlying PDO connection.
 	 * @throws ConnectionFailedException The connection failed.
 	 */
-	public function __construct( PersistenceConfigurationInterface $config, array $attributes = [] )
+	public function __construct( PersistenceConfigurationInterface $configuration, array $attributes = [] )
 	{
-		$this->config     = $config;
-		$this->attributes = [] === $attributes
+		$this->configuration = $configuration;
+		$this->attributes    = [] === $attributes
 			? $this->attributes
 			: $attributes;
 
@@ -113,11 +113,11 @@ class Connector implements ConnectorInterface
 	 */
 	private function connect(): void
 	{
-		$driver     = $this->config->getDriver();
-		$host       = $this->config->getHost();
-		$database   = $this->config->getDatabase();
-		$user       = $this->config->getUser();
-		$passphrase = $this->config->getPassphrase();
+		$driver     = $this->configuration->getDriver();
+		$host       = $this->configuration->getHost();
+		$database   = $this->configuration->getDatabase();
+		$user       = $this->configuration->getUser();
+		$passphrase = $this->configuration->getPassphrase();
 		$dsn        = sprintf(
 			'%s:dbname=%s;host=%s;charset=utf8',
 			$driver,
