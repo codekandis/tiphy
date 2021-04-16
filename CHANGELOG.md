@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [keep a changelog][xtlink-keep-a-changelog]
 and this project adheres to [Semantic Versioning 2.0.0][xtlink-semantic-versioning].
 
+## [0.23.0] - 2021-04-16
+
+### Added
+
+* one way and two ways converter interfaces
+* entity property mappings to map between arrays and entities with optional converters
+
+### Changed
+
+* replaced entity class names with entity property mappers in database connectors
+
+[0.23.0]: https://github.com/codekandis/tiphy/compare/0.22.0..0.23.0
+
+---
 ## [0.22.0] - 2021-03-20
 
 ### Added
