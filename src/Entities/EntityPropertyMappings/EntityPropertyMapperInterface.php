@@ -24,15 +24,15 @@ interface EntityPropertyMapperInterface
 
 	/**
 	 * Maps an entity to an array.
-	 * @param EntityInterface $entity The entity to map.
+	 * @param EntityInterface $data The entity to map.
 	 * @return array The mapped array.
 	 * @throws EntityDoesNotMatchClassNameException The entity does not match the entity class name of the entity property mapper.
 	 */
-	public function mapToArray( EntityInterface $entity ): array;
+	public function mapToArray( EntityInterface $data ): array;
 
 	/**
-	 * Maps an entity to an array.
-	 * @param array $data The array data to map.
+	 * Maps an array to an object.
+	 * @param array $data The array to map.
 	 * @return EntityInterface The mapped entity.
 	 */
 	public function mapFromArray( array $data ): EntityInterface;
