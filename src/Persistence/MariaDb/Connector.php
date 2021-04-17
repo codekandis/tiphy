@@ -1,6 +1,7 @@
 <?php declare( strict_types = 1 );
 namespace CodeKandis\Tiphy\Persistence\MariaDb;
 
+use CodeKandis\Tiphy\Entities\EntityPropertyMappings\EntityPropertyMapperInterface;
 use CodeKandis\Tiphy\Persistence\PersistenceConfigurationInterface;
 use PDO;
 use PDOException;
@@ -187,19 +188,62 @@ class Connector implements ConnectorInterface
 	/**
 	 * Sets the fetch mode of a statement.
 	 * @param PDOStatement $statement The statement to set its fetch mode.
-	 * @param ?string $className The name of the class to convert the result rows into.
 	 * @throws SettingFetchModeFailedException The setting of the fetch mode failed.
 	 */
-	private function setFetchMode( PDOStatement $statement, ?string $className ): void
+	private function setFetchMode( PDOStatement $statement ): void
 	{
-		$successful = null === $className
-			? $statement->setFetchMode( PDO::FETCH_OBJ )
-			: $statement->setFetchMode( PDO::FETCH_CLASS, $className );
-
+		$successful = $statement->setFetchMode( PDO::FETCH_OBJ );
 		if ( false === $successful )
 		{
 			throw new FetchingResultFailedException( static::ERROR_SETTING_FETCHMODE_FAILED );
 		}
+	}
+
+	/**
+	 * Fetches the results of a statement.
+	 * @param PDOStatement $statement The statement to fetch its results.
+	 * @param ?EntityPropertyMapperInterface $entityPropertyMapper The entity property mapper to map the results to entities.
+	 * @return array The fetched results.
+	 */
+	private function fetchAll( PDOStatement $statement, ?EntityPropertyMapperInterface $entityPropertyMapper ): array
+	{
+		$fetchedResults = $statement->fetchAll();
+		if ( false === $fetchedResults )
+		{
+			throw new FetchingResultFailedException( static::ERROR_FETCHING_RESULT_FAILED );
+		}
+
+		if ( null === $entityPropertyMapper )
+		{
+			return $fetchedResults;
+		}
+
+		$mappedResults = [];
+		foreach ( $fetchedResults as $fetchedResult )
+		{
+			$mappedResults[] = $entityPropertyMapper->mapFromObject( $fetchedResult );
+		}
+
+		return $mappedResults;
+	}
+
+	/**
+	 * Fetches the first result of a statement.
+	 * @param PDOStatement $statement The statement to fetch its first result.
+	 * @param ?EntityPropertyMapperInterface $entityPropertyMapper The entity property mapper to map the result to an entity.
+	 * @return object The fetched result.
+	 */
+	private function fetchFirst( PDOStatement $statement, ?EntityPropertyMapperInterface $entityPropertyMapper ): object
+	{
+		$fetchedResult = $statement->fetch();
+		if ( false === $fetchedResult )
+		{
+			throw new FetchingResultFailedException( static::ERROR_FETCHING_RESULT_FAILED );
+		}
+
+		return null === $entityPropertyMapper
+			? $fetchedResult
+			: $entityPropertyMapper->mapFromObject( $fetchedResult );
 	}
 
 	/**
@@ -286,47 +330,35 @@ class Connector implements ConnectorInterface
 	/**
 	 * {@inheritDoc}
 	 */
-	public function query( string $statement, ?array $arguments = null, ?string $className = null ): array
+	public function query( string $statement, ?array $arguments = null, ?EntityPropertyMapperInterface $entityPropertyMapper = null ): array
 	{
 		$preparedStatement = $this->prepareStatement( $statement );
 		$this->executeStatement( $preparedStatement, $arguments );
-		$this->setFetchMode( $preparedStatement, $className );
+		$this->setFetchMode( $preparedStatement );
 
 		if ( 0 === $preparedStatement->rowCount() )
 		{
 			return [];
 		}
 
-		$results = $preparedStatement->fetchAll();
-		if ( false === $results )
-		{
-			throw new FetchingResultFailedException( static::ERROR_FETCHING_RESULT_FAILED );
-		}
-
-		return $results;
+		return $this->fetchAll( $preparedStatement, $entityPropertyMapper );
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public function queryFirst( string $statement, ?array $arguments = null, ?string $className = null ): ?object
+	public function queryFirst( string $statement, ?array $arguments = null, ?EntityPropertyMapperInterface $entityPropertyMapper = null ): ?object
 	{
 		$preparedStatement = $this->prepareStatement( $statement );
 		$this->executeStatement( $preparedStatement, $arguments );
-		$this->setFetchMode( $preparedStatement, $className );
+		$this->setFetchMode( $preparedStatement );
 
 		if ( 0 === $preparedStatement->rowCount() )
 		{
 			return null;
 		}
 
-		$result = $preparedStatement->fetch();
-		if ( false === $result )
-		{
-			throw new FetchingResultFailedException( static::ERROR_FETCHING_RESULT_FAILED );
-		}
-
-		return $result;
+		return $this->fetchFirst( $preparedStatement, $entityPropertyMapper );
 	}
 
 	/**

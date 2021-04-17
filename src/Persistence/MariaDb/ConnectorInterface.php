@@ -1,6 +1,8 @@
 <?php declare( strict_types = 1 );
 namespace CodeKandis\Tiphy\Persistence\MariaDb;
 
+use CodeKandis\Tiphy\Entities\EntityPropertyMappings\EntityPropertyMapperInterface;
+
 /**
  * Represents the interface of all MariaDb database connectors.
  * @package codekandis/tiphy
@@ -52,27 +54,27 @@ interface ConnectorInterface
 	 * Executes a statement and returns the statement result as a list of objects.
 	 * @param string $statement The statement to execute.
 	 * @param ?array $arguments The arguments of the statement.
-	 * @param ?string $className The name of the class to convert the result rows into.
+	 * @param ?EntityPropertyMapperInterface $entityPropertyMapper The entity property mapper to map the result rows into an entity.
 	 * @return object[] The list of statement result row objects.
 	 * @throws StatementPreparationFailedException The preparation of the statement failed.
 	 * @throws StatementExecutionFailedException The execution of the statement failed.
 	 * @throws SettingFetchModeFailedException The setting of the fetch mode of the statement failed.
-	 * @throws FetchingResultFailedException The fetching of the statment result failed.
+	 * @throws FetchingResultFailedException The fetching of the statement results failed.
 	 */
-	public function query( string $statement, ?array $arguments = null, ?string $className = null ): array;
+	public function query( string $statement, ?array $arguments = null, ?EntityPropertyMapperInterface $entityPropertyMapper = null ): array;
 
 	/**
 	 * Executes a statement and returns the first row of the statement result as an object.
 	 * @param string $statement The statement to execute.
 	 * @param ?array $arguments The arguments of the statement.
-	 * @param ?string $className The name of the class to convert the result row into.
+	 * @param ?EntityPropertyMapperInterface $entityPropertyMapper The entity property mapper to map the result rows into an entity.
 	 * @return ?object The first row of the statement result row as an object.
 	 * @throws StatementPreparationFailedException The preparation of the statement failed.
 	 * @throws StatementExecutionFailedException The execution of the statement failed.
 	 * @throws SettingFetchModeFailedException The setting of the fetch mode of the statement failed.
-	 * @throws FetchingResultFailedException The fetching of the statment result failed.
+	 * @throws FetchingResultFailedException The fetching of the statement result failed.
 	 */
-	public function queryFirst( string $statement, ?array $arguments = null, ?string $className = null ): ?object;
+	public function queryFirst( string $statement, ?array $arguments = null, ?EntityPropertyMapperInterface $entityPropertyMapper = null ): ?object;
 
 	/**
 	 * Gets the ID of the last inserted record.
