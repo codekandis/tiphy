@@ -5,6 +5,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [keep a changelog][xtlink-keep-a-changelog]
 and this project adheres to [Semantic Versioning 2.0.0][xtlink-semantic-versioning].
 
+## [0.24.1] - 2021-04-19
+
+### Added
+
+* missing methods `EntityInterface::toObject()` and `AbstractEntity::toObject()`
+
+### Changed
+
+* parameter and return types from `object` to `stdClass` in the interface `EntityInterface` and the class `AbstractEntity`
+* parameter and return types from `object` to `stdClass` in the interface `EntityPropertyMapperInterface` and the class `EntityPropertyMapper`
+* PHPDoc type hints in the interface ` ConnectorInterface` and the class `Connector`
+
+### Fixed
+
+* missing PHPDoc annotated exceptions
+
+[0.24.1]: https://github.com/codekandis/tiphy/compare/0.24.0..0.24.1
+
+---
 ## [0.24.0] - 2021-04-18
 
 ### Added
