@@ -108,6 +108,7 @@ class EntityPropertyMapper implements EntityPropertyMapperInterface
 
 	/**
 	 * {@inheritDoc}
+	 * @throws ReflectionException An error occurred during the creation of the entity.
 	 */
 	public function mapFromArray( array $data ): EntityInterface
 	{
@@ -136,7 +137,7 @@ class EntityPropertyMapper implements EntityPropertyMapperInterface
 	/**
 	 * {@inheritDoc}
 	 */
-	public function mapToObject( EntityInterface $data ): object
+	public function mapToObject( EntityInterface $data ): stdClass
 	{
 		if ( false === $data instanceof $this->entityClassName )
 		{
@@ -172,6 +173,7 @@ class EntityPropertyMapper implements EntityPropertyMapperInterface
 
 	/**
 	 * {@inheritDoc}
+	 * @throws ReflectionException An error occurred during the creation of the entity.
 	 */
 	public function mapFromObject( object $data ): EntityInterface
 	{
