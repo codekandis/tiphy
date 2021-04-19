@@ -4,6 +4,7 @@ namespace CodeKandis\Tiphy\Entities;
 use ReflectionClass;
 use ReflectionObject;
 use ReflectionProperty;
+use stdClass;
 
 /**
  * Represents the base class of all entities.
@@ -55,6 +56,24 @@ abstract class AbstractEntity implements EntityInterface
 		}
 
 		return $entity;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public function toObject(): stdClass
+	{
+		$transformedObject   = new stdClass();
+		$reflectedProperties = ( new ReflectionClass( static::class ) )
+			->getProperties( ReflectionProperty::IS_PUBLIC );
+		foreach ( $reflectedProperties as $reflectedProperty )
+		{
+			$reflectedPropertyName                     = $reflectedProperty->getName();
+			$reflectedPropertyValue                    = $reflectedProperty->getValue( $this );
+			$transformedObject->$reflectedPropertyName = $reflectedPropertyValue;
+		}
+
+		return $transformedObject;
 	}
 
 	/**

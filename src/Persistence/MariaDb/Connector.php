@@ -1,11 +1,13 @@
 <?php declare( strict_types = 1 );
 namespace CodeKandis\Tiphy\Persistence\MariaDb;
 
+use CodeKandis\Tiphy\Entities\EntityInterface;
 use CodeKandis\Tiphy\Entities\EntityPropertyMappings\EntityPropertyMapperInterface;
 use CodeKandis\Tiphy\Persistence\PersistenceConfigurationInterface;
 use PDO;
 use PDOException;
 use PDOStatement;
+use stdClass;
 use function count;
 use function sprintf;
 
@@ -203,7 +205,7 @@ class Connector implements ConnectorInterface
 	 * Fetches the results of a statement.
 	 * @param PDOStatement $statement The statement to fetch its results.
 	 * @param ?EntityPropertyMapperInterface $entityPropertyMapper The entity property mapper to map the results to entities.
-	 * @return array The fetched results.
+	 * @return stdClass[]|EntityInterface[] The fetched results.
 	 */
 	private function fetchAll( PDOStatement $statement, ?EntityPropertyMapperInterface $entityPropertyMapper ): array
 	{
@@ -231,7 +233,7 @@ class Connector implements ConnectorInterface
 	 * Fetches the first result of a statement.
 	 * @param PDOStatement $statement The statement to fetch its first result.
 	 * @param ?EntityPropertyMapperInterface $entityPropertyMapper The entity property mapper to map the result to an entity.
-	 * @return object The fetched result.
+	 * @return stdClass|EntityInterface The fetched result.
 	 */
 	private function fetchFirst( PDOStatement $statement, ?EntityPropertyMapperInterface $entityPropertyMapper ): object
 	{

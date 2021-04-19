@@ -3,6 +3,7 @@ namespace CodeKandis\Tiphy\Entities;
 
 use JsonSerializable;
 use ReflectionException;
+use stdClass;
 
 /**
  * Represents the interface of all entities.
@@ -25,6 +26,13 @@ interface EntityInterface extends JsonSerializable
 	 * @throws ReflectionException An error occurred during the creation of the entity.
 	 */
 	public static function fromArray( array $data ): EntityInterface;
+
+	/**
+	 * Converts the entity into an object.
+	 * @return stdClass The object representation of the entity.
+	 * @throws ReflectionException An error occurred during the conversion of the entity.
+	 */
+	public function toObject(): stdClass;
 
 	/**
 	 * Creates an entity from a data object.

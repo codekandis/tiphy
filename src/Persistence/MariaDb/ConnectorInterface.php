@@ -1,7 +1,9 @@
 <?php declare( strict_types = 1 );
 namespace CodeKandis\Tiphy\Persistence\MariaDb;
 
+use CodeKandis\Tiphy\Entities\EntityInterface;
 use CodeKandis\Tiphy\Entities\EntityPropertyMappings\EntityPropertyMapperInterface;
+use stdClass;
 
 /**
  * Represents the interface of all MariaDb database connectors.
@@ -55,7 +57,7 @@ interface ConnectorInterface
 	 * @param string $statement The statement to execute.
 	 * @param ?array $arguments The arguments of the statement.
 	 * @param ?EntityPropertyMapperInterface $entityPropertyMapper The entity property mapper to map the result rows into an entity.
-	 * @return object[] The list of statement result row objects.
+	 * @return stdClass[]|EntityInterface[] The list of statement result row objects.
 	 * @throws StatementPreparationFailedException The preparation of the statement failed.
 	 * @throws StatementExecutionFailedException The execution of the statement failed.
 	 * @throws SettingFetchModeFailedException The setting of the fetch mode of the statement failed.
@@ -68,7 +70,7 @@ interface ConnectorInterface
 	 * @param string $statement The statement to execute.
 	 * @param ?array $arguments The arguments of the statement.
 	 * @param ?EntityPropertyMapperInterface $entityPropertyMapper The entity property mapper to map the result rows into an entity.
-	 * @return ?object The first row of the statement result row as an object.
+	 * @return ?stdClass|?EntityInterface The first row of the statement result row as an object.
 	 * @throws StatementPreparationFailedException The preparation of the statement failed.
 	 * @throws StatementExecutionFailedException The execution of the statement failed.
 	 * @throws SettingFetchModeFailedException The setting of the fetch mode of the statement failed.

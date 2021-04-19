@@ -2,6 +2,7 @@
 namespace CodeKandis\Tiphy\Entities\EntityPropertyMappings;
 
 use CodeKandis\Tiphy\Entities\EntityInterface;
+use stdClass;
 
 /**
  * Represents the interface of all entity property mappers.
@@ -40,10 +41,10 @@ interface EntityPropertyMapperInterface
 	/**
 	 * Maps an entity to an object.
 	 * @param EntityInterface $data The entity to map.
-	 * @return object The mapped object.
+	 * @return stdClass The mapped object.
 	 * @throws EntityDoesNotMatchClassNameException The entity does not match the entity class name of the entity property mapper.
 	 */
-	public function mapToObject( EntityInterface $data ): object;
+	public function mapToObject( EntityInterface $data ): stdClass;
 
 	/**
 	 * Maps an object to an entity.
