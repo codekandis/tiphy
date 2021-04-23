@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [keep a changelog][xtlink-keep-a-changelog]
 and this project adheres to [Semantic Versioning 2.0.0][xtlink-semantic-versioning].
 
+## [0.27.0] - 2021-04-23
+
+### Added
+
+* mapped array validator
+
+### Fixed
+
+* PHPDoc
+
+[0.27.0]: https://github.com/codekandis/tiphy/compare/0.26.0..0.27.0
+
+---
 ## [0.26.0] - 2021-04-22
 
 ### Added
@@ -357,6 +370,7 @@ and this project adheres to [Semantic Versioning 2.0.0][xtlink-semantic-versioni
 * `README.md`
 
 [0.1.0]: https://github.com/codekandis/tiphy/tree/0.1.0
+
 
 
 [xtlink-keep-a-changelog]: http://keepachangelog.com/en/1.0.0/
