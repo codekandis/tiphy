@@ -4,6 +4,11 @@ namespace CodeKandis\Tiphy\Entities\EntityPropertyMappings;
 use function count;
 use function sprintf;
 
+/**
+ * Represents an entity property mapping lists.
+ * @package codekandis/tiphy
+ * @author Christian Ramelow <info@codekandis.net>
+ */
 class EntityPropertyMappings implements EntityPropertyMappingsInterface
 {
 	/**
@@ -17,6 +22,16 @@ class EntityPropertyMappings implements EntityPropertyMappingsInterface
 	 * @var EntityPropertyMappingInterface[]
 	 */
 	private array $entityPropertyMappings = [];
+
+	/**
+	 * Constructor method.
+	 * @param EntityPropertyMappingInterface ...$entityPropertyMappings The entity property mappings of the list.
+	 * @throws EntityPropertyMappingExistsException An entity property mapping with a specific property name already exists.
+	 */
+	public function __construct( EntityPropertyMappingInterface ...$entityPropertyMappings )
+	{
+		$this->add( $entityPropertyMappings );
+	}
 
 	/**
 	 * {@inheritDoc}
