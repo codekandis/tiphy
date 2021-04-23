@@ -25,7 +25,7 @@ class ArrayValidatorMappings implements ArrayValidatorMappingsInterface
 	 */
 	public function __construct( ArrayValidatorMappingInterface ...$arrayValidatorMappings )
 	{
-		$this->add( $arrayValidatorMappings );
+		$this->add( ...$arrayValidatorMappings );
 	}
 
 	/**
