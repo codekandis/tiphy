@@ -24,7 +24,7 @@ interface EntityPropertyMappingsInterface extends Countable
 	public function add( EntityPropertyMappingInterface... $entityPropertyMappings ): void;
 
 	/**
-	 * Gets a entity property mapping by its property name.
+	 * Gets an entity property mapping by its property name.
 	 * @param string $propertyName The property name.
 	 * @return ?EntityPropertyMappingInterface The entity mapping.
 	 */
