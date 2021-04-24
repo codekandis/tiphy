@@ -1,6 +1,8 @@
 <?php declare( strict_types = 1 );
 namespace CodeKandis\Tiphy\Validators\ArrayValidators;
 
+use function array_key_exists;
+
 /**
  * Represents an mapped array validator.
  * @package codekandis/tiphy
@@ -8,6 +10,12 @@ namespace CodeKandis\Tiphy\Validators\ArrayValidators;
  */
 class MappedArrayValidator implements MappedArrayValidatorInterface
 {
+	/**
+	 * Represents the error message if an array key does not exist.
+	 * @var string
+	 */
+	protected const ERROR_ARRAY_KEY_NOT_FOUND = 'The array key `%s` does not exist.';
+
 	/**
 	 * Gets the array validator mappings of the array.
 	 * @var ArrayValidatorMappingsInterface
@@ -36,22 +44,31 @@ class MappedArrayValidator implements MappedArrayValidatorInterface
 	 */
 	public function validate( $value ): bool
 	{
+		if ( false === is_array( $value ) )
+		{
+			return false;
+		}
+
 		$isValid = true;
 
-		foreach ( $value as $key => $arrayValue )
+		foreach ( $this->arrayValidatorMappings as $arrayValidatorMapping )
 		{
-			$arrayValidatorMapping = $this->arrayValidatorMappings->findByKey( $key );
-
-			if ( null === $arrayValidatorMapping )
+			$key = $arrayValidatorMapping->getKey();
+			if ( false === array_key_exists( $key, $value ) )
 			{
-				continue;
+				throw new ArrayKeyNotFoundException(
+					sprintf(
+						static::ERROR_ARRAY_KEY_NOT_FOUND,
+						$key
+					)
+				);
 			}
 
-			$isValid = $isValid && $arrayValidatorMapping->getValidator()->validate( $arrayValue );
+			$isValid = $isValid && $arrayValidatorMapping->getValidator()->validate( $value[ $key ] );
 
 			if ( false === $isValid )
 			{
-				break;
+				return false;
 			}
 		}
 
