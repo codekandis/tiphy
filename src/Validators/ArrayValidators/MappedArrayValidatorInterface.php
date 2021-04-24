@@ -11,6 +11,15 @@ use CodeKandis\Tiphy\Validators\ValidatorInterface;
 interface MappedArrayValidatorInterface extends ValidatorInterface
 {
 	/**
+	 * {@inheritDoc}
+	 * Validates the array.
+	 * @param mixed $value The array to validate.
+	 * @return bool True if the array is valid, false otherwise.
+	 * @throws ArrayKeyNotFoundException An array key does not exist.
+	 */
+	public function validate( $value ): bool;
+
+	/**
 	 * Gets the array validator mappings of the array.
 	 * @return ArrayValidatorMappingsInterface The array validator mappings of the array.
 	 */
