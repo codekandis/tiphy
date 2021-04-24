@@ -18,7 +18,7 @@ class EnumToArrayConverter implements OneWayConverterInterface
 	 * Represents the error message if an enum class does not exist.
 	 * @var string
 	 */
-	public const ERROR_ENUM_CLASS_DOES_NOT_EXIST = 'The enum class `%s` does not exist.';
+	protected const ERROR_ENUM_CLASS_NOT_FOUND = 'The enum class `%s` does not exist.';
 
 	/**
 	 * {@inheritDoc}
@@ -34,7 +34,7 @@ class EnumToArrayConverter implements OneWayConverterInterface
 		{
 			throw new EnumClassNotFoundException(
 				sprintf(
-					static::ERROR_ENUM_CLASS_DOES_NOT_EXIST,
+					self::ERROR_ENUM_CLASS_NOT_FOUND,
 					$value
 				)
 			);
