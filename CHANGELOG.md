@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [keep a changelog][xtlink-keep-a-changelog]
 and this project adheres to [Semantic Versioning 2.0.0][xtlink-semantic-versioning].
 
+## [0.28.1] - 2021-04-24
+
+### Fixed
+
+* throws exceptions while missing properties in entity property mappers
+* throws exceptions while missing array keys in mapped array validators
+
+[0.28.1]: https://github.com/codekandis/tiphy/compare/0.28.0..0.28.1
+
+---
 ## [0.28.0] - 2021-04-24
 
 ### Added
