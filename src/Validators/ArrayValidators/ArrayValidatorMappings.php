@@ -2,6 +2,10 @@
 namespace CodeKandis\Tiphy\Validators\ArrayValidators;
 
 use function count;
+use function current;
+use function key;
+use function next;
+use function reset;
 use function sprintf;
 
 class ArrayValidatorMappings implements ArrayValidatorMappingsInterface
@@ -25,7 +29,7 @@ class ArrayValidatorMappings implements ArrayValidatorMappingsInterface
 	 */
 	public function __construct( ArrayValidatorMappingInterface ...$arrayValidatorMappings )
 	{
-		$this->add( $arrayValidatorMappings );
+		$this->add( ...$arrayValidatorMappings );
 	}
 
 	/**
@@ -34,6 +38,46 @@ class ArrayValidatorMappings implements ArrayValidatorMappingsInterface
 	public function count(): int
 	{
 		return count( $this->arrayValidatorMappings );
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public function current()
+	{
+		return current( $this->arrayValidatorMappings );
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public function key()
+	{
+		return key( $this->arrayValidatorMappings );
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public function next(): void
+	{
+		next( $this->arrayValidatorMappings );
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public function rewind(): void
+	{
+		reset( $this->arrayValidatorMappings );
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public function valid(): bool
+	{
+		return null !== $this->key();
 	}
 
 	/**

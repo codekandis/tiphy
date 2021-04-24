@@ -76,7 +76,7 @@ class Connector implements ConnectorInterface
 	 * Represents the error message if the retrieval of the last inserted ID failed.
 	 * @var string
 	 */
-	public const ERROR_RETRIEVING_LAST_INSERTED_ID_FAILED = 'The retrieval of the last inserted ID failed.';
+	protected const ERROR_RETRIEVING_LAST_INSERTED_ID_FAILED = 'The retrieval of the last inserted ID failed.';
 
 	/**
 	 * Stores the persistence configuration.

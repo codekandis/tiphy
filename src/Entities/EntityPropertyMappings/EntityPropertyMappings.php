@@ -2,6 +2,10 @@
 namespace CodeKandis\Tiphy\Entities\EntityPropertyMappings;
 
 use function count;
+use function current;
+use function key;
+use function next;
+use function reset;
 use function sprintf;
 
 /**
@@ -30,7 +34,7 @@ class EntityPropertyMappings implements EntityPropertyMappingsInterface
 	 */
 	public function __construct( EntityPropertyMappingInterface ...$entityPropertyMappings )
 	{
-		$this->add( $entityPropertyMappings );
+		$this->add( ...$entityPropertyMappings );
 	}
 
 	/**
@@ -39,6 +43,46 @@ class EntityPropertyMappings implements EntityPropertyMappingsInterface
 	public function count(): int
 	{
 		return count( $this->entityPropertyMappings );
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public function current()
+	{
+		return current( $this->entityPropertyMappings );
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public function key()
+	{
+		return key( $this->entityPropertyMappings );
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public function next(): void
+	{
+		next( $this->entityPropertyMappings );
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public function rewind(): void
+	{
+		reset( $this->entityPropertyMappings );
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public function valid(): bool
+	{
+		return null !== $this->key();
 	}
 
 	/**
