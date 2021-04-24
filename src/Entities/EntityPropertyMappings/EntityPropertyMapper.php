@@ -4,8 +4,8 @@ namespace CodeKandis\Tiphy\Entities\EntityPropertyMappings;
 use CodeKandis\Tiphy\Entities\EntityInterface;
 use ReflectionClass;
 use ReflectionException;
-use ReflectionProperty;
 use stdClass;
+use function array_key_exists;
 use function sprintf;
 
 /**
@@ -20,6 +20,12 @@ class EntityPropertyMapper implements EntityPropertyMapperInterface
 	 * @var string
 	 */
 	protected const ERROR_ENTITY_DOES_NOT_MATCH_CLASS_NAME = 'The entity does not match the class name \'%s\'.';
+
+	/**
+	 * Represents the error message if a public property does not exist in the entity class.
+	 * @var string
+	 */
+	protected const ERROR_PUBLIC_PROPERTY_NOT_FOUND = 'The public property `%s` does not exist in the entity class.';
 
 	/**
 	 * Gets the class name of the entity.
@@ -84,15 +90,33 @@ class EntityPropertyMapper implements EntityPropertyMapperInterface
 			);
 		}
 
-		$reflectedProperties = $this->reflectedEntityClass->getProperties( ReflectionProperty::IS_PUBLIC );
-		$mappedArray         = [];
-		foreach ( $reflectedProperties as $reflectedProperty )
+		$mappedArray = [];
+
+		foreach ( $this->entityPropertyMappings as $entityPropertyMapping )
 		{
-			$propertyName          = $reflectedProperty->getName();
-			$entityPropertyMapping = $this->entityPropertyMappings->findByPropertyName( $propertyName );
-			if ( null === $entityPropertyMapping )
+			$propertyName = $entityPropertyMapping->getPropertyName();
+
+			try
 			{
-				continue;
+				$reflectedProperty = $this->reflectedEntityClass->getProperty( $propertyName );
+				if ( true === $reflectedProperty->isStatic() || false === $reflectedProperty->isPublic() )
+				{
+					throw new PublicPropertyNotFoundException(
+						sprintf(
+							static::ERROR_PUBLIC_PROPERTY_NOT_FOUND,
+							$propertyName
+						)
+					);
+				}
+			}
+			catch ( ReflectionException $exception )
+			{
+				throw new PublicPropertyNotFoundException(
+					sprintf(
+						static::ERROR_PUBLIC_PROPERTY_NOT_FOUND,
+						$propertyName
+					)
+				);
 			}
 
 			$propertyValue                = $reflectedProperty->getValue( $data );
@@ -112,13 +136,36 @@ class EntityPropertyMapper implements EntityPropertyMapperInterface
 	 */
 	public function mapFromArray( array $data ): EntityInterface
 	{
-		$reflectedProperties = $this->reflectedEntityClass->getProperties( ReflectionProperty::IS_PUBLIC );
-		$mappedArray         = [];
-		foreach ( $reflectedProperties as $reflectedProperty )
+		$mappedArray = [];
+
+		foreach ( $this->entityPropertyMappings as $entityPropertyMapping )
 		{
-			$propertyName          = $reflectedProperty->getName();
-			$entityPropertyMapping = $this->entityPropertyMappings->findByPropertyName( $propertyName );
-			if ( null === $entityPropertyMapping )
+			$propertyName = $entityPropertyMapping->getPropertyName();
+
+			try
+			{
+				$reflectedProperty = $this->reflectedEntityClass->getProperty( $propertyName );
+				if ( true === $reflectedProperty->isStatic() || false === $reflectedProperty->isPublic() )
+				{
+					throw new PublicPropertyNotFoundException(
+						sprintf(
+							static::ERROR_PUBLIC_PROPERTY_NOT_FOUND,
+							$propertyName
+						)
+					);
+				}
+			}
+			catch ( ReflectionException $exception )
+			{
+				throw new PublicPropertyNotFoundException(
+					sprintf(
+						static::ERROR_PUBLIC_PROPERTY_NOT_FOUND,
+						$propertyName
+					)
+				);
+			}
+
+			if ( false === array_key_exists( $propertyName, $data ) )
 			{
 				continue;
 			}
@@ -149,15 +196,33 @@ class EntityPropertyMapper implements EntityPropertyMapperInterface
 			);
 		}
 
-		$reflectedProperties = $this->reflectedEntityClass->getProperties( ReflectionProperty::IS_PUBLIC );
-		$mappedObject        = new stdClass();
-		foreach ( $reflectedProperties as $reflectedProperty )
+		$mappedObject = new stdClass();
+
+		foreach ( $this->entityPropertyMappings as $entityPropertyMapping )
 		{
-			$propertyName          = $reflectedProperty->getName();
-			$entityPropertyMapping = $this->entityPropertyMappings->findByPropertyName( $propertyName );
-			if ( null === $entityPropertyMapping )
+			$propertyName = $entityPropertyMapping->getPropertyName();
+
+			try
 			{
-				continue;
+				$reflectedProperty = $this->reflectedEntityClass->getProperty( $propertyName );
+				if ( true === $reflectedProperty->isStatic() || false === $reflectedProperty->isPublic() )
+				{
+					throw new PublicPropertyNotFoundException(
+						sprintf(
+							static::ERROR_PUBLIC_PROPERTY_NOT_FOUND,
+							$propertyName
+						)
+					);
+				}
+			}
+			catch ( ReflectionException $exception )
+			{
+				throw new PublicPropertyNotFoundException(
+					sprintf(
+						static::ERROR_PUBLIC_PROPERTY_NOT_FOUND,
+						$propertyName
+					)
+				);
 			}
 
 			$propertyValue               = $reflectedProperty->getValue( $data );
@@ -177,13 +242,44 @@ class EntityPropertyMapper implements EntityPropertyMapperInterface
 	 */
 	public function mapFromObject( object $data ): EntityInterface
 	{
-		$reflectedProperties = $this->reflectedEntityClass->getProperties( ReflectionProperty::IS_PUBLIC );
-		$mappedObject        = new stdClass();
-		foreach ( $reflectedProperties as $reflectedProperty )
+		$mappedObject = new stdClass();
+
+		foreach ( $this->entityPropertyMappings as $entityPropertyMapping )
 		{
-			$propertyName          = $reflectedProperty->getName();
-			$entityPropertyMapping = $this->entityPropertyMappings->findByPropertyName( $propertyName );
-			if ( null === $entityPropertyMapping )
+			$propertyName = $entityPropertyMapping->getPropertyName();
+
+			try
+			{
+				$reflectedProperty = $this->reflectedEntityClass->getProperty( $propertyName );
+				if ( true === $reflectedProperty->isStatic() || false === $reflectedProperty->isPublic() )
+				{
+					throw new PublicPropertyNotFoundException(
+						sprintf(
+							static::ERROR_PUBLIC_PROPERTY_NOT_FOUND,
+							$propertyName
+						)
+					);
+				}
+			}
+			catch ( ReflectionException $exception )
+			{
+				throw new PublicPropertyNotFoundException(
+					sprintf(
+						static::ERROR_PUBLIC_PROPERTY_NOT_FOUND,
+						$propertyName
+					)
+				);
+			}
+
+			try
+			{
+				$reflectedDataProperty = ( new ReflectionClass( $data ) )->getProperty( $propertyName );
+				if ( true === $reflectedDataProperty->isStatic() || false === $reflectedDataProperty->isPublic() )
+				{
+					continue;
+				}
+			}
+			catch ( ReflectionException $exception )
 			{
 				continue;
 			}
