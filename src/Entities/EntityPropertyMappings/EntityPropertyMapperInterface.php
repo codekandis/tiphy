@@ -28,6 +28,7 @@ interface EntityPropertyMapperInterface
 	 * @param EntityInterface $data The entity to map.
 	 * @return array The mapped array.
 	 * @throws EntityDoesNotMatchClassNameException The entity does not match the entity class name of the entity property mapper.
+	 * @throws PublicPropertyNotFoundException A public property does not exist in the entity class.
 	 */
 	public function mapToArray( EntityInterface $data ): array;
 
@@ -35,6 +36,7 @@ interface EntityPropertyMapperInterface
 	 * Maps an array to an object.
 	 * @param array $data The array to map.
 	 * @return EntityInterface The mapped entity.
+	 * @throws PublicPropertyNotFoundException A public property does not exist in the entity class.
 	 */
 	public function mapFromArray( array $data ): EntityInterface;
 
@@ -43,6 +45,7 @@ interface EntityPropertyMapperInterface
 	 * @param EntityInterface $data The entity to map.
 	 * @return stdClass The mapped object.
 	 * @throws EntityDoesNotMatchClassNameException The entity does not match the entity class name of the entity property mapper.
+	 * @throws PublicPropertyNotFoundException A public property does not exist in the entity class.
 	 */
 	public function mapToObject( EntityInterface $data ): stdClass;
 
@@ -50,6 +53,7 @@ interface EntityPropertyMapperInterface
 	 * Maps an object to an entity.
 	 * @param object $data The object to map.
 	 * @return EntityInterface The mapped entity.
+	 * @throws PublicPropertyNotFoundException A public property does not exist in the entity class.
 	 */
 	public function mapFromObject( object $data ): EntityInterface;
 }
