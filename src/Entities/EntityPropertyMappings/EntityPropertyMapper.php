@@ -4,6 +4,7 @@ namespace CodeKandis\Tiphy\Entities\EntityPropertyMappings;
 use CodeKandis\Tiphy\Entities\EntityInterface;
 use ReflectionClass;
 use ReflectionException;
+use ReflectionObject;
 use stdClass;
 use function array_key_exists;
 use function sprintf;
@@ -91,7 +92,6 @@ class EntityPropertyMapper implements EntityPropertyMapperInterface
 		}
 
 		$mappedArray = [];
-
 		foreach ( $this->entityPropertyMappings as $entityPropertyMapping )
 		{
 			$propertyName = $entityPropertyMapping->getPropertyName();
@@ -137,7 +137,6 @@ class EntityPropertyMapper implements EntityPropertyMapperInterface
 	public function mapFromArray( array $data ): EntityInterface
 	{
 		$mappedArray = [];
-
 		foreach ( $this->entityPropertyMappings as $entityPropertyMapping )
 		{
 			$propertyName = $entityPropertyMapping->getPropertyName();
@@ -197,7 +196,6 @@ class EntityPropertyMapper implements EntityPropertyMapperInterface
 		}
 
 		$mappedObject = new stdClass();
-
 		foreach ( $this->entityPropertyMappings as $entityPropertyMapping )
 		{
 			$propertyName = $entityPropertyMapping->getPropertyName();
@@ -242,8 +240,9 @@ class EntityPropertyMapper implements EntityPropertyMapperInterface
 	 */
 	public function mapFromObject( object $data ): EntityInterface
 	{
-		$mappedObject = new stdClass();
+		$reflectedDataObject = new ReflectionObject( $data );
 
+		$mappedObject = new stdClass();
 		foreach ( $this->entityPropertyMappings as $entityPropertyMapping )
 		{
 			$propertyName = $entityPropertyMapping->getPropertyName();
@@ -273,7 +272,7 @@ class EntityPropertyMapper implements EntityPropertyMapperInterface
 
 			try
 			{
-				$reflectedDataProperty = ( new ReflectionClass( $data ) )->getProperty( $propertyName );
+				$reflectedDataProperty = $reflectedDataObject->getProperty( $propertyName );
 				if ( true === $reflectedDataProperty->isStatic() || false === $reflectedDataProperty->isPublic() )
 				{
 					continue;
