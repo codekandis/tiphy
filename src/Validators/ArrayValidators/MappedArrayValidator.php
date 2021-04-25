@@ -53,19 +53,8 @@ class MappedArrayValidator implements MappedArrayValidatorInterface
 
 		foreach ( $this->arrayValidatorMappings as $arrayValidatorMapping )
 		{
-			$key = $arrayValidatorMapping->getKey();
-			if ( false === array_key_exists( $key, $value ) )
-			{
-				throw new ArrayKeyNotFoundException(
-					sprintf(
-						static::ERROR_ARRAY_KEY_NOT_FOUND,
-						$key
-					)
-				);
-			}
-
-			$isValid = $isValid && $arrayValidatorMapping->getValidator()->validate( $value[ $key ] );
-
+			$key     = $arrayValidatorMapping->getKey();
+			$isValid = $isValid && array_key_exists( $key, $value ) && $arrayValidatorMapping->getValidator()->validate( $value[ $key ] );
 			if ( false === $isValid )
 			{
 				return false;

@@ -15,7 +15,6 @@ interface MappedArrayValidatorInterface extends ValidatorInterface
 	 * Validates the array.
 	 * @param mixed $value The array to validate.
 	 * @return bool True if the array is valid, false otherwise.
-	 * @throws ArrayKeyNotFoundException An array key does not exist.
 	 */
 	public function validate( $value ): bool;
 
