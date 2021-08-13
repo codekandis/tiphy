@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [keep a changelog][xtlink-keep-a-changelog]
 and this project adheres to [Semantic Versioning 2.0.0][xtlink-semantic-versioning].
 
+## [0.29.0] - 2021-08-13
+
+### Changed
+
+* composer package dependencies
+  * added
+    * `codekandis/regular-expressions` [^0]
+* replaced regex functions with library implementations
+
+[0.29.0]: https://github.com/codekandis/tiphy/compare/0.28.3..0.29.0
+
+---
 ## [0.28.3] - 2021-04-25
 
 ### Removed
