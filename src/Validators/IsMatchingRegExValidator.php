@@ -1,8 +1,8 @@
 <?php declare( strict_types = 1 );
 namespace CodeKandis\Tiphy\Validators;
 
+use CodeKandis\RegularExpressions\RegularExpression;
 use function is_string;
-use function preg_match;
 
 /**
  * Represents a validator validating if a value is matching a regular expression.
@@ -31,6 +31,8 @@ class IsMatchingRegExValidator implements ValidatorInterface
 	 */
 	public function validate( $value ): bool
 	{
-		return is_string( $value ) && 1 === preg_match( $this->pattern, $value );
+		return is_string( $value )
+			   && null !== ( new RegularExpression( $this->pattern ) )
+				->match( $value, false );
 	}
 }

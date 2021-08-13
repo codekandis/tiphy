@@ -1,6 +1,7 @@
 <?php declare( strict_types = 1 );
 namespace CodeKandis\Tiphy\Actions;
 
+use CodeKandis\RegularExpressions\RegularExpression;
 use CodeKandis\Tiphy\Actions\PreDispatchment\PreDispatcherInterface;
 use CodeKandis\Tiphy\Actions\PreDispatchment\PreDispatchmentState;
 use CodeKandis\Tiphy\Entities\NotFoundEntity;
@@ -10,7 +11,7 @@ use CodeKandis\Tiphy\Http\RoutesConfigurationInterface;
 use CodeKandis\Tiphy\Throwables\Handlers\ThrowableHandlerInterface;
 use Throwable;
 use function is_string;
-use function preg_match;
+use function sprintf;
 use function strpos;
 use function substr;
 use function urldecode;
@@ -124,9 +125,15 @@ class ActionDispatcher implements ActionDispatcherInterface
 			$actionArguments = [];
 			foreach ( $this->routesConfiguration->getRoutes() as $configuredRoute => $configuredMethods )
 			{
-				$matches    = [];
-				$isMatching = preg_match( '~^' . $baseRoute . $configuredRoute . '$~', $this->requestedRoute, $matches );
-				if ( 1 === $isMatching )
+				$matches = ( new RegularExpression(
+					sprintf(
+						'~^%s%s$~',
+						$baseRoute,
+						$configuredRoute
+					)
+				) )
+					->match( $this->requestedRoute, false );
+				if ( null !== $matches )
 				{
 					$actionClass = MethodNotAllowedAction::class;
 					foreach ( $configuredMethods as $configuredMethod => $configuredAction )
