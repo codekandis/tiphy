@@ -5,6 +5,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [keep a changelog][xtlink-keep-a-changelog]
 and this project adheres to [Semantic Versioning 2.0.0][xtlink-semantic-versioning].
 
+## [0.30.0] - 2021-08-29
+
+### Added
+
+* new two-ways converters
+
+### Changed
+
+* PHPDoc of existing two-ways converters
+
+### Fixed
+
+* inheritance of entities
+
+[0.30.0]: https://github.com/codekandis/tiphy/compare/0.29.0..0.30.0
+
+---
 ## [0.29.0] - 2021-08-13
 
 ### Changed
