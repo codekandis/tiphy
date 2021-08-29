@@ -6,7 +6,7 @@ namespace CodeKandis\Tiphy\Entities;
  * @package codekandis/tiphy
  * @author Christian Ramelow <info@codekandis.net>
  */
-interface NotFoundEntityInterface
+interface NotFoundEntityInterface extends EntityInterface
 {
 	/**
 	 * Gets the method of the request.
