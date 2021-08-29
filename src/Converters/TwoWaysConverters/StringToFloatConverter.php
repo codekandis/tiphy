@@ -4,29 +4,29 @@ namespace CodeKandis\Tiphy\Converters\TwoWaysConverters;
 use CodeKandis\Tiphy\Converters\TwoWaysConverterInterface;
 
 /**
- * Represents a two ways converter converting between string and bool.
+ * Represents a two ways converter converting between string and float.
  * @package codekandis/tiphy
  * @author Christian Ramelow <info@codekandis.net>
  */
-class StringToBoolConverter implements TwoWaysConverterInterface
+class StringToFloatConverter implements TwoWaysConverterInterface
 {
 	/**
-	 * Converts from a string into a bool value.
+	 * Converts from a string into a float value.
 	 * @param string $value The string value which has to be converted.
-	 * @return bool The converted bool value.
+	 * @return float The converted float value.
 	 */
 	public function convertTo( $value )
 	{
-		return '0' === $value ? false : true;
+		return (float) $value;
 	}
 
 	/**
-	 * Converts from a bool into a string value.
-	 * @param bool $value The bool value which has to be converted.
+	 * Converts from a float into a string value.
+	 * @param float $value The float value which has to be converted.
 	 * @return string The converted string value.
 	 */
 	public function convertFrom( $value )
 	{
-		return false === $value ? '0' : '1';
+		return (float) $value;
 	}
 }
