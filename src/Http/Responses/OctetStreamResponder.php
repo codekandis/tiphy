@@ -8,6 +8,7 @@ use function fread;
 use function fseek;
 use function fstat;
 use function sprintf;
+use function strlen;
 
 /**
  * Represents an octet stream HTTP responder.
@@ -26,13 +27,13 @@ class OctetStreamResponder extends AbstractResponder implements OctetStreamRespo
 	 * Stores the file name of the octet stream.
 	 * @var string
 	 */
-	private string $fileName;
+	private string $fileName = '';
 
 	/**
 	 * Stores the range of the octet stream.
-	 * @var Range
+	 * @var ?Range
 	 */
-	private Range $range;
+	private ?Range $range = null;
 
 	/**
 	 * Sets the file name of the octet stream.
@@ -45,9 +46,9 @@ class OctetStreamResponder extends AbstractResponder implements OctetStreamRespo
 
 	/**
 	 * Sets the range of the octet stream.
-	 * @param Range $range The range of the octet stream.
+	 * @param ?Range $range The range of the octet stream.
 	 */
-	public function setRange( Range $range ): void
+	public function setRange( ?Range $range ): void
 	{
 		$this->range = $range;
 	}
@@ -203,7 +204,14 @@ class OctetStreamResponder extends AbstractResponder implements OctetStreamRespo
 
 		$this->addHeader( Headers::CACHE_CONTROL, 'no-store, no-cache, must-revalidate' );
 		$this->addHeader( Headers::CONTENT_TYPE, ContentTypes::APPLICATION_OCTET_STREAM );
-		$this->addHeader( Headers::CONTENT_DISPOSITION, 'attachment; filename="' . $this->fileName . '"' );
+		if ( 0 === strlen( $this->fileName ) )
+		{
+			$this->addHeader( Headers::CONTENT_DISPOSITION, 'attachment' );
+		}
+		else
+		{
+			$this->addHeader( Headers::CONTENT_DISPOSITION, 'attachment; filename="' . $this->fileName . '"' );
+		}
 
 		if ( null === $this->range )
 		{

@@ -18,7 +18,7 @@ interface OctetStreamResponderInterface extends ResponderInterface
 
 	/**
 	 * Sets the range of the octet stream.
-	 * @param Range $range The range of the octet stream.
+	 * @param ?Range $range The range of the octet stream.
 	 */
-	public function setRange( Range $range ): void;
+	public function setRange( ?Range $range ): void;
 }
