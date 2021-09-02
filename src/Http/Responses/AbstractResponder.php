@@ -35,7 +35,7 @@ abstract class AbstractResponder implements ResponderInterface
 	 * Stores the headers of the response.
 	 * @var string[]
 	 */
-	private $headers = [];
+	private array $headers = [];
 
 	/**
 	 * Constructor method.
