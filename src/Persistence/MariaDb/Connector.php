@@ -19,10 +19,10 @@ use function sprintf;
 class Connector implements ConnectorInterface
 {
 	/**
-	 * Represents the error message if a connection failed.
+	 * Represents the error message if a database connection failed.
 	 * @var string
 	 */
-	protected const ERROR_CONNECTION_FAILED = 'The connection failed.';
+	protected const ERROR_CONNECTION_FAILED = 'The database connection failed.';
 
 	/**
 	 * Represents the error message if a transaction failed to start.
