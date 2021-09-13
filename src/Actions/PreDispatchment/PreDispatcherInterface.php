@@ -10,7 +10,8 @@ interface PreDispatcherInterface
 {
 	/**
 	 * Executes the pre-dispatcher.
+	 * @param string The requested URI of the client.
 	 * @param PreDispatchmentStateInterface $dispatchmentState The dispatchment state.
 	 */
-	public function preDispatch( PreDispatchmentStateInterface $dispatchmentState ): void;
+	public function preDispatch( string $requestedUri, PreDispatchmentStateInterface $dispatchmentState ): void;
 }

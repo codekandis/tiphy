@@ -48,6 +48,12 @@ class ActionDispatcher implements ActionDispatcherInterface
 	private string $requestedMethod;
 
 	/**
+	 * Stores the requested URI.
+	 * @var string
+	 */
+	private string $requestedUri;
+
+	/**
 	 * Stores the requested route.
 	 * @var string
 	 */
@@ -65,6 +71,7 @@ class ActionDispatcher implements ActionDispatcherInterface
 		$this->preDispatcher       = $preDispatcher;
 		$this->throwableHandler    = $throwableHandler;
 		$this->requestedMethod     = $_SERVER[ 'REQUEST_METHOD' ];
+		$this->requestedUri        = $_SERVER[ 'REQUEST_URI' ];
 		$this->requestedRoute      = $this->getParsedRequestRoute();
 	}
 
@@ -74,12 +81,11 @@ class ActionDispatcher implements ActionDispatcherInterface
 	 */
 	private function getParsedRequestRoute(): string
 	{
-		$requestUri                      = $_SERVER[ 'REQUEST_URI' ];
-		$queryArgumentsDelimiterPosition = strpos( $requestUri, '?' );
+		$queryArgumentsDelimiterPosition = strpos( $this->requestedUri, '?' );
 
 		return false === $queryArgumentsDelimiterPosition
-			? $requestUri
-			: substr( $requestUri, 0, $queryArgumentsDelimiterPosition );
+			? $this->requestedUri
+			: substr( $this->requestedUri, 0, $queryArgumentsDelimiterPosition );
 	}
 
 	/**
@@ -112,7 +118,7 @@ class ActionDispatcher implements ActionDispatcherInterface
 			if ( null !== $this->preDispatcher )
 			{
 				$preDispatchmentState = new PreDispatchmentState();
-				$this->preDispatcher->preDispatch( $preDispatchmentState );
+				$this->preDispatcher->preDispatch( $this->requestedUri, $preDispatchmentState );
 				if ( true === $preDispatchmentState->getPreventDispatchment() )
 				{
 					return;
@@ -169,7 +175,7 @@ class ActionDispatcher implements ActionDispatcherInterface
 			}
 			else
 			{
-				$action = new $actionClass( $requestBody, $actionArguments );
+				$action = new $actionClass( $this->requestedRoute, $requestBody, $actionArguments );
 			}
 			$action->execute();
 		}
