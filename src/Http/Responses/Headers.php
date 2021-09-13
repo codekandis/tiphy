@@ -49,4 +49,10 @@ abstract class Headers
 	 * @var string
 	 */
 	public const CONTENT_TYPE = 'Content-Type';
+
+	/**
+	 * Represents the HTTP `Location` header.
+	 * @var string
+	 */
+	public const LOCATION = 'Location';
 }

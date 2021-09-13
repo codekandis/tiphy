@@ -3,6 +3,7 @@ namespace CodeKandis\Tiphy\Http\Responses;
 
 use CodeKandis\Tiphy\Throwables\ErrorInformationInterface;
 use function header;
+use function header_remove;
 use function http_response_code;
 use function sprintf;
 
@@ -32,10 +33,16 @@ abstract class AbstractResponder implements ResponderInterface
 	protected $data;
 
 	/**
-	 * Stores the headers of the response.
+	 * Stores the removable headers of the response.
 	 * @var string[]
 	 */
-	private array $headers = [];
+	private array $removableHeaders = [];
+
+	/**
+	 * Stores the addable headers of the response.
+	 * @var string[]
+	 */
+	private array $addableHeaders = [];
 
 	/**
 	 * Constructor method.
@@ -67,13 +74,22 @@ abstract class AbstractResponder implements ResponderInterface
 	}
 
 	/**
+	 * Removes a response header.
+	 * @param string $name The name of the response header.
+	 */
+	public function removeHeader( string $name ): void
+	{
+		$this->removableHeaders[] = $name;
+	}
+
+	/**
 	 * Adds a response header.
 	 * @param string $name The name of the response header.
 	 * @param string $value The value of the response header.
 	 */
 	public function addHeader( string $name, string $value ): void
 	{
-		$this->headers[ $name ] = $value;
+		$this->addableHeaders[ $name ] = $value;
 	}
 
 	/**
@@ -89,7 +105,11 @@ abstract class AbstractResponder implements ResponderInterface
 	 */
 	protected function sendHeaders(): void
 	{
-		foreach ( $this->headers as $headerName => $headerValue )
+		foreach ( $this->removableHeaders as $headerName )
+		{
+			header_remove( $headerName );
+		}
+		foreach ( $this->addableHeaders as $headerName => $headerValue )
 		{
 			$header = sprintf(
 				'%s: %s',
