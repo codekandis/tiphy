@@ -11,6 +11,12 @@ use CodeKandis\Tiphy\Http\Requests\JsonBodyInterface;
 abstract class AbstractAction implements ActionInterface
 {
 	/**
+	 * Stores the requested route.
+	 * @var string
+	 */
+	protected string $requestedRoute;
+
+	/**
 	 * Stores the request body.
 	 * @var JsonBodyInterface
 	 */
@@ -24,12 +30,14 @@ abstract class AbstractAction implements ActionInterface
 
 	/**
 	 * Constructor method.
+	 * @param string $requestedRoute The requested route.
 	 * @param JsonBodyInterface $requestBody The request body.
 	 * @param array $arguments The arguments of the request.
 	 */
-	public function __construct( JsonBodyInterface $requestBody, array $arguments )
+	public function __construct( string $requestedRoute, JsonBodyInterface $requestBody, array $arguments )
 	{
-		$this->requestBody = $requestBody;
-		$this->arguments   = $arguments;
+		$this->requestedRoute = $requestedRoute;
+		$this->requestBody    = $requestBody;
+		$this->arguments      = $arguments;
 	}
 }
