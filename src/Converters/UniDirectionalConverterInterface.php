@@ -2,11 +2,11 @@
 namespace CodeKandis\Tiphy\Converters;
 
 /**
- * Represents the interface of all one-way converters.
+ * Represents the interface of any uni-directional converters.
  * @package codekandis/tiphy
  * @author Christian Ramelow <info@codekandis.net>
  */
-interface OneWayConverterInterface
+interface UniDirectionalConverterInterface
 {
 	/**
 	 * Converts a value.

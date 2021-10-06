@@ -1,8 +1,8 @@
 <?php declare( strict_types = 1 );
 namespace CodeKandis\Tiphy\Validators;
 
-use CodeKandis\Tiphy\Converters\OneWayConverters\EnumClassNotFoundException;
-use CodeKandis\Tiphy\Converters\OneWayConverters\EnumToArrayConverter;
+use CodeKandis\Tiphy\Converters\UniDirectionalConverters\EnumClassNotFoundException;
+use CodeKandis\Tiphy\Converters\UniDirectionalConverters\EnumToArrayUniDirectionalConverter;
 use function in_array;
 
 /**
@@ -14,7 +14,7 @@ class IsInEnumValidator implements ValidatorInterface
 {
 	/**
 	 * Stores the values of the enum.
-	 * @var mixed[]
+	 * @var array
 	 */
 	private array $enumValues;
 
@@ -25,7 +25,7 @@ class IsInEnumValidator implements ValidatorInterface
 	 */
 	public function __construct( string $enumClassName )
 	{
-		$this->enumValues = ( new EnumToArrayConverter() )
+		$this->enumValues = ( new EnumToArrayUniDirectionalConverter() )
 			->convert( $enumClassName );
 	}
 

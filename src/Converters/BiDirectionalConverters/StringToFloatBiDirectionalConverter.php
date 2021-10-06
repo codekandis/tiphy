@@ -1,14 +1,14 @@
 <?php declare( strict_types = 1 );
-namespace CodeKandis\Tiphy\Converters\TwoWaysConverters;
+namespace CodeKandis\Tiphy\Converters\BiDirectionalConverters;
 
-use CodeKandis\Tiphy\Converters\TwoWaysConverterInterface;
+use CodeKandis\Tiphy\Converters\BiDirectionalConverterInterface;
 
 /**
- * Represents a two ways converter converting between string and float.
+ * Represents a bi-directional converter converting between string and float.
  * @package codekandis/tiphy
  * @author Christian Ramelow <info@codekandis.net>
  */
-class StringToFloatConverter implements TwoWaysConverterInterface
+class StringToFloatBiDirectionalConverter implements BiDirectionalConverterInterface
 {
 	/**
 	 * Converts from a string into a float value.
@@ -27,6 +27,6 @@ class StringToFloatConverter implements TwoWaysConverterInterface
 	 */
 	public function convertFrom( $value )
 	{
-		return (float) $value;
+		return (string) $value;
 	}
 }

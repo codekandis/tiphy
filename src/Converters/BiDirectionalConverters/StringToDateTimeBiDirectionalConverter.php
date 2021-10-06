@@ -1,16 +1,16 @@
 <?php declare( strict_types = 1 );
-namespace CodeKandis\Tiphy\Converters\TwoWaysConverters;
+namespace CodeKandis\Tiphy\Converters\BiDirectionalConverters;
 
-use CodeKandis\Tiphy\Converters\TwoWaysConverterInterface;
+use CodeKandis\Tiphy\Converters\BiDirectionalConverterInterface;
 use DateTime;
 use DateTimeZone;
 
 /**
- * Represents a two ways converter converting between string and DateTime.
+ * Represents a bi-directional converter converting between string and DateTime.
  * @package codekandis/tiphy
  * @author Christian Ramelow <info@codekandis.net>
  */
-class StringToDateTimeConverter implements TwoWaysConverterInterface
+class StringToDateTimeBiDirectionalConverter implements BiDirectionalConverterInterface
 {
 	/**
 	 * Stores the format of the timestamp string.

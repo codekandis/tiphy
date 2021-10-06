@@ -1,5 +1,5 @@
 <?php declare( strict_types = 1 );
-namespace CodeKandis\Tiphy\Converters\OneWayConverters;
+namespace CodeKandis\Tiphy\Converters\UniDirectionalConverters;
 
 use ReflectionException;
 

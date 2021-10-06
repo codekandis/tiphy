@@ -1,18 +1,18 @@
 <?php declare( strict_types = 1 );
-namespace CodeKandis\Tiphy\Converters\OneWayConverters;
+namespace CodeKandis\Tiphy\Converters\UniDirectionalConverters;
 
-use CodeKandis\Tiphy\Converters\OneWayConverterInterface;
+use CodeKandis\Tiphy\Converters\UniDirectionalConverterInterface;
 use ReflectionClass;
 use ReflectionException;
 use function in_array;
 use function sprintf;
 
 /**
- * Represents an converter converting enums to arrays of values.
+ * Represents a uni-directional converter converting enums to arrays of values.
  * @package codekandis/tiphy
  * @author Christian Ramelow <info@codekandis.net>
  */
-class EnumToArrayConverter implements OneWayConverterInterface
+class EnumToArrayUniDirectionalConverter implements UniDirectionalConverterInterface
 {
 	/**
 	 * Represents the error message if an enum class does not exist.
