@@ -2,16 +2,16 @@
 namespace CodeKandis\Tiphy\Converters\BiDirectionalConverters;
 
 use CodeKandis\Tiphy\Converters\InvalidValueTypeException;
-use DateTime;
+use DateTimeImmutable;
 use DateTimeZone;
 use function is_string;
 
 /**
- * Represents a bi-directional converter converting between string and DateTime.
+ * Represents a bi-directional converter converting between nullable string and nullable DateTimeImmutable.
  * @package codekandis/tiphy
  * @author Christian Ramelow <info@codekandis.net>
  */
-class StringToDateTimeBiDirectionalConverter extends AbstractBiDirectionalConverter
+class NullableStringToNullableDateTimeImmutableBiDirectionalConverter extends AbstractBiDirectionalConverter
 {
 	/**
 	 * Stores the format of the timestamp string.
@@ -37,35 +37,39 @@ class StringToDateTimeBiDirectionalConverter extends AbstractBiDirectionalConver
 	}
 
 	/**
-	 * Converts from a string into a DateTime value.
-	 * @param string $value The string value which has to be converted.
-	 * @return DateTime The converted DateTime value.
+	 * Converts from a nullable string into a nullable DateTimeImmutable value.
+	 * @param ?string $value The nullable string value which has to be converted.
+	 * @return ?DateTimeImmutable The converted nullable DateTimeImmutable value.
 	 */
 	public function convertTo( $value )
 	{
-		if ( false === is_string( $value ) )
+		if ( null !== $value && false === is_string( $value ) )
 		{
 			throw new InvalidValueTypeException( static::ERROR_INVALID_VALUE_TYPE );
 		}
 
-		return DateTime::createFromFormat( $this->format, $value, $this->timeZone );
+		return null === $value
+			? null
+			: DateTimeImmutable::createFromFormat( $this->format, $value, $this->timeZone );
 	}
 
 	/**
-	 * Converts from a DateTime into a string value.
-	 * @param DateTime $value The DateTime value which has to be converted.
-	 * @return string The converted string value.
+	 * Converts from a nullable DateTimeImmutable into a nullable string value.
+	 * @param ?DateTimeImmutable $value The nullable DateTimeImmutable value which has to be converted.
+	 * @return ?string The converted nullable string value.
 	 */
 	public function convertFrom( $value )
 	{
-		if ( false === $value instanceof DateTime )
+		if ( null !== $value && false === $value instanceof DateTimeImmutable )
 		{
 			throw new InvalidValueTypeException( static::ERROR_INVALID_VALUE_TYPE );
 		}
 
 		/**
-		 * @var DateTime $value
+		 * @var ?DateTimeImmutable $value
 		 */
-		return $value->format( $this->format );
+		return null === $value
+			? null
+			: $value->format( $this->format );
 	}
 }

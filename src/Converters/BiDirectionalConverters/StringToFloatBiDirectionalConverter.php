@@ -1,14 +1,16 @@
 <?php declare( strict_types = 1 );
 namespace CodeKandis\Tiphy\Converters\BiDirectionalConverters;
 
-use CodeKandis\Tiphy\Converters\BiDirectionalConverterInterface;
+use CodeKandis\Tiphy\Converters\InvalidValueTypeException;
+use function is_float;
+use function is_string;
 
 /**
  * Represents a bi-directional converter converting between string and float.
  * @package codekandis/tiphy
  * @author Christian Ramelow <info@codekandis.net>
  */
-class StringToFloatBiDirectionalConverter implements BiDirectionalConverterInterface
+class StringToFloatBiDirectionalConverter extends AbstractBiDirectionalConverter
 {
 	/**
 	 * Converts from a string into a float value.
@@ -17,6 +19,11 @@ class StringToFloatBiDirectionalConverter implements BiDirectionalConverterInter
 	 */
 	public function convertTo( $value )
 	{
+		if ( false === is_string( $value ) )
+		{
+			throw new InvalidValueTypeException( static::ERROR_INVALID_VALUE_TYPE );
+		}
+
 		return (float) $value;
 	}
 
@@ -27,6 +34,11 @@ class StringToFloatBiDirectionalConverter implements BiDirectionalConverterInter
 	 */
 	public function convertFrom( $value )
 	{
+		if ( false === is_float( $value ) )
+		{
+			throw new InvalidValueTypeException( static::ERROR_INVALID_VALUE_TYPE );
+		}
+
 		return (string) $value;
 	}
 }

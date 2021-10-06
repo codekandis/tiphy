@@ -7,11 +7,11 @@ use DateTimeZone;
 use function is_string;
 
 /**
- * Represents a bi-directional converter converting between string and DateTime.
+ * Represents a bi-directional converter converting between DateTime and string.
  * @package codekandis/tiphy
  * @author Christian Ramelow <info@codekandis.net>
  */
-class StringToDateTimeBiDirectionalConverter extends AbstractBiDirectionalConverter
+class DateTimeToStringBiDirectionalConverter extends AbstractBiDirectionalConverter
 {
 	/**
 	 * Stores the format of the timestamp string.
@@ -37,26 +37,11 @@ class StringToDateTimeBiDirectionalConverter extends AbstractBiDirectionalConver
 	}
 
 	/**
-	 * Converts from a string into a DateTime value.
-	 * @param string $value The string value which has to be converted.
-	 * @return DateTime The converted DateTime value.
-	 */
-	public function convertTo( $value )
-	{
-		if ( false === is_string( $value ) )
-		{
-			throw new InvalidValueTypeException( static::ERROR_INVALID_VALUE_TYPE );
-		}
-
-		return DateTime::createFromFormat( $this->format, $value, $this->timeZone );
-	}
-
-	/**
 	 * Converts from a DateTime into a string value.
 	 * @param DateTime $value The DateTime value which has to be converted.
 	 * @return string The converted string value.
 	 */
-	public function convertFrom( $value )
+	public function convertTo( $value )
 	{
 		if ( false === $value instanceof DateTime )
 		{
@@ -67,5 +52,20 @@ class StringToDateTimeBiDirectionalConverter extends AbstractBiDirectionalConver
 		 * @var DateTime $value
 		 */
 		return $value->format( $this->format );
+	}
+
+	/**
+	 * Converts from a string into a DateTime value.
+	 * @param string $value The string value which has to be converted.
+	 * @return DateTime The converted DateTime value.
+	 */
+	public function convertFrom( $value )
+	{
+		if ( false === is_string( $value ) )
+		{
+			throw new InvalidValueTypeException( static::ERROR_INVALID_VALUE_TYPE );
+		}
+
+		return DateTime::createFromFormat( $this->format, $value, $this->timeZone );
 	}
 }

@@ -1,14 +1,16 @@
 <?php declare( strict_types = 1 );
 namespace CodeKandis\Tiphy\Converters\BiDirectionalConverters;
 
-use CodeKandis\Tiphy\Converters\BiDirectionalConverterInterface;
+use CodeKandis\Tiphy\Converters\InvalidValueTypeException;
+use function is_bool;
+use function is_string;
 
 /**
  * Represents a bi-directional converter converting between string and bool.
  * @package codekandis/tiphy
  * @author Christian Ramelow <info@codekandis.net>
  */
-class StringToBoolBiDirectionalConverter implements BiDirectionalConverterInterface
+class StringToBoolBiDirectionalConverter extends AbstractBiDirectionalConverter
 {
 	/**
 	 * Converts from a string into a bool value.
@@ -17,7 +19,14 @@ class StringToBoolBiDirectionalConverter implements BiDirectionalConverterInterf
 	 */
 	public function convertTo( $value )
 	{
-		return '0' === $value ? false : true;
+		if ( false === is_string( $value ) )
+		{
+			throw new InvalidValueTypeException( static::ERROR_INVALID_VALUE_TYPE );
+		}
+
+		return '0' === $value
+			? false
+			: true;
 	}
 
 	/**
@@ -27,6 +36,13 @@ class StringToBoolBiDirectionalConverter implements BiDirectionalConverterInterf
 	 */
 	public function convertFrom( $value )
 	{
-		return false === $value ? '0' : '1';
+		if ( false === is_bool( $value ) )
+		{
+			throw new InvalidValueTypeException( static::ERROR_INVALID_VALUE_TYPE );
+		}
+
+		return false === $value
+			? '0'
+			: '1';
 	}
 }

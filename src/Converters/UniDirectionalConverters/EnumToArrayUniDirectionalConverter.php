@@ -1,10 +1,11 @@
 <?php declare( strict_types = 1 );
 namespace CodeKandis\Tiphy\Converters\UniDirectionalConverters;
 
-use CodeKandis\Tiphy\Converters\UniDirectionalConverterInterface;
+use CodeKandis\Tiphy\Converters\InvalidValueTypeException;
 use ReflectionClass;
 use ReflectionException;
 use function in_array;
+use function is_string;
 use function sprintf;
 
 /**
@@ -12,7 +13,7 @@ use function sprintf;
  * @package codekandis/tiphy
  * @author Christian Ramelow <info@codekandis.net>
  */
-class EnumToArrayUniDirectionalConverter implements UniDirectionalConverterInterface
+class EnumToArrayUniDirectionalConverter extends AbstractUniDirectionalConverter
 {
 	/**
 	 * Represents the error message if an enum class does not exist.
@@ -26,6 +27,11 @@ class EnumToArrayUniDirectionalConverter implements UniDirectionalConverterInter
 	 */
 	public function convert( $value )
 	{
+		if ( false === is_string( $value ) )
+		{
+			throw new InvalidValueTypeException( static::ERROR_INVALID_VALUE_TYPE );
+		}
+
 		try
 		{
 			$reflectedClass = new ReflectionClass( $value );
