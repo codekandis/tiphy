@@ -2,11 +2,11 @@
 namespace CodeKandis\Tiphy\Converters;
 
 /**
- * Represents the interface of all two-ways converters.
+ * Represents the interface of any bi-directional converters.
  * @package codekandis/tiphy
  * @author Christian Ramelow <info@codekandis.net>
  */
-interface TwoWaysConverterInterface
+interface BiDirectionalConverterInterface
 {
 	/**
 	 * Converts into a value.

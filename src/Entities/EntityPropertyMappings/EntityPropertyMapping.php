@@ -1,7 +1,7 @@
 <?php declare( strict_types = 1 );
 namespace CodeKandis\Tiphy\Entities\EntityPropertyMappings;
 
-use CodeKandis\Tiphy\Converters\TwoWaysConverterInterface;
+use CodeKandis\Tiphy\Converters\BiDirectionalConverterInterface;
 
 /**
  * Represents an entity property mapping.
@@ -18,16 +18,16 @@ class EntityPropertyMapping implements EntityPropertyMappingInterface
 
 	/**
 	 * Stores the two-ways converter of the mapping.
-	 * @var ?TwoWaysConverterInterface
+	 * @var ?BiDirectionalConverterInterface
 	 */
-	private ?TwoWaysConverterInterface $converter;
+	private ?BiDirectionalConverterInterface $converter;
 
 	/**
 	 * Constructor method.
 	 * @param string $propertyName The name of the property to map.
-	 * @param ?TwoWaysConverterInterface $converter The two-ways converter of the mapping.
+	 * @param ?BiDirectionalConverterInterface $converter The two-ways converter of the mapping.
 	 */
-	public function __construct( string $propertyName, ?TwoWaysConverterInterface $converter )
+	public function __construct( string $propertyName, ?BiDirectionalConverterInterface $converter )
 	{
 		$this->propertyName = $propertyName;
 		$this->converter    = $converter;
@@ -44,7 +44,7 @@ class EntityPropertyMapping implements EntityPropertyMappingInterface
 	/**
 	 * {@inheritDoc}
 	 */
-	public function getConverter(): ?TwoWaysConverterInterface
+	public function getConverter(): ?BiDirectionalConverterInterface
 	{
 		return $this->converter;
 	}

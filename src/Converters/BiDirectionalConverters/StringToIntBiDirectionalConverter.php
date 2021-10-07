@@ -1,14 +1,16 @@
 <?php declare( strict_types = 1 );
-namespace CodeKandis\Tiphy\Converters\TwoWaysConverters;
+namespace CodeKandis\Tiphy\Converters\BiDirectionalConverters;
 
-use CodeKandis\Tiphy\Converters\TwoWaysConverterInterface;
+use CodeKandis\Tiphy\Converters\InvalidValueTypeException;
+use function is_int;
+use function is_string;
 
 /**
- * Represents a two ways converter converting between string and int.
+ * Represents a bi-directional converter converting between string and int.
  * @package codekandis/tiphy
  * @author Christian Ramelow <info@codekandis.net>
  */
-class StringToIntConverter implements TwoWaysConverterInterface
+class StringToIntBiDirectionalConverter extends AbstractBiDirectionalConverter
 {
 	/**
 	 * Converts from a string into an int value.
@@ -17,6 +19,11 @@ class StringToIntConverter implements TwoWaysConverterInterface
 	 */
 	public function convertTo( $value )
 	{
+		if ( false === is_string( $value ) )
+		{
+			throw new InvalidValueTypeException( static::ERROR_INVALID_VALUE_TYPE );
+		}
+
 		return (int) $value;
 	}
 
@@ -27,6 +34,11 @@ class StringToIntConverter implements TwoWaysConverterInterface
 	 */
 	public function convertFrom( $value )
 	{
+		if ( false === is_int( $value ) )
+		{
+			throw new InvalidValueTypeException( static::ERROR_INVALID_VALUE_TYPE );
+		}
+
 		return (string) $value;
 	}
 }
