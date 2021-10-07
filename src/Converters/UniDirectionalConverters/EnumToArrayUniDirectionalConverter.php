@@ -1,7 +1,6 @@
 <?php declare( strict_types = 1 );
 namespace CodeKandis\Tiphy\Converters\UniDirectionalConverters;
 
-use CodeKandis\Tiphy\Converters\InvalidValueTypeException;
 use ReflectionClass;
 use ReflectionException;
 use function in_array;
@@ -29,7 +28,7 @@ class EnumToArrayUniDirectionalConverter extends AbstractUniDirectionalConverter
 	{
 		if ( false === is_string( $value ) )
 		{
-			throw new InvalidValueTypeException( static::ERROR_INVALID_VALUE_TYPE );
+			throw $this->getInvalidTypeException( $value, 'string' );
 		}
 
 		try
