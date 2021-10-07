@@ -1,7 +1,6 @@
 <?php declare( strict_types = 1 );
 namespace CodeKandis\Tiphy\Converters\BiDirectionalConverters;
 
-use CodeKandis\Tiphy\Converters\InvalidValueTypeException;
 use DateTimeImmutable;
 use DateTimeZone;
 use function is_string;
@@ -45,7 +44,7 @@ class NullableDateTimeImmutableToNullableStringBiDirectionalConverter extends Ab
 	{
 		if ( null !== $value && false === is_string( $value ) )
 		{
-			throw new InvalidValueTypeException( static::ERROR_INVALID_VALUE_TYPE );
+			throw $this->getInvalidTypeException( $value, '?string' );
 		}
 
 		return null === $value
@@ -62,7 +61,7 @@ class NullableDateTimeImmutableToNullableStringBiDirectionalConverter extends Ab
 	{
 		if ( null !== $value && false === $value instanceof DateTimeImmutable )
 		{
-			throw new InvalidValueTypeException( static::ERROR_INVALID_VALUE_TYPE );
+			throw $this->getInvalidTypeException( $value, '?DateTimeImmutable' );
 		}
 
 		/**

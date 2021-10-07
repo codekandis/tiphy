@@ -1,7 +1,6 @@
 <?php declare( strict_types = 1 );
 namespace CodeKandis\Tiphy\Converters\BiDirectionalConverters;
 
-use CodeKandis\Tiphy\Converters\InvalidValueTypeException;
 use function is_int;
 use function is_string;
 
@@ -21,7 +20,7 @@ class IntToStringBiDirectionalConverter extends AbstractBiDirectionalConverter
 	{
 		if ( false === is_int( $value ) )
 		{
-			throw new InvalidValueTypeException( static::ERROR_INVALID_VALUE_TYPE );
+			throw $this->getInvalidTypeException( $value, 'int' );
 		}
 
 		return (string) $value;
@@ -36,7 +35,7 @@ class IntToStringBiDirectionalConverter extends AbstractBiDirectionalConverter
 	{
 		if ( false === is_string( $value ) )
 		{
-			throw new InvalidValueTypeException( static::ERROR_INVALID_VALUE_TYPE );
+			throw $this->getInvalidTypeException( $value, 'string' );
 		}
 
 		return (int) $value;
