@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [keep a changelog][xtlink-keep-a-changelog]
 and this project adheres to [Semantic Versioning 2.0.0][xtlink-semantic-versioning].
 
+## [0.35.0] - 2021-10-08
+
+### Changed
+
+* moved the method `RepositoryInterface::asTransaction()` to the database connector level.
+
+[0.35.0]: https://github.com/codekandis/tiphy/compare/0.34.0..0.35.0
+
+---
 ## [0.34.0] - 2021-10-08
 
 ### Added
