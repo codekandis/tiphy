@@ -1,6 +1,7 @@
 <?php declare( strict_types = 1 );
 namespace CodeKandis\Tiphy\Persistence\MariaDb;
 
+use Closure;
 use CodeKandis\Tiphy\Entities\EntityInterface;
 use CodeKandis\Tiphy\Entities\EntityPropertyMappings\EntityPropertyMapperInterface;
 use stdClass;
@@ -32,6 +33,17 @@ interface ConnectorInterface
 	 * @throws TransactionCommitFailedException The transaction failed to commit.
 	 */
 	public function commit(): bool;
+
+	/**
+	 * Invokes a closure within a transaction.
+	 * @param Closure $closure The closure to invoke.
+	 * @param array $closureArguments The arguments to pass to the closure.
+	 * @return mixed The return value of the closure.
+	 * @throws TransactionStartFailedException The transaction failed to start.
+	 * @throws TransactionRollbackFailedException The transaction failed to roll back.
+	 * @throws TransactionCommitFailedException The transaction failed to commit.
+	 */
+	public function asTransaction( Closure $closure, array ...$closureArguments );
 
 	/**
 	 * Executes a statement.
