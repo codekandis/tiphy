@@ -1,6 +1,7 @@
 <?php declare( strict_types = 1 );
 namespace CodeKandis\Tiphy\Persistence\MariaDb;
 
+use Closure;
 use CodeKandis\Tiphy\Entities\EntityInterface;
 use CodeKandis\Tiphy\Entities\EntityPropertyMappings\EntityPropertyMapperInterface;
 use CodeKandis\Tiphy\Persistence\PersistenceConfigurationInterface;
@@ -291,6 +292,26 @@ class Connector implements ConnectorInterface
 		{
 			throw new TransactionCommitFailedException( static::ERROR_TRANSACTION_COMMIT_FAILED, $exception->errorInfo[ 1 ], $exception );
 		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public function asTransaction( Closure $closure, array...$arguments )
+	{
+		try
+		{
+			$this->beginTransaction();
+			$returnValue = $closure( ...$arguments );
+			$this->commit();
+		}
+		catch ( StatementExecutionFailedException $exception )
+		{
+			$this->rollback();
+			throw $exception;
+		}
+
+		return $returnValue;
 	}
 
 	/**
