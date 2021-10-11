@@ -37,27 +37,10 @@ class NullableDateTimeImmutableToNullableStringBiDirectionalConverter extends Ab
 
 	/**
 	 * Converts from a nullable string into a nullable DateTimeImmutable value.
-	 * @param ?string $value The nullable string value which has to be converted.
-	 * @return ?DateTimeImmutable The converted nullable DateTimeImmutable value.
-	 */
-	public function convertTo( $value )
-	{
-		if ( null !== $value && false === is_string( $value ) )
-		{
-			throw $this->getInvalidTypeException( $value, '?string' );
-		}
-
-		return null === $value
-			? null
-			: DateTimeImmutable::createFromFormat( $this->format, $value, $this->timeZone );
-	}
-
-	/**
-	 * Converts from a nullable DateTimeImmutable into a nullable string value.
 	 * @param ?DateTimeImmutable $value The nullable DateTimeImmutable value which has to be converted.
 	 * @return ?string The converted nullable string value.
 	 */
-	public function convertFrom( $value )
+	public function convertTo( $value )
 	{
 		if ( null !== $value && false === $value instanceof DateTimeImmutable )
 		{
@@ -70,5 +53,22 @@ class NullableDateTimeImmutableToNullableStringBiDirectionalConverter extends Ab
 		return null === $value
 			? null
 			: $value->format( $this->format );
+	}
+
+	/**
+	 * Converts from a nullable DateTimeImmutable into a nullable string value.
+	 * @param ?string $value The nullable string value which has to be converted.
+	 * @return ?DateTimeImmutable The converted nullable DateTimeImmutable value.
+	 */
+	public function convertFrom( $value )
+	{
+		if ( null !== $value && false === is_string( $value ) )
+		{
+			throw $this->getInvalidTypeException( $value, '?string' );
+		}
+
+		return null === $value
+			? null
+			: DateTimeImmutable::createFromFormat( $this->format, $value, $this->timeZone );
 	}
 }
