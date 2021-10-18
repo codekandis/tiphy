@@ -2,6 +2,7 @@
 namespace CodeKandis\Tiphy\Configurations;
 
 use CodeKandis\Configurations\AbstractConfigurationRegistry as OriginAbstractConfigurationRegistry;
+
 /**
  * Represents the base class of any configuration registry
  * @package codekandis/tiphy
@@ -13,19 +14,19 @@ abstract class AbstractConfigurationRegistry extends OriginAbstractConfiguration
 	 * Stores the routes configuration.
 	 * @var ?RoutesConfigurationInterface
 	 */
-	private ?RoutesConfigurationInterface $routesConfiguration = null;
+	protected ?RoutesConfigurationInterface $routesConfiguration = null;
 
 	/**
 	 * Stores the template renderer configuration.
 	 * @var ?TemplateRendererConfigurationInterface
 	 */
-	private ?TemplateRendererConfigurationInterface $templateRendererConfiguration = null;
+	protected ?TemplateRendererConfigurationInterface $templateRendererConfiguration = null;
 
 	/**
 	 * Stores the URI builder configuration.
 	 * @var ?UriBuilderConfigurationInterface
 	 */
-	private ?UriBuilderConfigurationInterface $uriBuilderConfiguration = null;
+	protected ?UriBuilderConfigurationInterface $uriBuilderConfiguration = null;
 
 	/**
 	 * {@inheritDoc}
@@ -33,14 +34,6 @@ abstract class AbstractConfigurationRegistry extends OriginAbstractConfiguration
 	public function getRoutesConfiguration(): ?RoutesConfigurationInterface
 	{
 		return $this->routesConfiguration;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public function setPlainRoutesConfiguration( array $plainRoutesConfiguration ): void
-	{
-		$this->routesConfiguration = new RoutesConfiguration( $plainRoutesConfiguration );
 	}
 
 	/**
@@ -54,24 +47,8 @@ abstract class AbstractConfigurationRegistry extends OriginAbstractConfiguration
 	/**
 	 * {@inheritDoc}
 	 */
-	public function setPlainTemplateRendererConfiguration( array $plainTemplateRendererConfiguration ): void
-	{
-		$this->templateRendererConfiguration = new TemplateRendererConfiguration( $plainTemplateRendererConfiguration );
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
 	public function getUriBuilderConfiguration(): ?UriBuilderConfigurationInterface
 	{
 		return $this->uriBuilderConfiguration;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public function setPlainUriBuilderConfiguration( array $plainUriBuilderConfiguration ): void
-	{
-		$this->uriBuilderConfiguration = new UriBuilderConfiguration( $plainUriBuilderConfiguration );
 	}
 }
