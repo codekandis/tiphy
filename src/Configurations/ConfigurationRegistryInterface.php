@@ -3,7 +3,6 @@ namespace CodeKandis\Tiphy\Configurations;
 
 use CodeKandis\Tiphy\Http\RoutesConfigurationInterface;
 use CodeKandis\Tiphy\Http\UriBuilders\UriBuilderConfigurationInterface;
-use CodeKandis\Tiphy\Persistence\PersistenceConfigurationInterface;
 use CodeKandis\Tiphy\Renderers\TemplateRendererConfigurationInterface;
 
 /**
@@ -24,18 +23,6 @@ interface ConfigurationRegistryInterface
 	 * @param array $plainRoutesConfiguration The plain routes configuration.
 	 */
 	public function setPlainRoutesConfiguration( array $plainRoutesConfiguration ): void;
-
-	/**
-	 * Gets the persistence configuration.
-	 * @return ?PersistenceConfigurationInterface The persistence configuration.
-	 */
-	public function getPersistenceConfiguration(): ?PersistenceConfigurationInterface;
-
-	/**
-	 * Sets the plain persistence configuration.
-	 * @param array $plainPersistenceConfiguration The plain persistence configuration.
-	 */
-	public function setPlainPersistenceConfiguration( array $plainPersistenceConfiguration ): void;
 
 	/**
 	 * Gets the template renderer configuration.

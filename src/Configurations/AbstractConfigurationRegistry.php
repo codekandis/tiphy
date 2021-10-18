@@ -5,8 +5,6 @@ use CodeKandis\Tiphy\Http\RoutesConfiguration;
 use CodeKandis\Tiphy\Http\RoutesConfigurationInterface;
 use CodeKandis\Tiphy\Http\UriBuilders\UriBuilderConfiguration;
 use CodeKandis\Tiphy\Http\UriBuilders\UriBuilderConfigurationInterface;
-use CodeKandis\Tiphy\Persistence\PersistenceConfiguration;
-use CodeKandis\Tiphy\Persistence\PersistenceConfigurationInterface;
 use CodeKandis\Tiphy\Renderers\TemplateRendererConfiguration;
 use CodeKandis\Tiphy\Renderers\TemplateRendererConfigurationInterface;
 
@@ -28,12 +26,6 @@ abstract class AbstractConfigurationRegistry implements ConfigurationRegistryInt
 	 * @var ?RoutesConfigurationInterface
 	 */
 	private ?RoutesConfigurationInterface $routesConfiguration = null;
-
-	/**
-	 * Stores the persistence configuration.
-	 * @var ?PersistenceConfigurationInterface
-	 */
-	private ?PersistenceConfigurationInterface $persistenceConfiguration = null;
 
 	/**
 	 * Stores the template renderer configuration.
@@ -86,22 +78,6 @@ abstract class AbstractConfigurationRegistry implements ConfigurationRegistryInt
 	public function setPlainRoutesConfiguration( array $plainRoutesConfiguration ): void
 	{
 		$this->routesConfiguration = new RoutesConfiguration( $plainRoutesConfiguration );
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public function getPersistenceConfiguration(): ?PersistenceConfigurationInterface
-	{
-		return $this->persistenceConfiguration;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public function setPlainPersistenceConfiguration( array $plainPersistenceConfiguration ): void
-	{
-		$this->persistenceConfiguration = new PersistenceConfiguration( $plainPersistenceConfiguration );
 	}
 
 	/**
