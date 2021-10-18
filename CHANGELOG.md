@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [keep a changelog][xtlink-keep-a-changelog]
 and this project adheres to [Semantic Versioning 2.0.0][xtlink-semantic-versioning].
 
+## [0.37.0] - 2021-10-18
+
+### Removed
+
+* method clutter from the configuration registry
+
+[0.37.0]: https://github.com/codekandis/tiphy/compare/0.36.0..0.37.0
+
+---
 ## [0.36.0] - 2021-10-18
 
 ### Removed
