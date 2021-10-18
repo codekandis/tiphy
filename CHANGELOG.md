@@ -5,6 +5,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [keep a changelog][xtlink-keep-a-changelog]
 and this project adheres to [Semantic Versioning 2.0.0][xtlink-semantic-versioning].
 
+## [0.36.0] - 2021-10-18
+
+### Removed
+
+* obsolete code due to package outsourcing
+    * `codekandis/entities`
+    * `codekandis/converters`
+    * `codekandis/validators`
+    * `codekandis/configurations`
+    * `codekandis/persistence`
+
+### Changed
+
+* implemented `codekandis/entities` to replace entity implementations
+* implemented `codekandis/configurations` to replace configuration implementations
+
+[0.36.0]: https://github.com/codekandis/tiphy/compare/0.35.1..0.36.0
+
+---
 ## [0.35.1] - 2021-10-11
 
 ### Fixed
