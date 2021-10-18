@@ -1,12 +1,14 @@
 <?php declare( strict_types = 1 );
-namespace CodeKandis\Tiphy\Http\UriBuilders;
+namespace CodeKandis\Tiphy\Configurations;
+
+use CodeKandis\Configurations\ConfigurationInterface;
 
 /**
  * Represents the interface of all URI builder configurations.
  * @package codekandis/tiphy
  * @author Christian Ramelow <info@codekandis.net>
  */
-interface UriBuilderConfigurationInterface
+interface UriBuilderConfigurationInterface extends ConfigurationInterface
 {
 	/**
 	 * Gets the schema of the URIs.

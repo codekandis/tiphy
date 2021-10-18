@@ -1,7 +1,7 @@
 <?php declare( strict_types = 1 );
-namespace CodeKandis\Tiphy\Http;
+namespace CodeKandis\Tiphy\Configurations;
 
-use CodeKandis\Tiphy\Configurations\AbstractConfiguration;
+use CodeKandis\Configurations\AbstractConfiguration;
 
 /**
  * Represents a routes configuration.
@@ -15,7 +15,7 @@ class RoutesConfiguration extends AbstractConfiguration implements RoutesConfigu
 	 */
 	public function getBaseRoute(): string
 	{
-		return $this->data[ 'baseRoute' ];
+		return $this->read( 'baseRoute' );
 	}
 
 	/**
@@ -23,6 +23,6 @@ class RoutesConfiguration extends AbstractConfiguration implements RoutesConfigu
 	 */
 	public function getRoutes(): array
 	{
-		return $this->data[ 'routes' ];
+		return $this->read( 'routes' );
 	}
 }

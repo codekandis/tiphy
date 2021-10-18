@@ -1,12 +1,14 @@
 <?php declare( strict_types = 1 );
-namespace CodeKandis\Tiphy\Http;
+namespace CodeKandis\Tiphy\Configurations;
+
+use CodeKandis\Configurations\ConfigurationInterface;
 
 /**
  * Represents the interface of all routes configurations.
  * @package codekandis/tiphy
  * @author Christian Ramelow <info@codekandis.net>
  */
-interface RoutesConfigurationInterface
+interface RoutesConfigurationInterface extends ConfigurationInterface
 {
 	/**
 	 * Gets the base route of the application.

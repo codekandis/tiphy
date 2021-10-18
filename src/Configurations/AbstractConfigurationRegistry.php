@@ -1,39 +1,19 @@
 <?php declare( strict_types = 1 );
 namespace CodeKandis\Tiphy\Configurations;
 
-use CodeKandis\Tiphy\Http\RoutesConfiguration;
-use CodeKandis\Tiphy\Http\RoutesConfigurationInterface;
-use CodeKandis\Tiphy\Http\UriBuilders\UriBuilderConfiguration;
-use CodeKandis\Tiphy\Http\UriBuilders\UriBuilderConfigurationInterface;
-use CodeKandis\Tiphy\Persistence\PersistenceConfiguration;
-use CodeKandis\Tiphy\Persistence\PersistenceConfigurationInterface;
-use CodeKandis\Tiphy\Renderers\TemplateRendererConfiguration;
-use CodeKandis\Tiphy\Renderers\TemplateRendererConfigurationInterface;
-
+use CodeKandis\Configurations\AbstractConfigurationRegistry as OriginAbstractConfigurationRegistry;
 /**
- * Represents the base class of all configuration registries.
+ * Represents the base class of any configuration registry
  * @package codekandis/tiphy
  * @author Christian Ramelow <info@codekandis.net>
  */
-abstract class AbstractConfigurationRegistry implements ConfigurationRegistryInterface
+abstract class AbstractConfigurationRegistry extends OriginAbstractConfigurationRegistry implements ConfigurationRegistryInterface
 {
-	/**
-	 * Stores the singleton instance of the configuration registry.
-	 * @var ConfigurationRegistryInterface
-	 */
-	protected static ConfigurationRegistryInterface $instance;
-
 	/**
 	 * Stores the routes configuration.
 	 * @var ?RoutesConfigurationInterface
 	 */
 	private ?RoutesConfigurationInterface $routesConfiguration = null;
-
-	/**
-	 * Stores the persistence configuration.
-	 * @var ?PersistenceConfigurationInterface
-	 */
-	private ?PersistenceConfigurationInterface $persistenceConfiguration = null;
 
 	/**
 	 * Stores the template renderer configuration.
@@ -46,31 +26,6 @@ abstract class AbstractConfigurationRegistry implements ConfigurationRegistryInt
 	 * @var ?UriBuilderConfigurationInterface
 	 */
 	private ?UriBuilderConfigurationInterface $uriBuilderConfiguration = null;
-
-	/**
-	 * Constructor method.
-	 */
-	private function __construct()
-	{
-		$this->initialize();
-	}
-
-	/**
-	 * Clones the configuration registry.
-	 */
-	private function __clone()
-	{
-	}
-
-	/**
-	 * Creates the singleton instance of the configuration registry.
-	 * @return ConfigurationRegistryInterface
-	 */
-	public static function _(): ConfigurationRegistryInterface
-	{
-		return static::$instance
-			   ?? static::$instance = new static();
-	}
 
 	/**
 	 * {@inheritDoc}
@@ -86,22 +41,6 @@ abstract class AbstractConfigurationRegistry implements ConfigurationRegistryInt
 	public function setPlainRoutesConfiguration( array $plainRoutesConfiguration ): void
 	{
 		$this->routesConfiguration = new RoutesConfiguration( $plainRoutesConfiguration );
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public function getPersistenceConfiguration(): ?PersistenceConfigurationInterface
-	{
-		return $this->persistenceConfiguration;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public function setPlainPersistenceConfiguration( array $plainPersistenceConfiguration ): void
-	{
-		$this->persistenceConfiguration = new PersistenceConfiguration( $plainPersistenceConfiguration );
 	}
 
 	/**
@@ -135,9 +74,4 @@ abstract class AbstractConfigurationRegistry implements ConfigurationRegistryInt
 	{
 		$this->uriBuilderConfiguration = new UriBuilderConfiguration( $plainUriBuilderConfiguration );
 	}
-
-	/**
-	 * Initializes the configuration registry.
-	 */
-	abstract protected function initialize(): void;
 }
