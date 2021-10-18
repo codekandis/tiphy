@@ -28,7 +28,9 @@
 		"php": "^7.4",
 		"codekandis/constants-classes-translator": "^1.0",
 		"codekandis/json-codec": "^2",
-		"codekandis/regular-expressions": "^0"
+		"codekandis/regular-expressions": "^0",
+		"codekandis/configurations": "^0",
+		"codekandis/entities": "^0"
 	},
 	"require-dev": {
 		"roave/security-advisories": "dev-master",
