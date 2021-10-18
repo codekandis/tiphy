@@ -1,6 +1,8 @@
 <?php declare( strict_types = 1 );
 namespace CodeKandis\Tiphy\Configurations;
 
+use CodeKandis\Configurations\AbstractConfiguration;
+
 /**
  * Represents an URI builder configuration.
  * @package codekandis/tiphy
@@ -13,7 +15,7 @@ class UriBuilderConfiguration extends AbstractConfiguration implements UriBuilde
 	 */
 	public function getSchema(): string
 	{
-		return $this->data[ 'schema' ];
+		return $this->read( 'schema' );
 	}
 
 	/**
@@ -21,7 +23,7 @@ class UriBuilderConfiguration extends AbstractConfiguration implements UriBuilde
 	 */
 	public function getHost(): string
 	{
-		return $this->data[ 'host' ];
+		return $this->read( 'host' );
 	}
 
 	/**
@@ -29,7 +31,7 @@ class UriBuilderConfiguration extends AbstractConfiguration implements UriBuilde
 	 */
 	public function getBaseUri(): string
 	{
-		return $this->data[ 'baseUri' ];
+		return $this->read( 'baseUri' );
 	}
 
 	/**
@@ -37,6 +39,6 @@ class UriBuilderConfiguration extends AbstractConfiguration implements UriBuilde
 	 */
 	public function getRelativeUris(): array
 	{
-		return $this->data[ 'relativeUris' ];
+		return $this->read( 'relativeUris' );
 	}
 }

@@ -1,12 +1,14 @@
 <?php declare( strict_types = 1 );
 namespace CodeKandis\Tiphy\Configurations;
 
+use CodeKandis\Configurations\ConfigurationRegistryInterface as OriginConfigurationRegistryInterface;
+
 /**
  * Represents the interface of any configuration registry.
  * @package codekandis/tiphy
  * @author Christian Ramelow <info@codekandis.net>
  */
-interface ConfigurationRegistryInterface
+interface ConfigurationRegistryInterface extends OriginConfigurationRegistryInterface
 {
 	/**
 	 * Gets the routes configuration.

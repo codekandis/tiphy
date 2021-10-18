@@ -1,19 +1,14 @@
 <?php declare( strict_types = 1 );
 namespace CodeKandis\Tiphy\Configurations;
 
+use CodeKandis\Configurations\AbstractConfigurationRegistry as OriginAbstractConfigurationRegistry;
 /**
  * Represents the base class of any configuration registry
  * @package codekandis/tiphy
  * @author Christian Ramelow <info@codekandis.net>
  */
-abstract class AbstractConfigurationRegistry implements ConfigurationRegistryInterface
+abstract class AbstractConfigurationRegistry extends OriginAbstractConfigurationRegistry implements ConfigurationRegistryInterface
 {
-	/**
-	 * Stores the singleton instance of the configuration registry.
-	 * @var ConfigurationRegistryInterface
-	 */
-	protected static ConfigurationRegistryInterface $instance;
-
 	/**
 	 * Stores the routes configuration.
 	 * @var ?RoutesConfigurationInterface
@@ -31,31 +26,6 @@ abstract class AbstractConfigurationRegistry implements ConfigurationRegistryInt
 	 * @var ?UriBuilderConfigurationInterface
 	 */
 	private ?UriBuilderConfigurationInterface $uriBuilderConfiguration = null;
-
-	/**
-	 * Constructor method.
-	 */
-	private function __construct()
-	{
-		$this->initialize();
-	}
-
-	/**
-	 * Clones the configuration registry.
-	 */
-	private function __clone()
-	{
-	}
-
-	/**
-	 * Creates the singleton instance of the configuration registry.
-	 * @return ConfigurationRegistryInterface
-	 */
-	public static function _(): ConfigurationRegistryInterface
-	{
-		return static::$instance
-			   ?? static::$instance = new static();
-	}
 
 	/**
 	 * {@inheritDoc}
@@ -104,9 +74,4 @@ abstract class AbstractConfigurationRegistry implements ConfigurationRegistryInt
 	{
 		$this->uriBuilderConfiguration = new UriBuilderConfiguration( $plainUriBuilderConfiguration );
 	}
-
-	/**
-	 * Initializes the configuration registry.
-	 */
-	abstract protected function initialize(): void;
 }

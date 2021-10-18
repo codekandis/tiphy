@@ -1,6 +1,8 @@
 <?php declare( strict_types = 1 );
 namespace CodeKandis\Tiphy\Configurations;
 
+use CodeKandis\Configurations\AbstractConfiguration;
+
 /**
  * Represents a template renderer configuration.
  * @package codekandis/tiphy
@@ -13,6 +15,6 @@ class TemplateRendererConfiguration extends AbstractConfiguration implements Tem
 	 */
 	public function getTemplatesPath(): string
 	{
-		return $this->data[ 'templatesPath' ];
+		return $this->read( 'templatesPath' );
 	}
 }
