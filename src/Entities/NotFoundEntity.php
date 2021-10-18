@@ -1,6 +1,8 @@
 <?php declare( strict_types = 1 );
 namespace CodeKandis\Tiphy\Entities;
 
+use CodeKandis\Entities\AbstractEntity;
+
 /**
  * Represents a `404 Not Found` entity.
  * @package codekandis/tiphy
