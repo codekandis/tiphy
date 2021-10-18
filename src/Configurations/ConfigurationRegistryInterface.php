@@ -17,32 +17,14 @@ interface ConfigurationRegistryInterface extends OriginConfigurationRegistryInte
 	public function getRoutesConfiguration(): ?RoutesConfigurationInterface;
 
 	/**
-	 * Sets the plain routes configuration.
-	 * @param array $plainRoutesConfiguration The plain routes configuration.
-	 */
-	public function setPlainRoutesConfiguration( array $plainRoutesConfiguration ): void;
-
-	/**
 	 * Gets the template renderer configuration.
 	 * @return ?TemplateRendererConfigurationInterface The template renderer configuration.
 	 */
 	public function getTemplateRendererConfiguration(): ?TemplateRendererConfigurationInterface;
 
 	/**
-	 * Sets the plain template renderer configuration.
-	 * @param array $plainTemplateRendererConfiguration The plain template renderer configuration.
-	 */
-	public function setPlainTemplateRendererConfiguration( array $plainTemplateRendererConfiguration ): void;
-
-	/**
 	 * Gets the path of the URI builder configuration.
 	 * @return ?UriBuilderConfigurationInterface The URI builder configuration.
 	 */
 	public function getUriBuilderConfiguration(): ?UriBuilderConfigurationInterface;
-
-	/**
-	 * Sets the plain URI builder configuration.
-	 * @param array $plainUriBuilderConfiguration The plain URI builder configuration.
-	 */
-	public function setPlainUriBuilderConfiguration( array $plainUriBuilderConfiguration ): void;
 }
