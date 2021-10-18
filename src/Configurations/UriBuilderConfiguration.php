@@ -1,7 +1,5 @@
 <?php declare( strict_types = 1 );
-namespace CodeKandis\Tiphy\Http\UriBuilders;
-
-use CodeKandis\Tiphy\Configurations\AbstractConfiguration;
+namespace CodeKandis\Tiphy\Configurations;
 
 /**
  * Represents an URI builder configuration.

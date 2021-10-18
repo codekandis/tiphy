@@ -1,6 +1,7 @@
 <?php declare( strict_types = 1 );
 namespace CodeKandis\Tiphy\Renderers;
 
+use CodeKandis\Tiphy\Configurations\TemplateRendererConfigurationInterface;
 use CodeKandis\Tiphy\Throwables\ErrorInformationInterface;
 use function ob_get_clean;
 use function ob_start;

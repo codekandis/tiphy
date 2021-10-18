@@ -1,6 +1,7 @@
 <?php declare( strict_types = 1 );
 namespace CodeKandis\Tiphy\Http\UriBuilders;
 
+use CodeKandis\Tiphy\Configurations\UriBuilderConfigurationInterface;
 use function sprintf;
 
 /**

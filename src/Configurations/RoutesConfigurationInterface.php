@@ -1,5 +1,5 @@
 <?php declare( strict_types = 1 );
-namespace CodeKandis\Tiphy\Http;
+namespace CodeKandis\Tiphy\Configurations;
 
 /**
  * Represents the interface of all routes configurations.

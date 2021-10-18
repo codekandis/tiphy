@@ -1,7 +1,5 @@
 <?php declare( strict_types = 1 );
-namespace CodeKandis\Tiphy\Renderers;
-
-use CodeKandis\Tiphy\Configurations\AbstractConfiguration;
+namespace CodeKandis\Tiphy\Configurations;
 
 /**
  * Represents a template renderer configuration.

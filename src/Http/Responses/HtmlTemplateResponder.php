@@ -1,9 +1,9 @@
 <?php declare( strict_types = 1 );
 namespace CodeKandis\Tiphy\Http\Responses;
 
+use CodeKandis\Tiphy\Configurations\TemplateRendererConfigurationInterface;
 use CodeKandis\Tiphy\Http\ContentTypes;
 use CodeKandis\Tiphy\Renderers\TemplateRenderer;
-use CodeKandis\Tiphy\Renderers\TemplateRendererConfigurationInterface;
 use CodeKandis\Tiphy\Throwables\ErrorInformationInterface;
 
 /**
@@ -13,7 +13,7 @@ use CodeKandis\Tiphy\Throwables\ErrorInformationInterface;
  */
 class HtmlTemplateResponder extends AbstractResponder
 {
-	/**
+	/**w
 	 * Stores the template renderer configuration of the HTML template HTTP responder.
 	 * @var TemplateRendererConfigurationInterface
 	 */

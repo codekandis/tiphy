@@ -1,12 +1,8 @@
 <?php declare( strict_types = 1 );
 namespace CodeKandis\Tiphy\Configurations;
 
-use CodeKandis\Tiphy\Http\RoutesConfigurationInterface;
-use CodeKandis\Tiphy\Http\UriBuilders\UriBuilderConfigurationInterface;
-use CodeKandis\Tiphy\Renderers\TemplateRendererConfigurationInterface;
-
 /**
- * Represents the interface of all configuration registries.
+ * Represents the interface of any configuration registry.
  * @package codekandis/tiphy
  * @author Christian Ramelow <info@codekandis.net>
  */
