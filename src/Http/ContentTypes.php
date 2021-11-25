@@ -9,32 +9,62 @@ namespace CodeKandis\Tiphy\Http;
 abstract class ContentTypes
 {
 	/**
-	 * Defines the JSON data content type.
+	 * Represents the JSON data content type.
 	 * @var string
 	 */
-	public const APPLICATION_JSON = 'application/json; charset=utf-8';
+	public const APPLICATION_JSON = 'application/json';
 
 	/**
-	 * Defines the octet stream content type.
+	 * Represents the JSON data content type with the UTF-8 charset.
+	 * @var string
+	 */
+	public const APPLICATION_JSON_UTF_8 = 'application/json; charset=utf-8';
+
+	/**
+	 * Represents the XML data content type.
+	 * @var string
+	 */
+	public const APPLICATION_XML = 'application/xml';
+
+	/**
+	 * Represents the XML data content type with the UTF-8 charset.
+	 * @var string
+	 */
+	public const APPLICATION_XML_UTF_8 = 'application/xml; charset=utf-8';
+
+	/**
+	 * Represents the octet-stream content type.
 	 * @var string
 	 */
 	public const APPLICATION_OCTET_STREAM = 'application/octet-stream';
 
 	/**
-	 * Defines the HTTPD Unix directory content type.
+	 * Represents the HTTPD Unix directory content type.
 	 * @var string
 	 */
 	public const HTTPD_UNIX_DIRECTORY = 'httpd/unix-directory';
 
 	/**
-	 * Defines the HTML content type.
+	 * Represents the HTML content type.
 	 * @var string
 	 */
-	public const TEXT_HTML = 'text/html; charset=utf-8';
+	public const TEXT_HTML = 'text/html';
 
 	/**
-	 * Defines the plain text content type.
+	 * Represents the HTML content type with the UTF-8 charset.
 	 * @var string
 	 */
-	public const TEXT_PLAIN = 'text/plain; charset=utf-8';
+	public const TEXT_HTML_UTF_8 = 'text/html; charset=utf-8';
+
+	/**
+	 * Represents the plain text content type.
+	 * @var string
+	 */
+	public const TEXT_PLAIN = 'text/plain';
+
+	/**
+	 * Represents the plain text content type with the UTF-8 charset.
+	 * @var string
+	 */
+	public const TEXT_PLAIN_UTF_8 = 'text/plain; charset=utf-8';
 }
