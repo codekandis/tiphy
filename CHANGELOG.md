@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [keep a changelog][xtlink-keep-a-changelog]
 and this project adheres to [Semantic Versioning 2.0.0][xtlink-semantic-versioning].
 
+## [0.39.0] - 2021-12-04
+
+### Added
+
+* PDF responder
+* PDF content type
+
+[0.39.0]: https://github.com/codekandis/tiphy/compare/0.38.0..0.39.0
+
+---
 ## [0.38.0] - 2021-11-25
 
 ### Changed
