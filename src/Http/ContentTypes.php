@@ -21,6 +21,18 @@ abstract class ContentTypes
 	public const APPLICATION_JSON_UTF_8 = 'application/json; charset=utf-8';
 
 	/**
+	 * Represents the octet-stream content type.
+	 * @var string
+	 */
+	public const APPLICATION_OCTET_STREAM = 'application/octet-stream';
+
+	/**
+	 * Represents the PDF content type.
+	 * @var string
+	 */
+	public const APPLICATION_PDF = 'application/pdf';
+
+	/**
 	 * Represents the XML data content type.
 	 * @var string
 	 */
@@ -31,12 +43,6 @@ abstract class ContentTypes
 	 * @var string
 	 */
 	public const APPLICATION_XML_UTF_8 = 'application/xml; charset=utf-8';
-
-	/**
-	 * Represents the octet-stream content type.
-	 * @var string
-	 */
-	public const APPLICATION_OCTET_STREAM = 'application/octet-stream';
 
 	/**
 	 * Represents the HTTPD Unix directory content type.
