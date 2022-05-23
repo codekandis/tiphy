@@ -51,6 +51,12 @@ abstract class ContentTypes
 	public const HTTPD_UNIX_DIRECTORY = 'httpd/unix-directory';
 
 	/**
+	 * Represents the CSV content type.
+	 * @var string
+	 */
+	public const TEXT_CSV = 'text/csv';
+
+	/**
 	 * Represents the HTML content type.
 	 * @var string
 	 */
