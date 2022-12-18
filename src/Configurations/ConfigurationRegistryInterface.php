@@ -23,7 +23,7 @@ interface ConfigurationRegistryInterface extends OriginConfigurationRegistryInte
 	public function getTemplateRendererConfiguration(): ?TemplateRendererConfigurationInterface;
 
 	/**
-	 * Gets the path of the URI builder configuration.
+	 * Gets the URI builder configuration.
 	 * @return ?UriBuilderConfigurationInterface The URI builder configuration.
 	 */
 	public function getUriBuilderConfiguration(): ?UriBuilderConfigurationInterface;
