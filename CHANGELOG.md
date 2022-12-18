@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [keep a changelog][xtlink-keep-a-changelog]
 and this project adheres to [Semantic Versioning 2.0.0][xtlink-semantic-versioning].
 
+## [0.40.1] - 2022-12-18
+
+### Fixed
+
+* PHPDoc
+
+[0.40.1]: https://github.com/codekandis/tiphy/compare/0.40.0..0.40.1
+
+---
 ## [0.40.0] - 2022-05-23
 
 ### Added
