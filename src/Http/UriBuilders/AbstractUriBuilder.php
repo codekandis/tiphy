@@ -1,7 +1,7 @@
 <?php declare( strict_types = 1 );
 namespace CodeKandis\Tiphy\Http\UriBuilders;
 
-use CodeKandis\Tiphy\Configurations\UriBuilderConfigurationInterface;
+use CodeKandis\Tiphy\Configurations\UriBuilderPresetConfigurationInterface;
 use function sprintf;
 
 /**
@@ -12,16 +12,16 @@ use function sprintf;
 abstract class AbstractUriBuilder implements UriBuilderInterface
 {
 	/**
-	 * Stores the configuration of the URI builder.
-	 * @var UriBuilderConfigurationInterface
+	 * Stores the URI builder preset configuration.
+	 * @var UriBuilderPresetConfigurationInterface
 	 */
-	private UriBuilderConfigurationInterface $configuration;
+	private UriBuilderPresetConfigurationInterface $configuration;
 
 	/**
 	 * Constructor method.
-	 * @param UriBuilderConfigurationInterface $configuration The configuration of the URI builder.
+	 * @param UriBuilderPresetConfigurationInterface $configuration The URI builder preset configuration.
 	 */
-	public function __construct( UriBuilderConfigurationInterface $configuration )
+	public function __construct( UriBuilderPresetConfigurationInterface $configuration )
 	{
 		$this->configuration = $configuration;
 	}
