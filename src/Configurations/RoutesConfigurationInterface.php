@@ -4,7 +4,7 @@ namespace CodeKandis\Tiphy\Configurations;
 use CodeKandis\Configurations\ConfigurationInterface;
 
 /**
- * Represents the interface of all routes configurations.
+ * Represents the interface of any routes configuration.
  * @package codekandis/tiphy
  * @author Christian Ramelow <info@codekandis.net>
  */

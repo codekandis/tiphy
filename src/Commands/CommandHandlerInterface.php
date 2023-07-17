@@ -2,7 +2,7 @@
 namespace CodeKandis\Tiphy\Commands;
 
 /**
- * Represents the interface of all command handlers.
+ * Represents the interface of any command handler.
  * @package codekandis/tiphy
  * @author Christian Ramelow <info@codekandis.net>
  */

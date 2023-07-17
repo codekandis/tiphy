@@ -2,7 +2,7 @@
 namespace CodeKandis\Tiphy\Queries;
 
 /**
- * Represents the interface of all queries.
+ * Represents the interface of any query.
  * @package codekandis/tiphy
  * @author Christian Ramelow <info@codekandis.net>
  */

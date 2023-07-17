@@ -4,7 +4,7 @@ namespace CodeKandis\Tiphy\Configurations;
 use CodeKandis\Configurations\ConfigurationInterface;
 
 /**
- * Represents the interface of all URI builder configurations.
+ * Represents the interface of any URI builder configuration.
  * @package codekandis/tiphy
  * @author Christian Ramelow <info@codekandis.net>
  */

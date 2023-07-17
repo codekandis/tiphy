@@ -2,7 +2,7 @@
 namespace CodeKandis\Tiphy\Actions\PreDispatchment;
 
 /**
- * Represents the interface of all pre-dispatchment states.
+ * Represents the interface of any pre-dispatchment state.
  * @package codekandis/tiphy
  * @author Christian Ramelow <info@codekandis.net>
  */

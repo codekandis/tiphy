@@ -9,7 +9,7 @@ use Iterator;
 use JsonSerializable;
 
 /**
- * Represents the interface of all array accessors managing arrays by reference.
+ * Represents the interface of any array accessor managing arrays by reference.
  * @package codekandis/tiphy
  * @author Christian Ramelow <info@codekandis.net>
  */

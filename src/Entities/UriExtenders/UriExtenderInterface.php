@@ -2,7 +2,7 @@
 namespace CodeKandis\Tiphy\Entities\UriExtenders;
 
 /**
- * Represents the interface of all URI extenders.
+ * Represents the interface of any URI extender.
  * @package codekandis/tiphy
  * @author Christian Ramelow <info@codekandis.net>
  */

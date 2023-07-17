@@ -2,7 +2,7 @@
 namespace CodeKandis\Tiphy\Renderers;
 
 /**
- * Represents the interface of all content renderers.
+ * Represents the interface of any content renderer.
  * @package codekandis/tiphy
  * @author Christian Ramelow <info@codekandis.net>
  */

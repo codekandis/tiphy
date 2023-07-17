@@ -2,7 +2,7 @@
 namespace CodeKandis\Tiphy\Queries;
 
 /**
- * Represents the result states of all query handlers.
+ * Represents the result states of any query handler.
  * @package codekandis/tiphy
  * @author Christian Ramelow <info@codekandis.net>
  */

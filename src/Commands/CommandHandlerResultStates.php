@@ -2,7 +2,7 @@
 namespace CodeKandis\Tiphy\Commands;
 
 /**
- * Represents the result states of all command handlers.
+ * Represents the result states of any command handler.
  * @package codekandis/tiphy
  * @author Christian Ramelow <info@codekandis.net>
  */

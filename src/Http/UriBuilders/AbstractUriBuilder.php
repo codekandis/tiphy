@@ -5,7 +5,7 @@ use CodeKandis\Tiphy\Configurations\UriBuilderConfigurationInterface;
 use function sprintf;
 
 /**
- * Represents the base class of all URI builders.
+ * Represents the base class of any URI builder.
  * @package codekandis/tiphy
  * @author Christian Ramelow <info@codekandis.net>
  */

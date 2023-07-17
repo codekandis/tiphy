@@ -4,7 +4,7 @@ namespace CodeKandis\Tiphy\Http\Responses;
 use CodeKandis\Tiphy\Http\Requests\Range;
 
 /**
- * Represents the interface of all octet stream HTTP responders.
+ * Represents the interface of any octet stream HTTP responder.
  * @package codekandis/tiphy
  * @author Christian Ramelow <info@codekandis.net>
  */

@@ -2,7 +2,7 @@
 namespace CodeKandis\Tiphy\Curl;
 
 /**
- * Represents the interface of all response headers.
+ * Represents the interface of any response header.
  * @package codekandis/tiphy
  * @author Christian Ramelow <info@codekandis.net>
  */

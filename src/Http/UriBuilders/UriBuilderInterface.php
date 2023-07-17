@@ -2,7 +2,7 @@
 namespace CodeKandis\Tiphy\Http\UriBuilders;
 
 /**
- * Represents the interface of all URI builders.
+ * Represents the interface of any URI builder.
  * @package codekandis/tiphy
  * @author Christian Ramelow <info@codekandis.net>
  */

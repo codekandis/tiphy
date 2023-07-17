@@ -2,7 +2,7 @@
 namespace CodeKandis\Tiphy\Http\Requests;
 
 /**
- * Represents the interface of all JSON bodies.
+ * Represents the interface of any JSON body.
  * @package codekandis/tiphy
  * @author Christian Ramelow <info@codekandis.net>
  */
