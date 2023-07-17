@@ -11,26 +11,15 @@ use CodeKandis\Configurations\ConfigurationInterface;
 interface UriBuilderConfigurationInterface extends ConfigurationInterface
 {
 	/**
-	 * Gets the schema of the URIs.
-	 * @return string The schema of the URIs.
+	 * Gets all URI builder presets of the application.
+	 * @return UriBuilderPresetConfigurationInterface[] The URI builder presets of the application.
 	 */
-	public function getSchema(): string;
+	public function getPresets(): array;
 
 	/**
-	 * Gets the host of the URIs.
-	 * @return string The host of the URIs.
+	 * Gets a URI builder preset configuration of the application specified by its ID.
+	 * @param string $id The ID of the URI builder preset of the application.
+	 * @return UriBuilderPresetConfigurationInterface The URI builder preset of the application.
 	 */
-	public function getHost(): string;
-
-	/**
-	 * Gets the base URI of the URIs.
-	 * @return string The base URI of the URIs.
-	 */
-	public function getBaseUri(): string;
-
-	/**
-	 * Gets the known relative URIs.
-	 * @return string[] The known relative URIs.
-	 */
-	public function getRelativeUris(): array;
+	public function getPreset( string $id ): UriBuilderPresetConfigurationInterface;
 }
