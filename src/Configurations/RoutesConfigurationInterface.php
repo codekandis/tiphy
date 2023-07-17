@@ -11,14 +11,15 @@ use CodeKandis\Configurations\ConfigurationInterface;
 interface RoutesConfigurationInterface extends ConfigurationInterface
 {
 	/**
-	 * Gets the base route of the application.
-	 * @return string The base route of the application.
+	 * Gets all routes presets of the application.
+	 * @return RoutesPresetConfigurationInterface[] The routes presets of the application.
 	 */
-	public function getBaseRoute(): string;
+	public function getPresets(): array;
 
 	/**
-	 * Gets the routes of the application.
-	 * @return array The routes of the application.
+	 * Gets a routes preset configuration of the application specified by its ID.
+	 * @param string $id The ID of the routes preset of the application.
+	 * @return RoutesPresetConfigurationInterface The routes preset of the application.
 	 */
-	public function getRoutes(): array;
+	public function getPreset( string $id ): RoutesPresetConfigurationInterface;
 }
