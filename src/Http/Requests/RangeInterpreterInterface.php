@@ -2,7 +2,7 @@
 namespace CodeKandis\Tiphy\Http\Requests;
 
 /**
- * Represents the interface of all range interpreters.
+ * Represents the interface of any range interpreter.
  * @package codekandis/tiphy
  * @author Christian Ramelow <info@codekandis.net>
  */

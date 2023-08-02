@@ -4,7 +4,7 @@ namespace CodeKandis\Tiphy\Queries;
 use CodeKandis\Tiphy\Throwables\ErrorInformationInterface;
 
 /**
- * Represents the interface of all query handler results.
+ * Represents the interface of any query handler result.
  * @package codekandis/tiphy
  * @author Christian Ramelow <info@codekandis.net>
  */

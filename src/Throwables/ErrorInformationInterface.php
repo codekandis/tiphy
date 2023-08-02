@@ -5,7 +5,7 @@ use JsonSerializable;
 use ReflectionException;
 
 /**
- * Represents the interface of all error informations.
+ * Represents the interface of any error information.
  * @package codekandis/tiphy
  * @author Christian Ramelow <info@codekandis.net>
  */

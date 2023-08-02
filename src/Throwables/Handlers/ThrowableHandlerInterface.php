@@ -4,7 +4,7 @@ namespace CodeKandis\Tiphy\Throwables\Handlers;
 use Throwable;
 
 /**
- * Represents the interface of all throwable handlers.
+ * Represents the interface of any throwable handler.
  * @package codekandis/tiphy
  * @author Christian Ramelow <info@codekandis.net>
  */

@@ -8,7 +8,7 @@ use function http_response_code;
 use function sprintf;
 
 /**
- * Represents the base class of all HTTP responders.
+ * Represents the base class of any HTTP responder.
  * @package codekandis/tiphy
  * @author Christian Ramelow <info@codekandis.net>
  */

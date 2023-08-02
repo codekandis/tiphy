@@ -2,9 +2,10 @@
 namespace CodeKandis\Tiphy\Configurations;
 
 use CodeKandis\Configurations\AbstractConfiguration;
+use function array_map;
 
 /**
- * Represents an URI builder configuration.
+ * Represents a URI builder configuration.
  * @package codekandis/tiphy
  * @author Christian Ramelow <info@codekandis.net>
  */
@@ -13,32 +14,24 @@ class UriBuilderConfiguration extends AbstractConfiguration implements UriBuilde
 	/**
 	 * {@inheritDoc}
 	 */
-	public function getSchema(): string
+	public function getPresets(): array
 	{
-		return $this->read( 'schema' );
+		return array_map(
+			function ( array $uriBuildersPreset )
+			{
+				return new UriBuilderPresetConfiguration( $uriBuildersPreset );
+			},
+			$this->plainConfiguration
+		);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public function getHost(): string
+	public function getPreset( string $id ): UriBuilderPresetConfigurationInterface
 	{
-		return $this->read( 'host' );
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public function getBaseUri(): string
-	{
-		return $this->read( 'baseUri' );
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public function getRelativeUris(): array
-	{
-		return $this->read( 'relativeUris' );
+		return new UriBuilderPresetConfiguration(
+			$this->read( $id )
+		);
 	}
 }

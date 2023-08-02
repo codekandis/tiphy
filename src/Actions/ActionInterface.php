@@ -2,7 +2,7 @@
 namespace CodeKandis\Tiphy\Actions;
 
 /**
- * Represents the interface of all actions.
+ * Represents the interface of any action.
  * @package codekandis/tiphy
  * @author Christian Ramelow <info@codekandis.net>
  */

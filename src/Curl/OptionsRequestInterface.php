@@ -2,7 +2,7 @@
 namespace CodeKandis\Tiphy\Curl;
 
 /**
- * Represents the interface of all HTTP `OPTIONS` request.
+ * Represents the interface of any HTTP `OPTIONS` request.
  * @package codekandis/tiphy
  * @author Christian Ramelow <info@codekandis.net>
  */

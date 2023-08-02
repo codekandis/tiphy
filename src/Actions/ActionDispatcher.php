@@ -125,33 +125,48 @@ class ActionDispatcher implements ActionDispatcherInterface
 				}
 			}
 
-			$baseRoute       = $this->routesConfiguration->getBaseRoute();
+			$routesPresets = $this->routesConfiguration->getPresets();
+
 			$actionClass     = null;
 			$requestBody     = '';
 			$actionArguments = [];
-			foreach ( $this->routesConfiguration->getRoutes() as $configuredRoute => $configuredMethods )
+
+			foreach ( $routesPresets as $routesPreset )
 			{
-				$matches = ( new RegularExpression(
-					sprintf(
-						'~^%s%s$~',
-						$baseRoute,
-						$configuredRoute
-					)
-				) )
-					->match( $this->requestedRoute, false );
-				if ( null !== $matches )
+				$baseRoute = $routesPreset->getBaseRoute();
+
+				$routeFound = false;
+				foreach ( $routesPreset->getRoutes() as $configuredRoute => $configuredMethods )
 				{
-					$actionClass = MethodNotAllowedAction::class;
-					foreach ( $configuredMethods as $configuredMethod => $configuredAction )
+					$matches = ( new RegularExpression(
+						sprintf(
+							'~^%s%s$~',
+							$baseRoute,
+							$configuredRoute
+						)
+					) )
+						->match( $this->requestedRoute, false );
+					if ( null !== $matches )
 					{
-						if ( $configuredMethod === $this->requestedMethod )
+						$routeFound = true;
+
+						$actionClass = MethodNotAllowedAction::class;
+						foreach ( $configuredMethods as $configuredMethod => $configuredAction )
 						{
-							$actionClass     = $configuredAction;
-							$requestBody     = new JsonBody();
-							$actionArguments = $this->filterArguments( $matches );
-							break;
+							if ( $configuredMethod === $this->requestedMethod )
+							{
+								$actionClass     = $configuredAction;
+								$requestBody     = new JsonBody();
+								$actionArguments = $this->filterArguments( $matches );
+								break;
+							}
 						}
+						break;
 					}
+				}
+
+				if ( true === $routeFound )
+				{
 					break;
 				}
 			}
@@ -161,17 +176,17 @@ class ActionDispatcher implements ActionDispatcherInterface
 			 */
 			if ( null === $actionClass )
 			{
-				$action = new NotFoundAction(
 				/**
-				 * @var NotFoundEntityInterface
+				 * @var NotFoundEntityInterface $notFoundEntity
 				 */
-					NotFoundEntity::fromArray(
-						[
-							'method' => $this->requestedMethod,
-							'uri'    => $this->requestedRoute
-						]
-					)
+				$notFoundEntity = NotFoundEntity::fromArray(
+					[
+						'method' => $this->requestedMethod,
+						'uri'    => $this->requestedRoute
+					]
 				);
+
+				$action = new NotFoundAction( $notFoundEntity );
 			}
 			else
 			{

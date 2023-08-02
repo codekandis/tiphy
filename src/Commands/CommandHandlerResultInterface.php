@@ -4,7 +4,7 @@ namespace CodeKandis\Tiphy\Commands;
 use CodeKandis\Tiphy\Throwables\ErrorInformationInterface;
 
 /**
- * Represents the interface of all command handler results.
+ * Represents the interface of any command handler result.
  * @package codekandis/tiphy
  * @author Christian Ramelow <info@codekandis.net>
  */

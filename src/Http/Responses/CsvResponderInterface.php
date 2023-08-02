@@ -2,7 +2,7 @@
 namespace CodeKandis\Tiphy\Http\Responses;
 
 /**
- * Represents the interface of all CSV HTTP responders.
+ * Represents the interface of any CSV HTTP responder.
  * @package codekandis/tiphy
  * @author Christian Ramelow <info@codekandis.net>
  */

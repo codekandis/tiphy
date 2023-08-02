@@ -4,7 +4,7 @@ namespace CodeKandis\Tiphy\Actions;
 use Throwable;
 
 /**
- * Represents interface of all action dispatchers.
+ * Represents interface of any action dispatcher.
  * @package codekandis/tiphy
  * @author Christian Ramelow <info@codekandis.net>
  */

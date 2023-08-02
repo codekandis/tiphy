@@ -2,7 +2,7 @@
 namespace CodeKandis\Tiphy\Http\Responses;
 
 /**
- * Represents the interface of all HTTP responders.
+ * Represents the interface of any HTTP responder.
  * @package codekandis/tiphy
  * @author Christian Ramelow <info@codekandis.net>
  */

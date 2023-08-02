@@ -4,7 +4,7 @@ namespace CodeKandis\Tiphy\Actions;
 use CodeKandis\Tiphy\Http\Requests\JsonBodyInterface;
 
 /**
- * Represents the base class of all actions.
+ * Represents the base class of any action.
  * @package codekandis/tiphy
  * @author Christian Ramelow <info@codekandis.net>
  */

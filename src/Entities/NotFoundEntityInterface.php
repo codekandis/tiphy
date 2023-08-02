@@ -4,7 +4,7 @@ namespace CodeKandis\Tiphy\Entities;
 use CodeKandis\Entities\EntityInterface;
 
 /**
- * Represents the interface of all `404 Not Found` entities.
+ * Represents the interface of any `404 Not Found` entity.
  * @package codekandis/tiphy
  * @author Christian Ramelow <info@codekandis.net>
  */

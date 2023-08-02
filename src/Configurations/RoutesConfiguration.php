@@ -2,6 +2,7 @@
 namespace CodeKandis\Tiphy\Configurations;
 
 use CodeKandis\Configurations\AbstractConfiguration;
+use function array_map;
 
 /**
  * Represents a routes configuration.
@@ -13,16 +14,24 @@ class RoutesConfiguration extends AbstractConfiguration implements RoutesConfigu
 	/**
 	 * {@inheritDoc}
 	 */
-	public function getBaseRoute(): string
+	public function getPresets(): array
 	{
-		return $this->read( 'baseRoute' );
+		return array_map(
+			function ( array $routesPreset )
+			{
+				return new RoutesPresetConfiguration( $routesPreset );
+			},
+			$this->plainConfiguration
+		);
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public function getRoutes(): array
+	public function getPreset( string $id ): RoutesPresetConfigurationInterface
 	{
-		return $this->read( 'routes' );
+		return new RoutesPresetConfiguration(
+			$this->read( $id )
+		);
 	}
 }
